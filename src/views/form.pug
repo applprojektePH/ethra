@@ -95,7 +95,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
     .accordion-item
         h2#headingOne.accordion-header
             button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
-                h3 Allgemeine Angaben
+                h3 1. Allgemeine Angaben
         #collapseOne.accordion-collapse.collapse.in(aria-labelledby='headingOne' data-bs-parent='#accordionForm')
             .accordion-body
                 .form-group
@@ -105,7 +105,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .row
                                 .col-md-4.fields
                                     label(for='form-author-firstname')
-                                        | Anrede*
+                                        | a. Anrede*
                                     .custom-select-js
                                         .custom-select-js
                                         if (typeof (softwareListDetails) !== 'undefined')
@@ -192,7 +192,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .row
                                 .col-md-12.fields
                                     label(for='form-study')
-                                        | Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?*
+                                        | b. Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
                                             input#form-study.form-control(type='text' required='' name='studiengang' value=order.studiengang)
@@ -204,7 +204,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .row
                                 .col-md-6.fields
                                     label(for='form-modul')
-                                        | Teildisziplin*
+                                        | c. Teildisziplin*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
                                             input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
@@ -214,7 +214,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                         | Pflichtfeld
 
                                 .col-md-6.fields
-                                    label(for='form-prof') Thema/Titel des Vorhabens*
+                                    label(for='form-prof') d. Thema/Titel des Vorhabens*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
                                             input#form-prof.form-control(type='text' required='' name='professur' value=order.professur)
@@ -225,7 +225,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .row
                                 .col-md-12.fields
                                     br
-                                    label.form-label(for='validationTextarea') Zusammenfassung des Vorhabens*
+                                    label.form-label(for='validationTextarea') e. Zusammenfassung des Vorhabens*
                                         small
                                             |&nbsp; (max. 1000 Zeichen)
                                     if (typeof (softwareListDetails) !== 'undefined')
@@ -245,7 +245,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .row
                                 .col-md-12.fields
                                     label(for='form-modul')
-                                        | Projektlaufzeit gemäss finanziertem Vorhaben sowie Zeitraum, für den die Genehmigung beantragt wird*
+                                        | f. Projektlaufzeit gemäss finanziertem Vorhaben sowie Zeitraum, für den die Genehmigung beantragt wird*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
                                             input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
@@ -258,7 +258,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     .form-group
                                         br
                                         label(for='form-safedata')
-                                            | Verlangt der Forschungsträger/Auftraggeber eine
+                                            | g. Verlangt der Forschungsträger/Auftraggeber eine
                                             | Begutachtung des Vorhabens durch eine Ethikkommission?*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
@@ -304,7 +304,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     .form-group
                                         br
                                         label(for='form-safedata')
-                                            | Verlangt der Forschungsträger/Auftraggeber oder die Gesetzgebung eine Registrierung des Vorhabens?*
+                                            | h. Verlangt der Forschungsträger/Auftraggeber oder die Gesetzgebung eine Registrierung des Vorhabens?*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
                                             if (order.cloud == "Ja")
@@ -363,10 +363,10 @@ input#form-status-input.form-control.hidden(type='text' name='status')
     .accordion-item
         h2#headingTwo.accordion-header
             button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo')
-                h3 Verfahren des Vorhabens
+                h3 2. Verfahren des Vorhabens
         #collapseTwo.accordion-collapse.collapse(aria-labelledby='headingTwo' data-bs-parent='#accordionForm')
             .accordion-body
-                label.form-label(for='validationTextarea') Zielgruppe/Teilnehmende (Angestrebte Anzahl, Geschlecht, Alter, Ausbildung, Gruppenzugehörigkeit u.a. von Relevanz)*
+                label.form-label(for='validationTextarea') a. Zielgruppe/Teilnehmende (Angestrebte Anzahl, Geschlecht, Alter, Ausbildung, Gruppenzugehörigkeit u.a. von Relevanz)*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
                         textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='szenario')
@@ -384,7 +384,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                 .row
                     .col-md-12.fields
                         label(for='form-softwarename')
-                            | Welche Personendaten werden erhoben?*
+                            | b. Welche Personendaten werden erhoben?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 input#form-softwarename.form-control(type='text' required='' name='softwarename' value=order.softwarename)
@@ -395,7 +395,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                         br
                     .col-md-12.fields
                         label(for='form-softwarewebsite')
-                            | Wie werden die zu untersuchenden Proband*innen rekrutiert?*
+                            | c. Wie werden die zu untersuchenden Proband*innen rekrutiert?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 input#form-softwarewebseite.form-control(type='text' required='' name='softwarewebseite' value=order.softwarewebseite)
@@ -405,7 +405,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | Pflichtfeld
                         br
                     .col-md-12.fields
-                        label.form-label(for='validationTextarea') Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?*
+                        label.form-label(for='validationTextarea') d. Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?*
                         small
                             | Bitte vollständiges Informationsmaterial dem Antrag beifügen.
                         .row
@@ -422,7 +422,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 br
 
                     .col-md-12.fields
-                        label.form-label(for='validationTextarea') Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?*
+                        label.form-label(for='validationTextarea') e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?*
                         small
                             | Bitte in separatem Dokument darstellen und dem Antrag beifügen.
                         .row
@@ -438,7 +438,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                                 br
                     .col-md-12.fields
-                        label.form-label(for='validationTextarea') Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?*
+                        label.form-label(for='validationTextarea') f. Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?*
                         small
                             | Bitte in einem separaten Dokument die wortwörtlichen Instruktionen, Aufgaben oder Erhebungsinstrumente wie Leitfaden, Fragebogen darlegen und dem Antrag beifügen.
                         .row
@@ -454,7 +454,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                                 br
                     .col-md-12.fields
-                        label.form-label(for='validationTextarea') Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?*
+                        label.form-label(for='validationTextarea') g. Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?*
                         small
                             | Bitte in separatem Dokument beifügen.
                         .row
@@ -472,13 +472,13 @@ input#form-status-input.form-control.hidden(type='text' name='status')
     .accordion-item
         h2#headingThree.accordion-header
             button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseThree' aria-expanded='false' aria-controls='collapseThree')
-                h3 Spezifische ethische Aspekte des Vorhabens
+                h3 3. Spezifische ethische Aspekte des Vorhabens
         #collapseThree.accordion-collapse.collapse(aria-labelledby='headingThree' data-bs-parent='#accordionForm')
             .accordion-body
                 .row
                 .form-group
                     label
-                        | Wird die Teilnahme an dem Vorhaben den untersuchten Personen (Proband*innen) vergütet oder bekommen sie eine Aufwandsentschädigung?
+                        | a. Wird die Teilnahme an dem Vorhaben den untersuchten Personen (Proband*innen) vergütet oder bekommen sie eine Aufwandsentschädigung?
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
                             if (order.cloud == "Ja")
@@ -534,7 +534,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | Pflichtfeld
                     br
                     label
-                        | Wenn die Teilnahme als Studienleistung erbracht wird (z. B. obligatorische Versuchspersonen- stunden), kann die Leistung durch andere alternative Leistungen ersetzt werden?*
+                        | b. Wenn die Teilnahme als Studienleistung erbracht wird (z. B. obligatorische Versuchspersonen- stunden), kann die Leistung durch andere alternative Leistungen ersetzt werden?*
 
                         .row
                             .col-md-6.fields
@@ -547,7 +547,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                 br
                 label
-                    | Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?*
+                    | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
                         if (order.cloud == "Ja")
@@ -605,7 +605,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | Pflichtfeld
                 br
                 label
-                    | Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?*
+                    | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
                         if (order.cloud == "Ja")
@@ -661,7 +661,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | Pflichtfeld
                 br
                 label
-                    | Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
+                    | e. Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
                         if (order.cloud == "Ja")
@@ -710,7 +710,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
 
                     br
                     label
-                        | Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
+                        | f. Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
                             if (order.cloud == "Ja")
@@ -756,7 +756,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | Pflichtfeld
                     br
                     label
-                        | Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
+                        | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
                             if (order.cloud == "Ja")
@@ -814,7 +814,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | Pflichtfeld
                     br
                     label
-                        | Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?*
+                        | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?*
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
                             if (order.cloud == "Ja")
@@ -870,7 +870,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | Pflichtfeld
                     br
                     label
-                        | Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?*
+                        | h. Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?*
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
                             if (order.cloud == "Ja")
@@ -936,13 +936,13 @@ input#form-status-input.form-control.hidden(type='text' name='status')
     .accordion-item
         h2#headingFour.accordion-header
             button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFour' aria-expanded='false' aria-controls='collapseFour')
-                h3 Belastungen während der Untersuchung
+                h3 4. Belastungen während der Untersuchung
         #collapseFour.accordion-collapse.collapse(aria-labelledby='headingFour' data-bs-parent='#accordionForm')
             .accordion-body
                 .row
                 .form-group
                         label
-                            | Wird die physische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. durch Einnahme von Arzneimitteln, Entnahme von Blut)? Können negative Folgen entstehen (z. B. Kopfschmerzen)?*
+                            | a. Wird die physische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. durch Einnahme von Arzneimitteln, Entnahme von Blut)? Können negative Folgen entstehen (z. B. Kopfschmerzen)?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.cloud == "Ja")
@@ -1000,7 +1000,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                         br
                         label
-                            | Wird die psychische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. Konzentrationsfähigkeit, Induktion von negativen Emotionen)? Können negative psychische Folgen eintreten?*
+                            | b. Wird die psychische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. Konzentrationsfähigkeit, Induktion von negativen Emotionen)? Können negative psychische Folgen eintreten?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.cloud == "Ja")
@@ -1058,7 +1058,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                         br
                         label
-                            | Wird durch die Teilnahme die soziale Integrität tangiert (z. B. die Teilnahme trägt zu einem schlechten Ruf bei). Können negative soziale Folgen entstehen?*
+                            | c. Wird durch die Teilnahme die soziale Integrität tangiert (z. B. die Teilnahme trägt zu einem schlechten Ruf bei). Können negative soziale Folgen entstehen?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.cloud == "Ja")
@@ -1116,7 +1116,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                         br
                         label
-                            | Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?*
+                            | d. Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.cloud == "Ja")
@@ -1167,7 +1167,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                         br
                         label
-                            | Wenn Sie bei Frage 4d mit Ja geantwortet haben, geben Sie bitte eine Begründung für Ihr Vorgehen an und erläutern Sie die Schutzmassnahmen, die Sie für die untersuchten Personen (Proband*innen) treffen werden, um die Belastungen zu minimieren:*
+                            | e. Wenn Sie bei Frage 4d mit Ja geantwortet haben, geben Sie bitte eine Begründung für Ihr Vorgehen an und erläutern Sie die Schutzmassnahmen, die Sie für die untersuchten Personen (Proband*innen) treffen werden, um die Belastungen zu minimieren:*
                         .row
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
@@ -1179,7 +1179,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                         br
                         label
-                            | Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?*
+                            | f. Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.cloud == "Ja")
@@ -1236,7 +1236,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                     | Pflichtfeld
                             br
                             label
-                                | Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?*
+                                | g. Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
@@ -1293,7 +1293,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                         | Pflichtfeld
                             br
                             label
-                                | Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?*
+                                | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
@@ -1345,13 +1345,13 @@ input#form-status-input.form-control.hidden(type='text' name='status')
     .accordion-item
         h2#headingFive.accordion-header
             button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFive' aria-expanded='false' aria-controls='collapseFour')
-                h3 Angaben zum Datenschutz
+                h3 5. Angaben zum Datenschutz
         #collapseFive.accordion-collapse.collapse(aria-labelledby='headingFive' data-bs-parent='#accordionForm')
             .accordion-body
                 .row
                     .col-md-12.fields
                             label
-                                | Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?*
+                                | a. Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
@@ -1402,7 +1402,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                         | Pflichtfeld
                             br
                             label
-                                | Werden die erhobenen Daten anonymisiert?*
+                                | b. Werden die erhobenen Daten anonymisiert?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
@@ -1453,7 +1453,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                         | Pflichtfeld
                             br
                             label
-                                | Wird die Vertraulichkeit der Daten gewährleistet?*
+                                | c. Wird die Vertraulichkeit der Daten gewährleistet?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
@@ -1504,7 +1504,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                         | Pflichtfeld
                             br
                             label
-                                | Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?*
+                                | d. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
@@ -1555,7 +1555,58 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                         | Pflichtfeld
                             br
                             label
-                                | Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?*
+                                | e. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?*
+                                if (typeof (softwareListDetails) !== 'undefined')
+                                    for order in softwareListDetails
+                                        if (order.cloud == "Ja")
+                                            div.custom-radio-wrapper(filled=order.cloud)
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                    label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                    label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                                    .invalid-feedback
+                                                        | Pflichtfeld
+                                        else if (order.cloud == "Nein")
+                                            div.custom-radio-wrapper(filled=order.cloud)
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                    label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                    label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                                    .invalid-feedback
+                                                        | Pflichtfeld
+
+                                        else
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                                label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                                .collapse.inputHide
+                                                    .card.card-body
+                                                        input#form-safety.form-control(type='text' name="cloudwo")
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                else
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                                br
+                                label
+                                | f. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
@@ -1607,13 +1658,13 @@ input#form-status-input.form-control.hidden(type='text' name='status')
     .accordion-item
         h2#headingSix.accordion-header
             button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseSix' aria-expanded='false' aria-controls='collapseFour')
-                h3 Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
+                h3 6. Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
         #collapseSix.accordion-collapse.collapse(aria-labelledby='headingFive' data-bs-parent='#accordionForm')
             .accordion-body
                 .row
                         .col-md-6.fields
                             label(for='form-softwarewebsite')
-                                | Ort*
+                                | a. Ort*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     input#form-softwarecompare.form-control(type='text' required='' name='vergleichbarkeit' value=order.vergleichbarkeit)
@@ -1625,7 +1676,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     .col-md-6.fields
                         br
                         label(for='form-data')
-                            | Datum:
+                            | b. Datum:
                         label.form-date
                             |
                         input.hidden.form-date-input(name="datumantrag")
