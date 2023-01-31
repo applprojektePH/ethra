@@ -1,0 +1,41 @@
+if access===true
+    #content.main
+        .container
+            .row
+                .col-md-12
+                    h1#h1-heading
+                        | Ethra - Antrag auf Genehmigung eines Forschungsvorhabens
+                        br
+            .row
+                span
+                    br
+                    | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                a(target='_blank' href='#')
+                    | Allgemeine Informationen
+                a(target='_blank' href='#')
+                    | Selbstdeklaration
+            a(href='/ethra/form')
+                button.btn.btn-secondary.btn-lg(type='button')
+                    i.fas.fa-plus-square
+                    |  Neuer Antrag
+            br
+            .alert.alert-secondary.cookiealert(role='alert')
+                .container
+                    .row
+                        .col-10
+                            p
+                                | Indem Sie diesen Hinweis schliessen oder mit dem Besuch der Seite fortfahren, akzeptieren Sie die
+                                | Verwendung von Cookies. Weitere Informationen dazu finden Sie unter
+                                |
+                                a(href='/ethra/datenschutz' target='_blank') Datenschutz
+                                | .
+                        .col-2.mt-3
+                            button.btn.btn-secondary.btn-sm.acceptcookies.float-right.pl-3.pr-3(type='button' aria-label='Close')
+                                | Ok
+else
+    script(type='text/javascript' src="/ethra/static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')
+    script(type='text/javascript').
+        window.location.replace('./Shibboleth.sso/Session')
+
+
+

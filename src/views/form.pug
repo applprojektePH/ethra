@@ -1,0 +1,1819 @@
+//input#form-id.form-control.hidden(type='text' name='userid' value=useridlog)
+input#form-status-input.form-control.hidden(type='text' name='status')
+.col-md-12.fields
+    .row
+            .col-md-6
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        if (order.cloud == "Einzelantrag")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled01.custom-control-input(type='radio' name='cloud' value="Einzelantrag" required='' checked)
+                                    label.custom-control-label(for='customRadioDisabled01' answer='Einzelantrag') Einzelantrag
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled02.custom-control-input(type='radio' name='cloud' value="Veränderungsantrag" required='')
+                                    label.custom-control-label(for='customRadioDisabled02' answer='Veränderungsantrag') Veränderungsantrag
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled03.custom-control-input(type='radio' name='cloud' value="Gruppenantrag" required='')
+                                    label.custom-control-label(for='customRadioDisabled03' answer='Gruppenantrag') Gruppenantrag
+
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                        else if (order.cloud == "Veränderungsantrag")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled01.custom-control-input(type='radio' name='cloud' value="Einzelantrag" required='' checked)
+                                    label.custom-control-label(for='customRadioDisabled01' answer='Einzelantrag') Einzelantrag
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled02.custom-control-input(type='radio' name='cloud' value="Veränderungsantrag" required='')
+                                    label.custom-control-label(for='customRadioDisabled02' answer='Veränderungsantrag') Veränderungsantrag
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled03.custom-control-input(type='radio' name='cloud' value="Gruppenantrag" required='')
+                                    label.custom-control-label(for='customRadioDisabled03' answer='Gruppenantrag') Gruppenantrag
+
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                        else
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled01.custom-control-input(type='radio' name='cloud' value="Einzelantrag" required='' checked)
+                                    label.custom-control-label(for='customRadioDisabled01' answer='Einzelantrag') Einzelantrag
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled02.custom-control-input(type='radio' name='cloud' value="Veränderungsantrag" required='')
+                                    label.custom-control-label(for='customRadioDisabled02' answer='Veränderungsantrag') Veränderungsantrag
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled03.custom-control-input(type='radio' name='cloud' value="Gruppenantrag" required='')
+                                    label.custom-control-label(for='customRadioDisabled03' answer='Gruppenantrag') Gruppenantrag
+
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                else
+                    .custom-control.custom-radio
+                        input#customRadioDisabled01.custom-control-input(type='radio' name='cloud' value="Einzelantrag" required='')
+                        label.custom-control-label(for='customRadioDisabled01' answer='Einzelantrag') Einzelantrag
+                    .custom-control.custom-radio
+                        input#customRadioDisabled02.custom-control-input(type='radio' name='cloud' value="Veränderungsantrag" required='')
+                        label.custom-control-label(for='customRadioDisabled02' answer='Veränderungsantrag') Veränderungsantrag
+                    .custom-control.custom-radio
+                        input#customRadioDisabled03.custom-control-input(type='radio' name='cloud' value="Gruppenantrag" required='')
+                        label.custom-control-label(for='customRadioDisabled03' answer='Gruppenantrag') Gruppenantrag
+                        .invalid-feedback
+                            | Pflichtfeld
+                        //.form-check
+                        //    label.form-check-label
+                        //        input#inlineCheckbox1.form-check-input.form-check-input-js(type='checkbox' value='Microsoft Edge' name='browser' required)
+                        //        |  Einzelantrag
+                        //.form-check
+                        //    label.form-check-label
+                        //        input#inlineCheckbox1.form-check-input.form-check-input-js(type='checkbox' value='Microsoft Edge' name='browser' required)
+                        //        |  Veränderungsantrag
+                        //.form-check
+                        //    label.form-check-label
+                        //        input#inlineCheckbox2.form-check-input.form-check-input-js(type='checkbox' value='Safari' name='browser' required )
+                        //        |  Gruppenantrag
+            .col-md-6
+                .form-check
+                    label.form-check-label
+                        |  (Genehmigungs-Nummer: )
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                input#form-author-name.form-control(type='text' required='' name='nachname' value=order.nachname)
+                        else
+                            input#form-author-name.form-control(type='text' required='' name='nachname')
+            .form-check.form-check-inline
+                label.form-check-label
+                    .invalid-feedback
+                        | Pflichtfeld
+#accordionForm.accordion
+    .accordion-item
+        h2#headingOne.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
+                h3 Allgemeine Angaben
+        #collapseOne.accordion-collapse.collapse.in(aria-labelledby='headingOne' data-bs-parent='#accordionForm')
+            .accordion-body
+                .form-group
+                    .row
+                        .col-md-12.fields
+                            label(for='form-name')
+                            .row
+                                .col-md-4.fields
+                                    label(for='form-author-firstname')
+                                        | Anrede*
+                                    .custom-select-js
+                                        .custom-select-js
+                                        if (typeof (softwareListDetails) !== 'undefined')
+                                            for order in softwareListDetails
+                                                select.form-select.form-control.custom-control-select(required='' name='anrede' filled=order.anrede)
+                                                    option(selected='' disabled='' value='') Auswahl
+                                                    option(value="Frau") Frau
+                                                    option(value="Herr") Herr
+                                                    option(value="Neutrale Anrede") Neutrale Anrede
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                        else
+                                            select.form-select.form-control.custom-control-select(required='' name='anrede')
+                                                option(selected='' disabled='' value='') Auswahl
+                                                option(value="Frau") Frau
+                                                option(value="Herr") Herr
+                                                option(value="Neutrale Anrede") Neutrale Anrede
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                                .col-md-4.fields
+                                    label(for='form-author-firstname')
+                                        | Vorname*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            input#form-author-firstname.form-control(type='text' required='' name='vorname' value=order.vorname)
+                                    else
+                                        input#form-author-firstname.form-control(type='text' required='' name='vorname' value=vornamelog)
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                                .col-md-4.fields
+                                    label(for='form-author-name')
+                                        | Nachname*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            input#form-author-name.form-control(type='text' required='' name='nachname' value=order.nachname)
+                                    else
+                                        input#form-author-name.form-control(type='text' required='' name='nachname' value=nachnamelog)
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                                .col-md-6.fields
+                                    br
+                                    label(for='form-author-email')
+                                        | E-Mail-Adresse*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            input#form-author-email.form-control(type='email' required='' name='email' value=order.email)
+                                    else
+                                        input#form-author-email.form-control(type='email' required='' name='email' value="useremail@fhnw.ch")
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                                .col-md-6.fields
+                                    br
+                                    label(for='form-institut') Institut*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            select#form-institut.form-select.form-control.form-select(required name='institut' filled=order.institut)
+                                                option(selected='' disabled='' value='')
+                                                    | W&auml;hlen Sie ein Institut...
+                                                option(value='Kindergarten-/Unterstufe') Kindergarten-/Unterstufe
+                                                option(value='Primarstufe') Primarstufe
+                                                option(value='Sekundarstufe I und II') Sekundarstufe I und II
+                                                option(value='Spezielle Pädagogik und Psychologie') Spezielle P&auml;dagogik und Psychologie
+                                                option(value='Weiterbildung und Beratung') Weiterbildung und Beratung
+                                                option(value='Forschung und Entwicklung') Forschung und Entwicklung
+                                                option(value='Stab') Stab
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else
+                                        select.form-select.form-control(required='' name='institut')
+                                            option(selected='' disabled='' value='')
+                                                | W&auml;hlen Sie ein Institut...
+                                            option Kindergarten-/Unterstufe
+                                            option Primarstufe
+                                            option Sekundarstufe I und II
+                                            option Spezielle P&auml;dagogik und Psychologie
+                                            option Weiterbildung und Beratung
+                                            option Forschung und Entwicklung
+                                            option Stab
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            br
+                            .row
+                                .col-md-12.fields
+                                    label(for='form-study')
+                                        | Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            input#form-study.form-control(type='text' required='' name='studiengang' value=order.studiengang)
+                                    else
+                                        input#form-study.form-control(type='text' required='' name='studiengang')
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            br
+                            .row
+                                .col-md-6.fields
+                                    label(for='form-modul')
+                                        | Teildisziplin*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
+                                    else
+                                        input#form-modul.form-control(type='text' required='' name='modulanlass')
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                                .col-md-6.fields
+                                    label(for='form-prof') Thema/Titel des Vorhabens*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            input#form-prof.form-control(type='text' required='' name='professur' value=order.professur)
+                                    else
+                                        input#form-prof.form-control(type='text' required='' name='professur')
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            .row
+                                .col-md-12.fields
+                                    br
+                                    label.form-label(for='validationTextarea') Zusammenfassung des Vorhabens*
+                                        small
+                                            |&nbsp; (max. 1000 Zeichen)
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='szenario')
+                                                | #{order.szenario}
+                                    else
+                                        textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='szenario')
+                                    small.floatright.text-small-char
+                                            | Noch
+                                            | &nbsp;
+                                            span.charleft
+                                            |      Zeichen
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                                    br
+                            .row
+                                .col-md-12.fields
+                                    label(for='form-modul')
+                                        | Projektlaufzeit gemäss finanziertem Vorhaben sowie Zeitraum, für den die Genehmigung beantragt wird*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
+                                    else
+                                        input#form-modul.form-control(type='text' required='' name='modulanlass')
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            .row
+                                .col-md-6.fields
+                                    .form-group
+                                        br
+                                        label(for='form-safedata')
+                                            | Verlangt der Forschungsträger/Auftraggeber eine
+                                            | Begutachtung des Vorhabens durch eine Ethikkommission?*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            if (order.cloud == "Ja")
+                                                div.custom-radio-wrapper(filled=order.cloud)
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled1.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled1' answer='Ja') Ja
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled2.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled2' answer='Nein') Nein
+                                                        .invalid-feedback
+                                                            | Pflichtfeld
+                                            else if (order.cloud == "Ja")
+                                                div.custom-radio-wrapper(filled=order.cloud)
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled1.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled1' answer='Ja') Ja
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled2.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled2' answer='Nein') Nein
+                                                        .invalid-feedback
+                                                            | Pflichtfeld
+                                            else
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled1.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled1' answer='Ja') Ja
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled2.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled2' answer='Nein') Nein
+                                                    .invalid-feedback
+                                                        | Pflichtfeld
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled1.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled1' answer='Ja') Ja
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled2.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled2' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+                                .col-md-6.fields
+                                    .form-group
+                                        br
+                                        label(for='form-safedata')
+                                            | Verlangt der Forschungsträger/Auftraggeber oder die Gesetzgebung eine Registrierung des Vorhabens?*
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            if (order.cloud == "Ja")
+                                                div.custom-radio-wrapper(filled=order.cloud)
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled3.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled3' answer='open') Ja
+                                                    .collapse.inputHide
+                                                        .card.card-body
+                                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Einschlägige Gesetzgebung: ")
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled4.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
+                                                        .invalid-feedback
+                                                            | Pflichtfeld
+                                            else if (order.cloud == "Nein")
+                                                div.custom-radio-wrapper(filled=order.cloud)
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled3.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled3' answer='open') Ja
+                                                    .card.card-body
+                                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                                    .custom-control.custom-radio
+                                                        input#customRadioDisabled4.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
+                                                        .invalid-feedback
+                                                            | Pflichtfeld
+
+                                            else
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled3.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled3' answer='open') Ja
+                                                    .collapse.inputHide
+                                                        .card.card-body
+                                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                                .custom-control.custom-radio
+                                                    input#customRadioDisabled4.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
+                                                    .invalid-feedback
+                                                        | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled3.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled3' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" placeholder="Einschlägige Gesetzgebung: ")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled4.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+                            br
+
+    .accordion-item
+        h2#headingTwo.accordion-header
+            button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo')
+                h3 Verfahren des Vorhabens
+        #collapseTwo.accordion-collapse.collapse(aria-labelledby='headingTwo' data-bs-parent='#accordionForm')
+            .accordion-body
+                label.form-label(for='validationTextarea') Zielgruppe/Teilnehmende (Angestrebte Anzahl, Geschlecht, Alter, Ausbildung, Gruppenzugehörigkeit u.a. von Relevanz)*
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='szenario')
+                            | #{order.szenario}
+                else
+                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='szenario')
+                small.floatright.text-small-char
+                        | Noch
+                        | &nbsp;
+                        span.charleft
+                        |      Zeichen
+                .invalid-feedback
+                    | Pflichtfeld
+                br
+                .row
+                    .col-md-12.fields
+                        label(for='form-softwarename')
+                            | Welche Personendaten werden erhoben?*
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                input#form-softwarename.form-control(type='text' required='' name='softwarename' value=order.softwarename)
+                        else
+                            input#form-softwarename.form-control(type='text' required='' name='softwarename')
+                        .invalid-feedback
+                            | Pflichtfeld
+                        br
+                    .col-md-12.fields
+                        label(for='form-softwarewebsite')
+                            | Wie werden die zu untersuchenden Proband*innen rekrutiert?*
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                input#form-softwarewebseite.form-control(type='text' required='' name='softwarewebseite' value=order.softwarewebseite)
+                        else
+                            input#form-softwarewebsite.form-control(type='text' required='' name='softwarewebseite')
+                        .invalid-feedback
+                            | Pflichtfeld
+                        br
+                    .col-md-12.fields
+                        label.form-label(for='validationTextarea') Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?*
+                        small
+                            | Bitte vollständiges Informationsmaterial dem Antrag beifügen.
+                        .row
+                            .col-md-6.fields
+                                if (typeof (softwareListDetails) !== 'undefined')
+                                    for order in softwareListDetails
+                                        a(href='/ethra/')
+                                            i.fas.fa-file-download
+                                                |  Dateiname.pdf
+                                else
+                                        input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                .invalid-feedback
+                                    | Pflichtfeld
+                                br
+
+                    .col-md-12.fields
+                        label.form-label(for='validationTextarea') Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?*
+                        small
+                            | Bitte in separatem Dokument darstellen und dem Antrag beifügen.
+                        .row
+                            .col-md-6.fields
+                                if (typeof (softwareListDetails) !== 'undefined')
+                                    for order in softwareListDetails
+                                        a(href='/ethra/')
+                                            i.fas.fa-file-download
+                                                |  Dateiname.pdf
+                                else
+                                    input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                .invalid-feedback
+                                    | Pflichtfeld
+                                br
+                    .col-md-12.fields
+                        label.form-label(for='validationTextarea') Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?*
+                        small
+                            | Bitte in einem separaten Dokument die wortwörtlichen Instruktionen, Aufgaben oder Erhebungsinstrumente wie Leitfaden, Fragebogen darlegen und dem Antrag beifügen.
+                        .row
+                            .col-md-6.fields
+                                if (typeof (softwareListDetails) !== 'undefined')
+                                    for order in softwareListDetails
+                                        a(href='/ethra/')
+                                            i.fas.fa-file-download
+                                                |  Dateiname.pdf
+                                else
+                                    input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                .invalid-feedback
+                                    | Pflichtfeld
+                                br
+                    .col-md-12.fields
+                        label.form-label(for='validationTextarea') Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?*
+                        small
+                            | Bitte in separatem Dokument beifügen.
+                        .row
+                            .col-md-6.fields
+                                if (typeof (softwareListDetails) !== 'undefined')
+                                    for order in softwareListDetails
+                                        a(href='/ethra/')
+                                            i.fas.fa-file-download
+                                                |  Dateiname.pdf
+                                else
+                                    input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                .invalid-feedback
+                                    | Pflichtfeld
+                        br
+    .accordion-item
+        h2#headingThree.accordion-header
+            button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseThree' aria-expanded='false' aria-controls='collapseThree')
+                h3 Spezifische ethische Aspekte des Vorhabens
+        #collapseThree.accordion-collapse.collapse(aria-labelledby='headingThree' data-bs-parent='#accordionForm')
+            .accordion-body
+                .row
+                .form-group
+                    label
+                        | Wird die Teilnahme an dem Vorhaben den untersuchten Personen (Proband*innen) vergütet oder bekommen sie eine Aufwandsentschädigung?
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            if (order.cloud == "Ja")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Einschlägige Gesetzgebung: ")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            else if (order.cloud == "Nein")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                    else
+                        .custom-control.custom-radio
+                            input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
+                        .collapse.inputHide
+                            .card.card-body
+                                input#form-safety.form-control(type='text' name="cloudwo" placeholder="Was, wie viel?")
+                        .custom-control.custom-radio
+                            input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
+                            .invalid-feedback
+                                | Pflichtfeld
+                    br
+                    label
+                        | Wenn die Teilnahme als Studienleistung erbracht wird (z. B. obligatorische Versuchspersonen- stunden), kann die Leistung durch andere alternative Leistungen ersetzt werden?*
+
+                        .row
+                            .col-md-6.fields
+                                if (typeof (softwareListDetails) !== 'undefined')
+                                    for order in softwareListDetails
+                                        input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
+                                else
+                                    input#form-modul.form-control(type='text' required='' name='modulanlass')
+                                .invalid-feedback
+                                    | Pflichtfeld
+                br
+                label
+                    | Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?*
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        if (order.cloud == "Ja")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Einschlägige Gesetzgebung: ")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                        else if (order.cloud == "Nein")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo")
+                            .custom-control.custom-radio
+                                input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+
+                else
+                    .custom-control.custom-radio
+                        input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
+                    .collapse.inputHide
+                        .card.card-body
+                            small
+                                | Bitte Einverständniserklärung einreichen.
+                            input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                    .custom-control.custom-radio
+                        input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
+                        .invalid-feedback
+                            | Pflichtfeld
+                br
+                label
+                    | Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?*
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        if (order.cloud == "Ja")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Welche?")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                        else if (order.cloud == "Nein")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo")
+                            .custom-control.custom-radio
+                                input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+
+                else
+                    .custom-control.custom-radio
+                        input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
+                    .collapse.inputHide
+                        .card.card-body
+                            input#form-safety.form-control(type='text' name="cloudwo" placeholder="Welche?")
+                    .custom-control.custom-radio
+                        input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
+                        .invalid-feedback
+                            | Pflichtfeld
+                br
+                label
+                    | Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        if (order.cloud == "Ja")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                        else if (order.cloud == "Nein")
+                            div.custom-radio-wrapper(filled=order.cloud)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
+
+                            .custom-control.custom-radio
+                                input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+
+                else
+                    .custom-control.custom-radio
+                        input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
+                    .custom-control.custom-radio
+                        input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
+                        .invalid-feedback
+                            | Pflichtfeld
+
+
+                    br
+                    label
+                        | Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            if (order.cloud == "Ja")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            else if (order.cloud == "Nein")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
+
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                    else
+                        .custom-control.custom-radio
+                            input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
+                        .custom-control.custom-radio
+                            input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
+                            .invalid-feedback
+                                | Pflichtfeld
+                    br
+                    label
+                        | Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            if (order.cloud == "Ja")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Einschlägige Gesetzgebung: ")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            else if (order.cloud == "Nein")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                    else
+                        .custom-control.custom-radio
+                            input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                        .collapse.inputHide
+                            .card.card-body
+                                small
+                                    | Bitte Einverständniserklärung einreichen.
+                                input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                        .custom-control.custom-radio
+                            input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
+                            .invalid-feedback
+                                | Pflichtfeld
+                    br
+                    label
+                        | Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?*
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            if (order.cloud == "Ja")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern: ")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            else if (order.cloud == "Nein")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                    else
+                        .custom-control.custom-radio
+                            input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
+                        .collapse.inputHide
+                            .card.card-body
+                                input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+                        .custom-control.custom-radio
+                            input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
+                            .invalid-feedback
+                                | Pflichtfeld
+                    br
+                    label
+                        | Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?*
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            if (order.cloud == "Ja")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                                            br
+                                            small
+                                                | Bitte allfällige Versicherungsunterlagen beifügen.
+                                            input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            else if (order.cloud == "Nein")
+                                div.custom-radio-wrapper(filled=order.cloud)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                    else
+                        .custom-control.custom-radio
+                            input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                        .collapse.inputHide
+                            .card.card-body
+                                input#form-safety.form-control(type='text' name="cloudwo" placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                                br
+                                small
+                                    | Bitte allfällige Versicherungsunterlagen beifügen.
+                                input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                        .custom-control.custom-radio
+                            input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                            .invalid-feedback
+                                | Pflichtfeld
+                    br
+    .accordion-item
+        h2#headingFour.accordion-header
+            button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFour' aria-expanded='false' aria-controls='collapseFour')
+                h3 Belastungen während der Untersuchung
+        #collapseFour.accordion-collapse.collapse(aria-labelledby='headingFour' data-bs-parent='#accordionForm')
+            .accordion-body
+                .row
+                .form-group
+                        label
+                            | Wird die physische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. durch Einnahme von Arzneimitteln, Entnahme von Blut)? Können negative Folgen entstehen (z. B. Kopfschmerzen)?*
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                if (order.cloud == "Ja")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+                                else if (order.cloud == "Nein")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                                else
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                            .collapse.inputHide
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+
+                            .custom-control.custom-radio
+                                input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+                        br
+                        label
+                            | Wird die psychische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. Konzentrationsfähigkeit, Induktion von negativen Emotionen)? Können negative psychische Folgen eintreten?*
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                if (order.cloud == "Ja")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+                                else if (order.cloud == "Nein")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                                else
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
+                            .collapse.inputHide
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+
+                            .custom-control.custom-radio
+                                input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+                        br
+                        label
+                            | Wird durch die Teilnahme die soziale Integrität tangiert (z. B. die Teilnahme trägt zu einem schlechten Ruf bei). Können negative soziale Folgen entstehen?*
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                if (order.cloud == "Ja")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+                                else if (order.cloud == "Nein")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                                else
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
+                            .collapse.inputHide
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+
+                            .custom-control.custom-radio
+                                input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+                        br
+                        label
+                            | Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?*
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                if (order.cloud == "Ja")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
+
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+                                else if (order.cloud == "Nein")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                                else
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
+                            .custom-control.custom-radio
+                                input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+                        br
+                        label
+                            | Wenn Sie bei Frage 4d mit Ja geantwortet haben, geben Sie bitte eine Begründung für Ihr Vorgehen an und erläutern Sie die Schutzmassnahmen, die Sie für die untersuchten Personen (Proband*innen) treffen werden, um die Belastungen zu minimieren:*
+                        .row
+                            .col-md-6.fields
+                                if (typeof (softwareListDetails) !== 'undefined')
+                                    for order in softwareListDetails
+                                        input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
+                                else
+                                    input#form-modul.form-control(type='text' required='' name='modulanlass')
+                                .invalid-feedback
+                                    | Pflichtfeld
+                        br
+                        label
+                            | Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?*
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                if (order.cloud == "Ja")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+                                else if (order.cloud == "Nein")
+                                    div.custom-radio-wrapper(filled=order.cloud)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                                else
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
+                            .collapse.inputHide
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+                            .custom-control.custom-radio
+                                input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+                            br
+                            label
+                                | Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    if (order.cloud == "Ja")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern (insbesondere das «Debriefing»):")
+
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else if (order.cloud == "Nein")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled30.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled30.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern (insbesondere das «Debriefing»): ")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled30.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            br
+                            label
+                                | Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    if (order.cloud == "Ja")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
+
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else if (order.cloud == "Nein")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+    .accordion-item
+        h2#headingFive.accordion-header
+            button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFive' aria-expanded='false' aria-controls='collapseFour')
+                h3 Angaben zum Datenschutz
+        #collapseFive.accordion-collapse.collapse(aria-labelledby='headingFive' data-bs-parent='#accordionForm')
+            .accordion-body
+                .row
+                    .col-md-12.fields
+                            label
+                                | Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    if (order.cloud == "Ja")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
+
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else if (order.cloud == "Nein")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            br
+                            label
+                                | Werden die erhobenen Daten anonymisiert?*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    if (order.cloud == "Ja")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
+
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else if (order.cloud == "Nein")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            br
+                            label
+                                | Wird die Vertraulichkeit der Daten gewährleistet?*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    if (order.cloud == "Ja")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
+
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else if (order.cloud == "Nein")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            br
+                            label
+                                | Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    if (order.cloud == "Ja")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else if (order.cloud == "Nein")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                            br
+                            label
+                                | Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    if (order.cloud == "Ja")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled41.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
+
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled42.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+                                    else if (order.cloud == "Nein")
+                                        div.custom-radio-wrapper(filled=order.cloud)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled41.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
+                                            .card.card-body
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            .custom-control.custom-radio
+                                                input#customRadioDisabled42.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                                .invalid-feedback
+                                                    | Pflichtfeld
+
+                                    else
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled41.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
+                                            .collapse.inputHide
+                                                .card.card-body
+                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled42.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                            .invalid-feedback
+                                                | Pflichtfeld
+
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled41.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled42.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+    .accordion-item
+        h2#headingSix.accordion-header
+            button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseSix' aria-expanded='false' aria-controls='collapseFour')
+                h3 Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
+        #collapseSix.accordion-collapse.collapse(aria-labelledby='headingFive' data-bs-parent='#accordionForm')
+            .accordion-body
+                .row
+                        .col-md-6.fields
+                            label(for='form-softwarewebsite')
+                                | Ort*
+                            if (typeof (softwareListDetails) !== 'undefined')
+                                for order in softwareListDetails
+                                    input#form-softwarecompare.form-control(type='text' required='' name='vergleichbarkeit' value=order.vergleichbarkeit)
+                            else
+                                input#form-softwarecompare.form-control(type='text' required='' name='vergleichbarkeit')
+                            .invalid-feedback
+                                | Pflichtfeld
+                .row
+                    .col-md-6.fields
+                        br
+                        label(for='form-data')
+                            | Datum:
+                        label.form-date
+                            |
+                        input.hidden.form-date-input(name="datumantrag")
+                            |
+
+
+script(type='text/javascript' src="./static/js/libs/jquery.js")
+script(type='text/javascript' src="./static/js/validator.js")
+script(type='text/javascript').
+    $(document).ready(function () {
+        if (window.location.href.indexOf("form") > -1) {
+            $('#buttonsubmitformdraft').click(function (event) {
+                event.stopPropagation();
+                $('#formOrder').removeClass('needs-validation');
+                $('#form-status-input').attr('value', '10');
+            });
+
+        } else if (window.location.href.indexOf("edit") > -1) {
+                $("form").find(".form-select").each(function () {
+                        let attrselectedform = $(this).attr('filled');
+                $(this).find("option[value='" + attrselectedform + "']").prop('selected', true);
+                });
+                $(".form-check-wrapper").each(function () {
+                        let attrselectedform = $(this).attr('filled');
+                        let nameArr = attrselectedform.split(',');
+                        for (let i = 0; i < nameArr.length; i++) {
+                                $('input:checkbox[value="' + nameArr[i] + '"]').attr('checked', true);
+                }
+                });
+            $('#buttonsubmitformdraft').click(function (event) {
+                event.stopPropagation();
+                $('#form-status-input').attr('value', '1');
+            });
+            $('#buttonsubmitsavechanges').click(function () {
+                $('#form-status-input').attr('value', '0');
+            });
+            //only edit and form functions
+                    var maxChar = parseInt($('.textarea-js').attr('maxlength'));
+                    $('.textarea-js[maxlength]').parent().find('.charleft').html(maxChar - $(this).val().length);
+                    var char = $('.textarea-js').val().length;
+                    $('.textarea-js').parent().find('.charleft').html(maxChar - char);
+                    $('.textarea-js[maxlength]').keyup(function(){
+                        if($(this).val().length > maxChar){
+                            $(this).val($(this).val().substr(0, maxChar));
+                        }
+                        $(this).parent().find('.charleft').html(maxChar - $(this).val().length);
+                    });
+        }
+        $('.link-edit-back').click(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const currenturlParam = urlParams.get('tsid');
+            window.location.replace("/ethra/details?tsid=" + currenturlParam);
+        })
+        $(".custom-control-select").on('change', function (e) {
+            var valueSelected = $('option:selected', this).attr('answer');
+            if (valueSelected == "open") {
+                $(this).nextAll(".inputHide").delay(300).slideDown("slow");
+            } else {
+                $(this).nextAll(".inputHide").delay(300).slideUp("slow");
+            }
+        });
+        // $(".custom-control-label").click(function () {
+        //     if ($(this).attr('answer') == "open") {
+        //         $(this).closest(".custom-control").nextAll(".inputHide").delay(300).slideDown("slow");
+        //     } else {
+        //         $(this).closest(".custom-control").nextAll(".inputHide").delay(300).slideUp("slow");
+        //     }
+        // });
+        $(".custom-control-label-js").click(function () {
+            if ($(this).attr('answer') == "open") {
+                $(this).closest(".custom-control").next(".inputHide").delay(300).slideDown("slow");
+            } else {
+                $(this).closest(".custom-control").prev(".inputHide").delay(300).slideUp("slow");
+            }
+        });
+        // $(".custom-control-label-js2").click(function () {
+        //     if ($(this).attr('answer') == "open") {
+        //         $(this).closest(".custom-control").nextAll(".inputHide2").delay(300).slideDown("slow");
+        //     } else {
+        //         $(this).closest(".custom-control").nextAll(".inputHide2").delay(300).slideUp("slow");
+        //     }
+        //});
+        let d = new Date();
+        let month = d.getMonth() + 1;
+        let day = d.getDate();
+        let hour = d.getHours();
+        let minute = d.getMinutes();
+        let datetime =
+            (('' + day).length < 2 ? '0' : '') + day + '.' +
+            (('' + month).length < 2 ? '0' : '') + month + '.' +
+            d.getFullYear() + ' ' +
+            (('' + hour).length < 2 ? '0' : '') + hour + ':' +
+            (('' + minute).length < 2 ? '0' : '') + minute;
+        $('.form-date').text(datetime);
+        $('.form-date-input').attr('value', datetime);
+        let formsubmit = false;
+        if ($("[name='browser']:checked").length !== 0) {
+            $("[name='browser']").attr('required', false);
+        }
+        $(function () {
+            let requiredCheckboxes = $('input:checkbox[required]');
+            requiredCheckboxes.change(function () {
+                if (requiredCheckboxes.is(':checked')) {
+                    requiredCheckboxes.removeAttr('required');
+                } else {
+                    requiredCheckboxes.attr('required', 'required');
+                }
+            });
+        });
+        $("#accordionForm .accordion-item").find("input, select, textarea").focus(function () {
+            let current = $(this).closest(".accordion-collapse").prev();
+            current.removeClass('required-header');
+        });
+        $(".submitformbtnaction").find("input, select, textarea").focus(function () {
+            let current = $(this).closest(".accordion-collapse").prev();
+            current.removeClass('required-header');
+        });
+        $(".submitformbtnaction").on("click", function (event) {
+            event.stopPropagation();
+            $("#headingThree").removeClass('required-header');
+            $("#accordionForm").find(".accordion-item").each(function () {
+                $(this).find("input, textarea, select").filter('[required]').each(function () {
+                    if (($(this).val() == " ") || ($(this).val() == null) || ($.trim($(this).val()).length == 0)) {
+                        let current = $(this).closest(".accordion-collapse").prev().eq(0);
+                        current.addClass('required-header');
+                        return false;
+                    }
+                    if (($("input[name='softwareupdate']:checked").length !== 0)) {
+                        $('#headingThree').removeClass('required-header');
+                    }
+                    if (($("input[name='browser']:checked").length == 0)) {
+                        $("input[name='browser']").closest(".accordion-collapse").prev().addClass('required-header');
+                    } else if (($("input[name='softwareupdate']:checked").length == 0)) {
+                        $("input[name='softwareupdate']").closest(".accordion-collapse").prev().addClass('required-header');
+                        $('#headingThree').removeClass('required-header');
+                    } else if (($("input[name='softwareinstitut']:checked").length == 0)) {
+                        $("input[name='softwareinstitut']").closest(".accordion-collapse").prev().addClass('required-header');
+                        $('#headingThree').removeClass('required-header');
+                    } else if (($("input[name='softwarehochschinteresse']:checked").length == 0)) {
+                        $("input[name='softwarehochschinteresse']").closest(".accordion-collapse").prev().addClass('required-header');
+                        $('#headingThree').removeClass('required-header');
+                    } else if (($("input[name='cloud']:checked").length == 0)) {
+                        $("input[name='cloud']").closest(".accordion-collapse").prev().addClass('required-header');
+                        $('#headingThree').removeClass('required-header');
+                    } else {
+                        let current = $(this).closest(".accordion-collapse").prev().eq(0);
+                        current.removeClass('required-header');
+                        return true;
+                    }
+                });
+            });
+            formsubmit = true;
+            if (formsubmit == true) {
+                (function () {
+                    'use strict'
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.querySelectorAll('.needs-validation')
+                    // Loop over them and prevent submission
+                    Array.prototype.slice.call(forms)
+                        .forEach(function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                }
+                                form.classList.add('was-validated')
+                            }, false)
+                        })
+                })()
+                formsubmit = false;
+            }
+        })
+
+        $('.accordion-collapse').on('shown.bs.collapse', function (e) {
+            var $panel = $(this).closest('.accordion-item');
+            let offset;
+            if ($(window).width() > 992) {
+                offset = 120
+            }
+            else if (($(window).width() < 992) && ($(window).width() > 768)) {
+                offset = 150
+            } else if ($(window).width() < 768)  {
+                offset = 300
+            }
+                $('html,body').animate({
+                    scrollTop: $panel.offset().top - offset
+                }, 200);
+
+        });
+
+    });

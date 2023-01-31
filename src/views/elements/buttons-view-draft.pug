@@ -1,0 +1,14 @@
+span.service-buttons-wrapper.service-buttons-wrapper-viewdraft
+    for order in softwareListDetails
+        if(order.status == 10)
+            a.btn.btn-primary.btn-sm.btn-orderedit(href="santra/edit?tsid=" + order.orderid class="link-id")
+                    | Antrag bearbeiten
+                    i.fas.fa-edit
+        button.pdfexport.btn.btn-primary.btn-sm(type='button')
+            | Antrag als PDF speichern
+            i.fas.fa-file-pdf
+        a.btn.btn-primary.btn-sm.floatright(href='/santra/user')
+                | Zur&uuml;ck zu
+                | allen Antr&auml;gen
+                i.fas.fa-search
+br
