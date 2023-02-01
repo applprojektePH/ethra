@@ -706,54 +706,6 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
                         .invalid-feedback
                             | Pflichtfeld
-
-
-                    br
-                    label
-                        | f. Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
-                    if (typeof (softwareListDetails) !== 'undefined')
-                        for order in softwareListDetails
-                            if (order.cloud == "Ja")
-                                div.custom-radio-wrapper(filled=order.cloud)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-                            else if (order.cloud == "Nein")
-                                div.custom-radio-wrapper(filled=order.cloud)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-
-                            else
-                                .custom-control.custom-radio
-                                    input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
-
-                                .custom-control.custom-radio
-                                    input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
-                                    .invalid-feedback
-                                        | Pflichtfeld
-
-                    else
-                        .custom-control.custom-radio
-                            input#customRadioDisabled13.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled13' answer='open') Ja
-                        .custom-control.custom-radio
-                            input#customRadioDisabled14.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled14' answer='Nein') Nein
-                            .invalid-feedback
-                                | Pflichtfeld
                     br
                     label
                         | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
