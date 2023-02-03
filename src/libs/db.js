@@ -9,5 +9,5 @@
      host            : 'localhost',
      user            : 'admin',
      password        : 'mysecretpassword',
-     database        : 'santra'
+     database        : 'ethra'
  })

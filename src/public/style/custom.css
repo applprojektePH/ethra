@@ -2,6 +2,9 @@ body {
     max-width: 2000px;
     margin: 0 auto;
     font-size: 1.2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 br {
@@ -36,7 +39,14 @@ button svg {
 
     margin-left: 5px;
 }
-
+.main{
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    display: block;
+    background: #fff;
+    padding-bottom: 25px;
+}
 .main a{
     margin: 15px 0 25px;
     width: auto;
