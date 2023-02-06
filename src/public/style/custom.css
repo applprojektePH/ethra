@@ -1219,3 +1219,6 @@ textarea{
 span i{
     font-size: 16px;
 }
+.charleft{
+    margin-left: -3px;
+}

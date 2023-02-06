@@ -218,13 +218,13 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                             |&nbsp; (max. 1000 Zeichen)
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
-                                            textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='summary')
+                                            textarea#validationTextarea.form-control.textarea-js(maxlength='1000' rows='7' required='' name='summary')
                                                 | #{order.summary}
                                     else
-                                        textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='summary')
+                                        textarea#validationTextarea.form-control.textarea-js(maxlength='1000' rows='7' required='' name='summary')
                                     small.floatright.text-small-char
-                                            | Noch
-                                            | &nbsp;
+                                            |Noch
+                                            |&nbsp;
                                             span.charleft
                                             |      Zeichen
                                     .invalid-feedback
@@ -245,7 +245,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 .col-md-6.fields
                                     .form-group
                                         br
-                                        label(for='form-safedata')
+                                        label
                                             | g. Verlangt der Forschungsträger/Auftraggeber eine
                                             | Begutachtung des Vorhabens durch eine Ethikkommission?*
                                     if (typeof (softwareListDetails) !== 'undefined')
@@ -358,10 +358,10 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     | a. Zielgruppe/Teilnehmende (Angestrebte Anzahl, Geschlecht, Alter, Ausbildung, Gruppenzugehörigkeit u.a. von Relevanz)*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
-                        textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='participants')
+                        textarea#validationTextarea.form-control.textarea-js(maxlength='1000' rows='7' required='' name='participants')
                             | #{order.participants}
                 else
-                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' required='' name='participants')
+                    textarea#validationTextarea.form-control.textarea-js(maxlength='1000' rows='7' required='' name='participants')
                 small.floatright.text-small-char
                         | Noch
                         | &nbsp;
@@ -475,53 +475,53 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
                             if (order.cloud == "Ja")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                                div.custom-radio-wrapper(filled=order.compensation)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Einschlägige Gesetzgebung: ")
+                                            input#form-safety.form-control(type='text' name="compensation" value=order.compensation placeholder="Einschlägige Gesetzgebung: ")
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
                             else if (order.cloud == "Nein")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                                div.custom-radio-wrapper(filled=order.compensation)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        input#form-safety.form-control(type='text' name="compensation" value=order.compensationtext)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                            input#form-safety.form-control(type='text' name="compensationtext")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
 
                     else
                         .custom-control.custom-radio
-                            input#customRadioDisabled5.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
                         .collapse.inputHide
                             .card.card-body
-                                input#form-safety.form-control(type='text' name="cloudwo" placeholder="Was, wie viel?")
+                                input#form-safety.form-control(type='text' name="compensationtext" placeholder="Was, wie viel?")
                         .custom-control.custom-radio
-                            input#customRadioDisabled6.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
                             .invalid-feedback
                                 | Pflichtfeld
@@ -533,9 +533,9 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
+                                        input#form-modul.form-control(type='text' required='' name='performanced' value=order.performanced)
                                 else
-                                    input#form-modul.form-control(type='text' required='' name='modulanlass')
+                                    input#form-modul.form-control(type='text' required='' name='performanced')
                                 .invalid-feedback
                                     | Pflichtfeld
                 br
@@ -544,55 +544,55 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
                         if (order.cloud == "Ja")
-                            div.custom-radio-wrapper(filled=order.cloud)
+                            div.custom-radio-wrapper(filled=order.voluntary)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                    input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
                                 .collapse.inputHide
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Einschlägige Gesetzgebung: ")
+                                        a.form-control(name="voluntaryfile" href=order.voluntaryfile)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
                         else if (order.cloud == "Nein")
-                            div.custom-radio-wrapper(filled=order.cloud)
+                            div.custom-radio-wrapper(filled=order.voluntary)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                    input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' )
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
                                 .card.card-body
-                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                    a.form-control(name="voluntaryfile" href=order.voluntaryfile)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                    input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
                                 .collapse.inputHide
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo")
+                                        a.form-control(name="voluntaryfile" href=order.voluntaryfile)
                             .custom-control.custom-radio
-                                input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
 
                 else
                     .custom-control.custom-radio
-                        input#customRadioDisabled9.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                        input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
                     .collapse.inputHide
                         .card.card-body
                             small
                                 | Bitte Einverständniserklärung einreichen.
-                            input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                            input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
                     .custom-control.custom-radio
-                        input#customRadioDisabled10.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                        input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
                         .invalid-feedback
                             | Pflichtfeld
@@ -601,54 +601,54 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
-                        if (order.cloud == "Ja")
-                            div.custom-radio-wrapper(filled=order.cloud)
+                        if (order.notparticipate == "Ja")
+                            div.custom-radio-wrapper(filled=order.notparticipate)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                    input#customRadioDisabled11.custom-control-input(type='radio' name='notparticipate' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
                                 .collapse.inputHide
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Welche?")
+                                        input#form-safety.form-control(type='text' name="notparticipatetext" value=order.notparticipatetext placeholder="Welche?")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled12.custom-control-input(type='radio' name='notparticipate' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
-                        else if (order.cloud == "Nein")
-                            div.custom-radio-wrapper(filled=order.cloud)
+                        else if (order.notparticipate == "Nein")
+                            div.custom-radio-wrapper(filled=order.notparticipate)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                    input#customRadioDisabled11.custom-control-input(type='radio' name='notparticipate' value="Ja" required='' )
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
                                 .card.card-body
-                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                    input#form-safety.form-control(type='text' name="notparticipatetext" value=order.notparticipatetext)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                    input#customRadioDisabled12.custom-control-input(type='radio' name='notparticipate' value="Nein" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled11.custom-control-input(type='radio' name='notparticipate' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
                                 .collapse.inputHide
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo")
+                                        input#form-safety.form-control(type='text' name="notparticipatetext")
                             .custom-control.custom-radio
-                                input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled12.custom-control-input(type='radio' name='notparticipate' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
 
                 else
                     .custom-control.custom-radio
-                        input#customRadioDisabled11.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                        input#customRadioDisabled11.custom-control-input(type='radio' name='notparticipate' value="Ja" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
                     .collapse.inputHide
                         .card.card-body
-                            input#form-safety.form-control(type='text' name="cloudwo" placeholder="Welche?")
+                            input#form-safety.form-control(type='text' name="notparticipatetext" placeholder="Welche?")
                     .custom-control.custom-radio
-                        input#customRadioDisabled12.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                        input#customRadioDisabled12.custom-control-input(type='radio' name='notparticipate' value="Nein" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
                         .invalid-feedback
                             | Pflichtfeld
@@ -657,45 +657,45 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     | e. Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
-                        if (order.cloud == "Ja")
-                            div.custom-radio-wrapper(filled=order.cloud)
+                        if (order.withdraw == "Ja")
+                            div.custom-radio-wrapper(filled=order.withdraw)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                    input#customRadioDisabled7.custom-control-input(type='radio' name='withdraw' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled8.custom-control-input(type='radio' name='withdraw' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
-                        else if (order.cloud == "Nein")
-                            div.custom-radio-wrapper(filled=order.cloud)
+                        else if (order.withdraw == "Nein")
+                            div.custom-radio-wrapper(filled=order.withdraw)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                    input#customRadioDisabled7.custom-control-input(type='radio' name='withdraw' value="Ja" required='' )
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
 
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                    input#customRadioDisabled8.custom-control-input(type='radio' name='withdraw' value="Nein" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled7.custom-control-input(type='radio' name='withdraw' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
 
                             .custom-control.custom-radio
-                                input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled8.custom-control-input(type='radio' name='withdraw' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
 
                 else
                     .custom-control.custom-radio
-                        input#customRadioDisabled7.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                        input#customRadioDisabled7.custom-control-input(type='radio' name='withdraw' value="Ja" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled7' answer='Ja') Ja
                     .custom-control.custom-radio
-                        input#customRadioDisabled8.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                        input#customRadioDisabled8.custom-control-input(type='radio' name='withdraw' value="Nein" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
                         .invalid-feedback
                             | Pflichtfeld
@@ -704,56 +704,56 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                         | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
-                            if (order.cloud == "Ja")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                            if (order.withdraw == "Ja")
+                                div.custom-radio-wrapper(filled=order.agreement)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Einschlägige Gesetzgebung: ")
+                                            a.form-control(href=order.agreementfile)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
-                            else if (order.cloud == "Nein")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                            else if (order.withdraw == "Nein")
+                                div.custom-radio-wrapper(filled=order.agreement)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        a.form-control(href=order.agreementfile)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                            input#form-safety.form-control(type='text' name="agreementtext")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
 
                     else
                         .custom-control.custom-radio
-                            input#customRadioDisabled15.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
                         .collapse.inputHide
                             .card.card-body
                                 small
                                     | Bitte Einverständniserklärung einreichen.
-                                input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                input#form-softwareversion.form-control(type='file' required='' name='agreementtext')
                         .custom-control.custom-radio
-                            input#customRadioDisabled16.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
                             .invalid-feedback
                                 | Pflichtfeld
@@ -762,54 +762,54 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                         | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?*
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
-                            if (order.cloud == "Ja")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                            if (order.participationundersixteen == "Ja")
+                                div.custom-radio-wrapper(filled=order.participationundersixteen)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern: ")
+                                            input#form-safety.form-control(type='text' name="participationundersixteentext" value=order.participationundersixteentext placeholder="Bitte erläutern: ")
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
-                            else if (order.cloud == "Nein")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                            else if (order.participationundersixteen == "Nein")
+                                div.custom-radio-wrapper(filled=order.participationundersixteen)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        input#form-safety.form-control(type='text' name="participationundersixteentext" value=order.participationundersixteentext)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                            input#form-safety.form-control(type='text' name="participationundersixteentext")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
 
                     else
                         .custom-control.custom-radio
-                            input#customRadioDisabled17.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
                         .collapse.inputHide
                             .card.card-body
-                                input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+                                input#form-safety.form-control(type='text' name="participationundersixteentext" placeholder="Bitte erläutern: ")
                         .custom-control.custom-radio
-                            input#customRadioDisabled18.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
                             .invalid-feedback
                                 | Pflichtfeld
@@ -818,62 +818,62 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                         | h. Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?*
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
-                            if (order.cloud == "Ja")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                            if (order.risk == "Ja")
+                                div.custom-radio-wrapper(filled=order.risk)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                        input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                                            input#form-safety.form-control(type='text' name="risktext" value=order.risktext placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
                                             br
                                             small
                                                 | Bitte allfällige Versicherungsunterlagen beifügen.
-                                            input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                            input#form-softwareversion.form-control(type='file' required='' name='riskfile')
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
-                            else if (order.cloud == "Nein")
-                                div.custom-radio-wrapper(filled=order.cloud)
+                            else if (order.risk == "Nein")
+                                div.custom-radio-wrapper(filled=order.risk)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                        input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                        input#form-safety.form-control(type='text' name="risktext" value=order.risktext)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                        input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo")
+                                            input#form-safety.form-control(type='text' name="risktext")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
 
                     else
                         .custom-control.custom-radio
-                            input#customRadioDisabled19.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                            input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
                         .collapse.inputHide
                             .card.card-body
-                                input#form-safety.form-control(type='text' name="cloudwo" placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                                input#form-safety.form-control(type='text' name="risktext" placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
                                 br
                                 small
                                     | Bitte allfällige Versicherungsunterlagen beifügen.
-                                input#form-softwareversion.form-control(type='file' required='' name='softwareversion')
+                                input#form-softwareversion.form-control(type='file' required='' name='riskfile')
                         .custom-control.custom-radio
-                            input#customRadioDisabled20.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                            input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
                             .invalid-feedback
                                 | Pflichtfeld
@@ -890,56 +890,56 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | a. Wird die physische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. durch Einnahme von Arzneimitteln, Entnahme von Blut)? Können negative Folgen entstehen (z. B. Kopfschmerzen)?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                if (order.integrity == "Ja")
+                                    div.custom-radio-wrapper(filled=order.integrity)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled43.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            input#customRadioDisabled43.custom-control-input(type='radio' name='integrity' value="Ja" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled43' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+                                                input#form-safety.form-control(type='text' name="integritytext" value=order.integritytext placeholder="Bitte erläutern:")
 
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled44.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled44.custom-control-input(type='radio' name='integrity' value="Nein" required='')
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled44' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                else if (order.integrity == "Nein")
+                                    div.custom-radio-wrapper(filled=order.integrity)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled43.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            input#customRadioDisabled43.custom-control-input(type='radio' name='integrity' value="Ja" required='' )
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled43' answer='open') Ja
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            input#form-safety.form-control(type='text' name="integritytext" value=order.integritytext)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled44.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            input#customRadioDisabled44.custom-control-input(type='radio' name='integrity' value="Nein" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled44' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                                 else
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled43.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        input#customRadioDisabled43.custom-control-input(type='radio' name='integrity' value="Ja" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled43' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                                input#form-safety.form-control(type='text' name="integritytext")
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled44.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled44.custom-control-input(type='radio' name='integrity' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled44' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled43.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled43.custom-control-input(type='radio' name='integrity' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled43' answer='open') Ja
                             .collapse.inputHide
                                 .card.card-body
-                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+                                    input#form-safety.form-control(type='text' name="integritytext" placeholder="Bitte erläutern: ")
 
                             .custom-control.custom-radio
-                                input#customRadioDisabled44.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled44.custom-control-input(type='radio' name='integrity' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled44' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
@@ -948,56 +948,56 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | b. Wird die psychische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. Konzentrationsfähigkeit, Induktion von negativen Emotionen)? Können negative psychische Folgen eintreten?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                if (order.mentalintegrity == "Ja")
+                                    div.custom-radio-wrapper(filled=order.mentalintegrity)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            input#customRadioDisabled21.custom-control-input(type='radio' name='mentalintegrity' value="Ja" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+                                                input#form-safety.form-control(type='text' name="mentalintegritytext" value=order.mentalintegritytext placeholder="Bitte erläutern:")
 
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled22.custom-control-input(type='radio' name='mentalintegrity' value="Nein" required='')
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                else if (order.mentalintegrity == "Nein")
+                                    div.custom-radio-wrapper(filled=order.mentalintegrity)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            input#customRadioDisabled21.custom-control-input(type='radio' name='mentalintegrity' value="Ja" required='' )
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            input#form-safety.form-control(type='text' name="mentalintegritytext" value=order.mentalintegritytext)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            input#customRadioDisabled22.custom-control-input(type='radio' name='mentalintegrity' value="Nein" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                                 else
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        input#customRadioDisabled21.custom-control-input(type='radio' name='mentalintegrity' value="Ja" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                                input#form-safety.form-control(type='text' name="mentalintegritytext")
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled22.custom-control-input(type='radio' name='affected' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled21.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled21.custom-control-input(type='radio' name='mentalintegrity' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
                             .collapse.inputHide
                                 .card.card-body
-                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+                                    input#form-safety.form-control(type='text' name="mentalintegritytext" placeholder="Bitte erläutern: ")
 
                             .custom-control.custom-radio
-                                input#customRadioDisabled22.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled22.custom-control-input(type='radio' name='mentalintegrity' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
@@ -1006,56 +1006,56 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | c. Wird durch die Teilnahme die soziale Integrität tangiert (z. B. die Teilnahme trägt zu einem schlechten Ruf bei). Können negative soziale Folgen entstehen?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                if (order.socialintegrity == "Ja")
+                                    div.custom-radio-wrapper(filled=order.socialintegrity)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            input#customRadioDisabled23.custom-control-input(type='radio' name='socialintegrity' value="Ja" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.socialintegritytext placeholder="Bitte erläutern:")
 
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled24.custom-control-input(type='radio' name='socialintegrity' value="Nein" required='')
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                else if (order.socialintegrity == "Nein")
+                                    div.custom-radio-wrapper(filled=order.socialintegrity)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            input#customRadioDisabled23.custom-control-input(type='radio' name='socialintegrity' value="Ja" required='' )
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            input#form-safety.form-control(type='text' name="socialintegritytext" value=order.socialintegritytext)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            input#customRadioDisabled24.custom-control-input(type='radio' name='socialintegrity' value="Nein" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                                 else
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        input#customRadioDisabled23.custom-control-input(type='radio' name='socialintegrity' value="Ja" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                                input#form-safety.form-control(type='text' name="socialintegritytext")
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled24.custom-control-input(type='radio' name='socialintegrity' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled23.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled23.custom-control-input(type='radio' name='socialintegrity' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
                             .collapse.inputHide
                                 .card.card-body
-                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+                                    input#form-safety.form-control(type='text' name="socialintegritytext" placeholder="Bitte erläutern: ")
 
                             .custom-control.custom-radio
-                                input#customRadioDisabled24.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled24.custom-control-input(type='radio' name='socialintegrity' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
@@ -1064,49 +1064,44 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | d. Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                if (order.charges == "Ja")
+                                    div.custom-radio-wrapper(filled=order.charges)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
+                                            input#customRadioDisabled25.custom-control-input(type='radio' name='charges' value="Ja" required='' checked)
+                                            label.custom-control-label(for='customRadioDisabled25') Ja
 
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                            label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                            input#customRadioDisabled26.custom-control-input(type='radio' name='charges' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled26') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                else if (order.charges == "Nein")
+                                    div.custom-radio-wrapper(filled=order.charges)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
-                                            label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            input#customRadioDisabled25.custom-control-input(type='radio' name='charges' value="Ja" required='' )
+                                            label.custom-control-label(for='customRadioDisabled25') Ja
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                            input#customRadioDisabled26.custom-control-input(type='radio' name='charges' value="Nein" required='' checked)
+                                            label.custom-control-label(for='customRadioDisabled26') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                                 else
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                        label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
-                                        .collapse.inputHide
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                        input#customRadioDisabled25.custom-control-input(type='radio' name='charges' value="Ja" required='')
+                                        label.custom-control-label(for='customRadioDisabled25') Ja
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                        label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                        input#customRadioDisabled26.custom-control-input(type='radio' name='charges' value="Nein" required='')
+                                        label.custom-control-label(for='customRadioDisabled26') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled25.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled25.custom-control-input(type='radio' name='charges' value="Ja" required='')
                                 label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
                             .custom-control.custom-radio
-                                input#customRadioDisabled26.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled26.custom-control-input(type='radio' name='charges' value="Nein" required='')
                                 label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
@@ -1117,9 +1112,9 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        input#form-modul.form-control(type='text' required='' name='modulanlass' value=order.modulanlass)
+                                        input#form-modul.form-control(type='text' required='' name='reason' value=order.reason)
                                 else
-                                    input#form-modul.form-control(type='text' required='' name='modulanlass')
+                                    input#form-modul.form-control(type='text' required='' name='reason')
                                 .invalid-feedback
                                     | Pflichtfeld
                         br
@@ -1127,55 +1122,55 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | f. Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                if (order.experience == "Ja")
+                                    div.custom-radio-wrapper(filled=order.experience)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                            input#customRadioDisabled27.custom-control-input(type='radio' name='experience' value="Ja" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern:")
+                                                input#form-safety.form-control(type='text' name="experiencetext" value=order.experiencetext placeholder="Bitte erläutern:")
 
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='')
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
-                                    div.custom-radio-wrapper(filled=order.cloud)
+                                else if (order.experience == "Nein")
+                                    div.custom-radio-wrapper(filled=order.experience)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                            input#customRadioDisabled27.custom-control-input(type='radio' name='experience' value="Ja" required='' )
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                            input#form-safety.form-control(type='text' name="experiencetext" value=order.experiencetext)
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                            input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                                 else
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                        input#customRadioDisabled27.custom-control-input(type='radio' name='experience' value="Ja" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
                                         .collapse.inputHide
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo")
+                                                input#form-safety.form-control(type='text' name="experiencetext")
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                        input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled27.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                input#customRadioDisabled27.custom-control-input(type='radio' name='experience' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
                             .collapse.inputHide
                                 .card.card-body
-                                    input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern: ")
+                                    input#form-safety.form-control(type='text' name="experiencetext" placeholder="Bitte erläutern: ")
                             .custom-control.custom-radio
-                                input#customRadioDisabled28.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
@@ -1184,55 +1179,55 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | g. Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
-                                    if (order.cloud == "Ja")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    if (order.illusion == "Ja")
+                                        div.custom-radio-wrapper(filled=order.illusion)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='' checked)
                                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='open') Ja
                                             .collapse.inputHide
                                                 .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo placeholder="Bitte erläutern (insbesondere das «Debriefing»):")
+                                                    input#form-safety.form-control(type='text' name="illusiontext" value=order.illusiontext placeholder="Bitte erläutern (insbesondere das «Debriefing»):")
 
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Nein" required='')
                                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
-                                    else if (order.cloud == "Nein")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    else if (order.illusion == "Nein")
+                                        div.custom-radio-wrapper(filled=order.illusion)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='' )
                                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
                                             .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                                input#form-safety.form-control(type='text' name="illusiontext" value=order.illusiontext)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled30.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='' checked)
                                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                     else
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='')
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
                                             .collapse.inputHide
                                                 .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                                    input#form-safety.form-control(type='text' name="illusiontext")
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled30.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='')
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled29.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
                                 .collapse.inputHide
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="cloudwo" placeholder="Bitte erläutern (insbesondere das «Debriefing»): ")
+                                        input#form-safety.form-control(type='text' name="illusiontext" placeholder="Bitte erläutern (insbesondere das «Debriefing»): ")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled30.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
@@ -1241,50 +1236,45 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
-                                    if (order.cloud == "Ja")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    if (order.observation == "Ja")
+                                        div.custom-radio-wrapper(filled=order.observation)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled25' answer='open') Ja
+                                                input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled25') Ja
 
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                                label.custom-control-label(for='customRadioDisabled26' answer='Nein') Nein
+                                                input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled26') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
-                                    else if (order.cloud == "Nein")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    else if (order.observation == "Nein")
+                                        div.custom-radio-wrapper(filled=order.observation)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
-                                                label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                                input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled31') Ja
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
+                                                input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled32') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                     else
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='')
                                             label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
-                                            .collapse.inputHide
-                                                .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo")
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
                                             label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled31.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                    label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
+                                    input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled31') Ja
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled32.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                    label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
+                                    input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled32') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
     .accordion-item
@@ -1299,50 +1289,45 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | a. Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
-                                    if (order.cloud == "Ja")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    if (order.media == "Ja")
+                                        div.custom-radio-wrapper(filled=order.media)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
+                                                input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='' checked)
                                                 label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
 
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='')
                                                 label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
-                                    else if (order.cloud == "Nein")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    else if (order.media == "Nein")
+                                        div.custom-radio-wrapper(filled=order.media)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='' )
                                                 label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='' checked)
                                                 label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                     else
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='')
                                             label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
-                                            .collapse.inputHide
-                                                .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo")
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='')
                                             label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled33.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                    label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
+                                    input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled33') Ja
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled34.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                    label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
+                                    input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled34') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
                             br
@@ -1350,49 +1335,47 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 | b. Werden die erhobenen Daten anonymisiert?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
-                                    if (order.cloud == "Ja")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    if (order.anonymized == "Ja")
+                                        div.custom-radio-wrapper(filled=order.anonymized)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
+                                                input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled35' ) Ja
 
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                                label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
+                                                input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled36' ) Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
-                                    else if (order.cloud == "Nein")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                    else if (order.anonymized == "Nein")
+                                        div.custom-radio-wrapper(filled=order.anonymized)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='' )
                                                 label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='' checked)
                                                 label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                     else
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                            input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='')
                                             label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
                                             .collapse.inputHide
                                                 .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                                    input#form-safety.form-control(type='text' name="anonymized")
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                            input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='')
                                             label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled35.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                    input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='')
                                     label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled36.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                    input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='')
                                     label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
@@ -1402,49 +1385,44 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                        div.custom-radio-wrapper(filled=order.confidentiality)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
+                                                input#customRadioDisabled37.custom-control-input(type='radio' name='confidentiality' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled37') Ja
 
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                                label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                                input#customRadioDisabled38.custom-control-input(type='radio' name='confidentiality' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled38') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
                                     else if (order.cloud == "Nein")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                        div.custom-radio-wrapper(filled=order.confidentiality)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
-                                                label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                                input#customRadioDisabled37.custom-control-input(type='radio' name='confidentiality' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled37') Ja
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                                input#customRadioDisabled38.custom-control-input(type='radio' name='confidentiality' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled38') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                     else
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                            label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
-                                            .collapse.inputHide
-                                                .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                            input#customRadioDisabled37.custom-control-input(type='radio' name='confidentiality' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled37') Ja
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                            label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                            input#customRadioDisabled38.custom-control-input(type='radio' name='confidentiality' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled38') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled37.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                    label.custom-control-label(for='customRadioDisabled37' answer='open') Ja
+                                    input#customRadioDisabled37.custom-control-input(type='radio' name='confidentiality' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled37') Ja
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled38.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                    label.custom-control-label(for='customRadioDisabled38' answer='Nein') Nein
+                                    input#customRadioDisabled38.custom-control-input(type='radio' name='confidentiality' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled38') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
                             br
@@ -1453,49 +1431,44 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                        div.custom-radio-wrapper(filled=order.destroy)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                                input#customRadioDisabled39.custom-control-input(type='radio' name='destroy' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled39') Ja
 
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                input#customRadioDisabled40.custom-control-input(type='radio' name='destroy' value="Nein" required='')
                                                 label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
                                     else if (order.cloud == "Nein")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                        div.custom-radio-wrapper(filled=order.destroy)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                input#customRadioDisabled39.custom-control-input(type='radio' name='destroy' value="Ja" required='' )
                                                 label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                input#customRadioDisabled40.custom-control-input(type='radio' name='destroy' value="Nein" required='' checked)
                                                 label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                     else
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                            label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
-                                            .collapse.inputHide
-                                                .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                            input#customRadioDisabled39.custom-control-input(type='radio' name='destroy' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled39') Ja
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                            label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                            input#customRadioDisabled40.custom-control-input(type='radio' name='destroy' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled40') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled39.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                    label.custom-control-label(for='customRadioDisabled39' answer='open') Ja
+                                    input#customRadioDisabled39.custom-control-input(type='radio' name='destroy' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled39') Ja
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled40.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                    label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
+                                    input#customRadioDisabled40.custom-control-input(type='radio' name='destroy' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled40') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
                             br
@@ -1504,49 +1477,44 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
                                         if (order.cloud == "Ja")
-                                            div.custom-radio-wrapper(filled=order.cloud)
+                                            div.custom-radio-wrapper(filled=order.deleted)
                                                 .custom-control.custom-radio
-                                                    input#customRadioDisabled45.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                                    label.custom-control-label(for='customRadioDisabled45' answer='open') Ja
+                                                    input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='' checked)
+                                                    label.custom-control-label(for='customRadioDisabled45') Ja
 
                                                 .custom-control.custom-radio
-                                                    input#customRadioDisabled46.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                                    label.custom-control-label(for='customRadioDisabled46' answer='Nein') Nein
+                                                    input#customRadioDisabled46.custom-control-input(type='radio' name='deleted' value="Nein" required='')
+                                                    label.custom-control-label(for='customRadioDisabled46') Nein
                                                     .invalid-feedback
                                                         | Pflichtfeld
                                         else if (order.cloud == "Nein")
-                                            div.custom-radio-wrapper(filled=order.cloud)
+                                            div.custom-radio-wrapper(filled=order.deleted)
                                                 .custom-control.custom-radio
-                                                    input#customRadioDisabled45.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
+                                                    input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='' )
                                                     label.custom-control-label(for='customRadioDisabled45' answer='open') Ja
-                                                .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
                                                 .custom-control.custom-radio
-                                                    input#customRadioDisabled46.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
+                                                    input#customRadioDisabled46.custom-control-input(type='radio' name='deleted' value="Nein" required='' checked)
                                                     label.custom-control-label(for='customRadioDisabled46' answer='Nein') Nein
                                                     .invalid-feedback
                                                         | Pflichtfeld
 
                                         else
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled45.custom-control-input(type='radio' name='cloud' value="Ja" required='')
+                                                input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='')
                                                 label.custom-control-label(for='customRadioDisabled45' answer='open') Ja
-                                                .collapse.inputHide
-                                                    .card.card-body
-                                                        input#form-safety.form-control(type='text' name="cloudwo")
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled46.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                input#customRadioDisabled46.custom-control-input(type='radio' name='deleted' value="Nein" required='')
                                                 label.custom-control-label(for='customRadioDisabled46' answer='Nein') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                 else
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled45.custom-control-input(type='radio' name='cloud' value="Ja" required='')
-                                        label.custom-control-label(for='customRadioDisabled45' answer='open') Ja
+                                        input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='')
+                                        label.custom-control-label(for='customRadioDisabled45') Ja
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled46.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                        label.custom-control-label(for='customRadioDisabled46' answer='Nein') Nein
+                                        input#customRadioDisabled46.custom-control-input(type='radio' name='deleted' value="Nein" required='')
+                                        label.custom-control-label(for='customRadioDisabled46') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
                                 br
@@ -1555,49 +1523,44 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.cloud == "Ja")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                        div.custom-radio-wrapper(filled=order.repo)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled41.custom-control-input(type='radio' name='cloud' value="Ja" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
+                                                input#customRadioDisabled41.custom-control-input(type='radio' name='repo' value="Ja" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled41') Ja
 
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled42.custom-control-input(type='radio' name='cloud' value="Nein" required='')
-                                                label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                                input#customRadioDisabled42.custom-control-input(type='radio' name='repo' value="Nein" required='')
+                                                label.custom-control-label(for='customRadioDisabled42') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
                                     else if (order.cloud == "Nein")
-                                        div.custom-radio-wrapper(filled=order.cloud)
+                                        div.custom-radio-wrapper(filled=order.repo)
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled41.custom-control-input(type='radio' name='cloud' value="Ja" required='' )
-                                                label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="cloudwo" value=order.cloudwo)
+                                                input#customRadioDisabled41.custom-control-input(type='radio' name='repo' value="Ja" required='' )
+                                                label.custom-control-label(for='customRadioDisabled41') Ja
                                             .custom-control.custom-radio
-                                                input#customRadioDisabled42.custom-control-input(type='radio' name='cloud' value="Nein" required='' checked)
-                                                label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                                input#customRadioDisabled42.custom-control-input(type='radio' name='repo' value="Nein" required='' checked)
+                                                label.custom-control-label(for='customRadioDisabled42') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
 
                                     else
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled41.custom-control-input(type='radio' name='cloud2' value="Ja" required='')
-                                            label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
-                                            .collapse.inputHide
-                                                .card.card-body
-                                                    input#form-safety.form-control(type='text' name="cloudwo")
+                                            input#customRadioDisabled41.custom-control-input(type='radio' name='repo' value="Ja" required='')
+                                            label.custom-control-label(for='customRadioDisabled41') Ja
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled42.custom-control-input(type='radio' name='cloud2' value="Nein" required='')
-                                            label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                            input#customRadioDisabled42.custom-control-input(type='radio' name='repo' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled42') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
                             else
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled41.custom-control-input(type='radio' name='clouds' value="Ja" required='')
-                                    label.custom-control-label(for='customRadioDisabled41' answer='open') Ja
+                                    input#customRadioDisabled41.custom-control-input(type='radio' name='repo' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled41') Ja
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled42.custom-control-input(type='radio' name='clouds' value="Nein" required='')
-                                    label.custom-control-label(for='customRadioDisabled42' answer='Nein') Nein
+                                    input#customRadioDisabled42.custom-control-input(type='radio' name='repo' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled42') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
     .accordion-item
@@ -1608,23 +1571,23 @@ input#form-status-input.form-control.hidden(type='text' name='status')
             .accordion-body
                 .row
                         .col-md-6.fields
-                            label(for='form-softwarewebsite')
+                            label
                                 | a. Ort*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
-                                    input#form-softwarecompare.form-control(type='text' required='' name='vergleichbarkeit' value=order.vergleichbarkeit)
+                                    input#form-softwarecompare.form-control(type='text' required='' name='located' value=order.located)
                             else
-                                input#form-softwarecompare.form-control(type='text' required='' name='vergleichbarkeit')
+                                input#form-softwarecompare.form-control(type='text' required='' name='located')
                             .invalid-feedback
                                 | Pflichtfeld
                 .row
                     .col-md-6.fields
                         br
-                        label(for='form-data')
+                        label
                             | b. Datum:
                         label.form-date
                             |
-                        input.hidden.form-date-input(name="datumantrag")
+                        input.hidden.form-date-input(name="date")
                             |
 
 
@@ -1658,18 +1621,18 @@ script(type='text/javascript').
             $('#buttonsubmitsavechanges').click(function () {
                 $('#form-status-input').attr('value', '0');
             });
-            //only edit and form functions
-                    var maxChar = parseInt($('.textarea-js').attr('maxlength'));
-                    $('.textarea-js[maxlength]').parent().find('.charleft').html(maxChar - $(this).val().length);
-                    var char = $('.textarea-js').val().length;
-                    $('.textarea-js').parent().find('.charleft').html(maxChar - char);
-                    $('.textarea-js[maxlength]').keyup(function(){
-                        if($(this).val().length > maxChar){
-                            $(this).val($(this).val().substr(0, maxChar));
-                        }
-                        $(this).parent().find('.charleft').html(maxChar - $(this).val().length);
-                    });
+
         }
+        var maxChar = parseInt($('.textarea-js').attr('maxlength'));
+        $('.textarea-js[maxlength]').parent().find('.charleft').html(maxChar - $(this).val().length);
+        var char = $('.textarea-js').val().length;
+        $('.textarea-js').parent().find('.charleft').html(maxChar - char);
+        $('.textarea-js[maxlength]').keyup(function () {
+            if ($(this).val().length > maxChar) {
+                $(this).val($(this).val().substr(0, maxChar));
+            }
+            $(this).parent().find('.charleft').html(maxChar - $(this).val().length);
+        });
         $('.link-edit-back').click(function () {
             const urlParams = new URLSearchParams(window.location.search);
             const currenturlParam = urlParams.get('tsid');

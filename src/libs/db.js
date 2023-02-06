@@ -7,7 +7,7 @@
  const pool  = mysql.createPool({
      connectionLimit : 10,
      host            : 'localhost',
-     user            : 'admin',
+     user            : 'root',
      password        : 'mysecretpassword',
      database        : 'ethra'
  })

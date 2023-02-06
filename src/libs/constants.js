@@ -7,7 +7,7 @@ module.exports = {
       PASSWORD: "mysecretpassword"
     },
     DBNAME : {
-      NAME: "santra"
+      NAME: "ethra"
     },
     WEB : {
       PORT: 1234
