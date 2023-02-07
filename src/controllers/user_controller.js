@@ -38,326 +38,391 @@ module.exports = function (models) {
         pool.getConnection((err, connection) => {
             if (err) throw err
             console.log('connected as id ' + connection.threadId)
-            let institut = req.body.institut;
-            let professur = req.body.professur;
-            let anrede = req.body.anrede;
-            let vorname = req.body.vorname;
-            let nachname = req.body.nachname;
+            let application = req.body.application;
+            let approvednr = req.body.approvednr;
+            let title = req.body.title;
+            let firstname = req.body.firstname;
+            let lastname = req.body.lastname;
             let email = req.body.email;
-            let funktion = req.body.funktion;
-            let studiengang = req.body.studiengang;
-            let modulanlass = req.body.modulanlass;
-            let szenario = req.body.szenario;
-            let softwarename = req.body.softwarename;
-            let softwarewebseite = req.body.softwarewebseite;
-            let softwareversion = req.body.softwareversion;
-            let softwareupdate = req.body.softwareupdate;
-            let softwareupdatewelches = req.body.softwareupdatewelches;
-            let lizenzenanzahl = req.body.lizenzenanzahl;
-            let nutzeranzahl = req.body.nutzeranzahl;
-            let nutzungsdauer = req.body.nutzungsdauer;
-            let nutzungsdauertext = req.body.nutzungsdauertext;
-            let betriebssystem = req.body.betriebssystem;
-            let browser = req.body.browser;
-            let softwareverfuegung = req.body.softwareverfuegung;
-            let softwareinteresse = req.body.softwareinteresse;
-            let softwareinstitut = req.body.softwareinstitut;
-            let softwarehochschinteresse = req.body.softwarehochschinteresse;
-            let softwarehochschule = req.body.softwarehochschule;
-            let lizenzinstitution = req.body.lizenzinstitution;
-            let lizenzart = req.body.lizenzart;
-            let lizenzkosten = req.body.lizenzkosten;
-            let vergleichbarkeit = req.body.vergleichbarkeit;
-            let support = req.body.support;
-            let cloud = req.body.cloud;
-            let cloudwo = req.body.cloudwo;
-            let productowner = req.body.productowner;
-            let bemerkungen = req.body.bemerkungen;
-            let datumantrag = req.body.datumantrag;
-            let notizen = req.body.notizen;
+            let institute = req.body.institute;
+            let finance = req.body.finance;
+            let func = req.body.func;
+            let subdiscipline = req.body.subdiscipline;
+            let topic = req.body.topic;
+            let summ = req.body.summ;
+            let appraisal = req.body.appraisal;
+            let registration = req.body.registration;
+            let registrationtext = req.body.registrationtext;
+            let participants = req.body.participants;
+            let personaldata = req.body.personaldata;
+            let recruited = req.body.recruited;
+            let informedbefore = req.body.informedbefore;
+            let execution = req.body.execution;
+            let instructions = req.body.instructions;
+            let informedafter = req.body.informedafter;
+            let compensation = req.body.compensation;
+            let compensationtext = req.body.compensationtext;
+            let performanced = req.body.performanced;
+            let voluntary = req.body.voluntary;
+            let voluntaryfile = req.body.voluntaryfile;
+            let notparticipate = req.body.notparticipate;
+            let notparticipatetext = req.body.notparticipatetext;
+            let withdraw = req.body.withdraw;
+            let agreement = req.body.agreement;
+            let agreementfile = req.body.agreementfile;
+            let participationundersixteen = req.body.participationundersixteen;
+            let participationundersixteentext = req.body.participationundersixteentext;
+            let risk = req.body.risk;
+            let risktext = req.body.risktext;
+            let integrity = req.body.integrity;
+            let integritytext = req.body.integritytext;
+            let mentalintegrity = req.body.mentalintegrity;
+            let mentalintegritytext = req.body.mentalintegritytext;
+            let socialintegrity = req.body.socialintegrity;
+            let socialintegritytext = req.body.socialintegritytext;
+            let charges = req.body.charges;
+            let reason = req.body.reason;
+            let experience = req.body.experience;
+            let experiencetext = req.body.experiencetext;
+            let illusion = req.body.illusion;
+            let illusiontext = req.body.illusiontext;
+            let observation = req.body.observation;
+            let media = req.body.media;
+            let anonymized = req.body.anonymized;
+            let confidentiality = req.body.confidentiality;
+            let destroy = req.body.destroy;
+            let deleted = req.body.deleted;
+            let repo = req.body.repo;
+            let located = req.body.located;
+            let dateapp = req.body.date;
             let status = req.body.status;
+            let orderstatus = 0;
             let softwareList = [];
             let orderidformail;
-            let orderstatus = 0;
             let ordercurrent;
             let anredeMail;
-if (url=="/submit-form"){
-    if (adminlog==true){
-        sql1 = 'SELECT * FROM orders WHERE (email = "alesya.heymann@fhnw.ch") OR (email <> "'+obj_user.mail+'" AND status <> 10) ORDER BY orderid DESC';
-    }
-    else{
-        sql1 = 'SELECT * FROM orders WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY orderid DESC';
-    }
-    sql2 = "INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, funktion, subdiscipline, topic, summary, appraisal, registration, registrationtext, participants, softwareupdatewelches, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, date, status, orderstatus) VALUES ( '"+application+"', '"+approvednr+"', '"+title+"', '"+firstname+"', '"+lastname+"', '"+email+"', '"+institute+"', '"+finance+"', '"+funktion+"', '"+subdiscipline+"', '"+topic+"', '"+summary+"', '"+appraisal+"', '"+registration+"', '"+registrationtext+"', '"+participants+"', '"+softwareupdatewelches+"', '"+personaldata+"', '"+recruited+"', '"+informedbefore+"', '"+execution+"', '"+instructions+"', '"+informedafter+"', '"+compensation+"', '"+compensationtext+"', '"+performanced+"', '"+voluntary+"', '"+voluntaryfile+"', '"+notparticipate+"', '"+notparticipatetext+"', '"+withdraw+"', '"+agreement+"', '"+agreementfile+"', '"+participationundersixteen+"', '"+participationundersixteentext+"', '"+risk+"', '"+risktext+"', '"+integrity+"', '"+integritytext+"', '"+mentalintegrity+"', '"+mentalintegritytext+"', '"+socialintegrity+"', '"+socialintegritytext+"', '"+charges+"', '"+reason+"', '"+experience+"', '"+experiencetext+"', '"+illusion+"', '"+illusiontext+"', '"+observation+"', '"+media+"', '"+anonymized+"', '"+confidentiality+"', '"+destroy+"', '"+deleted+"', '"+repo+"', '"+located+"', '"+date+"', '"+status+"', '"+orderstatus+"')";
-    connection.query(""+sql2+"",
-        (err, rows) => {
-            //  connection.release() // return the connection to pool
-            connection.query(""+sql1+"",
-                (err, rows) => {
-                    connection.release() // return the connection to pool
-                    if (!err) {
-                        for (let i = 0; i < rows.length; i++) {
-                            let statuscurrent;
-                            orderidformail = rows[0].orderid;
-                            switch (rows[i].status) {
-                                case 10:
-                                    statuscurrent = 'Entwurf';
-                                    break;
-                                case 1:
-                                    statuscurrent = 'Antrag in Bearbeitung';
-                                    break;
-                                case 2:
-                                    statuscurrent = 'Antrag in Prüfung';
-                                    break;
-                                case 3:
-                                    statuscurrent = 'Antrag bei Gremium';
-                                    break;
-                                case 4:
-                                    statuscurrent = 'Antrag Entscheid';
-                                    break;
-                            }
-                            switch (rows[i].orderstatus) {
-                                case 1:
-                                    statuscurrent = 'Antrag genehmigt';
-                                    break;
-                                case 2:
-                                    statuscurrent = 'Antrag abgelehnt';
-                                    break;
-                                case 3:
-                                    ordercurrent = 'Antrag zu Gremium';
-                                    break;
-                                case 4:
-                                    statuscurrent = 'Antrag vom Gremium genehmigt';
-                                    break;
-                                case 5:
-                                    statuscurrent = 'Antrag vom Gremium abgelehnt';
-                                    break;
-                            }
-
-                            // Create an object to save current row's data
-                            let order = {
-                                'orderid': rows[i].orderid,
-                                'orderidmail': rows[i].orderid,
-                                'institut': rows[i].institut,
-                                'professur': rows[i].professur,
-                                'anrede': rows[i].anrede,
-                                'vorname': rows[i].vorname,
-                                'nachname': rows[i].nachname,
-                                'email': rows[i].email,
-                                'funktion': rows[i].funktion,
-                                'studiengang': rows[i].studiengang,
-                                'modulanlass': rows[i].modulanlass,
-                                'szenario': rows[i].szenario,
-                                'softwarename': rows[i].softwarename,
-                                'softwarewebseite': rows[i].softwarewebseite,
-                                'softwareversion': rows[i].softwareversion,
-                                'softwareupdate': rows[i].softwareupdate,
-                                'softwareupdatewelches': rows[i].softwareupdatewelches,
-                                'lizenzenanzahl': rows[i].lizenzenanzahl,
-                                'nutzeranzahl': rows[i].nutzeranzahl,
-                                'nutzungsdauer': rows[i].nutzungsdauer,
-                                'nutzungsdauertext': rows[i].nutzungsdauertext,
-                                'betriebssystem': rows[i].betriebssystem,
-                                'browser': rows[i].browser,
-                                'softwareverfuegung': rows[i].softwareverfuegung,
-                                'softwareinteresse': rows[i].softwareinteresse,
-                                'softwareinstitut': rows[i].softwareinstitut,
-                                'softwarehochschinteresse': rows[i].softwarehochschinteresse,
-                                'softwarehochschule': rows[i].softwarehochschule,
-                                'lizenzinstitution': rows[i].lizenzinstitution,
-                                'lizenzart': rows[i].lizenzart,
-                                'lizenzkosten': rows[i].lizenzkosten,
-                                'vergleichbarkeit': rows[i].vergleichbarkeit,
-                                'support': rows[i].support,
-                                'cloud': rows[i].cloud,
-                                'productowner': rows[i].roductowner,
-                                'bemerkungen': rows[i].bemerkungen,
-                                'datumantrag': rows[i].datumantrag,
-                                'notizen': rows[i].notizen,
-                                'status': statuscurrent
-                            }
-                            // Add object into array
-                            softwareList.push(order);
-                        }
-                    } else {
-                        console.log(err)
-                    }
-                    if (anrede == "Neutrale Anrede"){
-                        anredeMail = vorname +' '+nachname;
-                    }
-                    else{
-                        anredeMail = anrede +' '+nachname;
-                    }
-                    if (req.body.status!=='10'){
-                        let transport = nodemailer.createTransport({
-                            host: "lmailer.fhnw.ch",
-                            secure: false, // use SSL
-                            port: 25,
-                            tls: {
-                                rejectUnauthorized: false
-                            }
-                        });
-                        console.log('SMTP Configured');
-
-                                // Message object
-                        let messageSender = {
-
-                            // sender info
-                            from: 'Santra <alesya.heymann@fhnw.ch>',
-                            to: email,
-                            // Subject of the message
-                            subject: 'Santra: Antrag Nummer #'+orderidformail+'',
-
-                            // plaintext body
-                            text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
-                                '\n' +
-                                'Vielen Dank und freundliche Grüsse \n' +
-                                'Ihr ApplProjekte Supportteam \n' +
-                                'n|w\n',
-
-                            // HTML body
-                            html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
-                                '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung.' +
-                                '</br></br>Vielen Dank und freundliche Grüsse' +
-                                '</br>Ihr ApplProjekte Supportteam ' +
-                                '</br>n|w</p>'
-                        };
-                        let messageSupport = {
-                            // sender info
-                            from: 'Santra <alesya.heymann@fhnw.ch>',
-                            // Comma separated list of recipients
-                            to: 'Applprojekte Team <alesya.heymann@fhnw.ch>',
-                            //to: '<alesya.heymann@fhnw.ch>',
-                            // Subject of the message
-                            subject: 'Santra: Antrag Nummer #'+orderidformail+'',
-
-                            // plaintext body
-                            text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
-
-                            // HTML body
-                            html:'<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
-                        };
-                        console.log('Sending Mail');
-                        transport.sendMail(messageSender, function(error){
-                            if(error){
-                                return console.log(error);
-                            }
-                        });
-                        transport.sendMail(messageSupport, function(error){
-                            if(error){
-                                return console.log(error);
-                            }
-                        });
-                    }
-            })
-        })
-}
-else if (url == "/user"){
-    pool.getConnection((err, connection) => {
-        if (err) throw err
-        sql2 = "INSERT INTO users (email, vorname, nachname) SELECT '"+obj_user.mail+"', '"+decodeURIComponent(obj_user.givenName)+"', '"+decodeURIComponent(obj_user.surname)+"' FROM DUAL WHERE NOT EXISTS (SELECT * FROM users WHERE email='"+obj_user.mail+"')";
-        connection.query(""+sql2+"",
-            (err, rows) => {
-            })
-    })
-    if (adminlog==true){
-        sql1 = 'SELECT * FROM orders WHERE (email = "alesya.heymann@fhnw.ch") OR (email <> "'+obj_user.mail+'" AND status <> 10) ORDER BY orderid DESC';
-    }
-    else{
-        sql1 = 'SELECT * FROM orders WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY orderid DESC';
-    }
-    connection.query(""+sql1+"",
-        (err, rows) => {
-                connection.release();
-            if (!err) {
-                for (let i = 0; i < rows.length; i++) {
-                    // Create an object to save current row's data
-                    let statuscurrent;
-                    switch (rows[i].status) {
-                        case 10:
-                            statuscurrent = 'Entwurf';
-                            break;
-                        case 1:
-                            statuscurrent = 'Antrag in Bearbeitung';
-                            break;
-                        case 2:
-                            statuscurrent = 'Antrag in Prüfung';
-                            break;
-                        case 3:
-                            statuscurrent = 'Antrag bei Gremium';
-                            break;
-                        case 4:
-                            statuscurrent = 'Antrag genehmigt';
-                            break;
-                        case 5:
-                            statuscurrent = 'Antrag abgelehnt';
-                            break;
-                    }
-                    switch (rows[i].orderstatus) {
-                        case 1:
-                            statuscurrent = 'Antrag genehmigt';
-                            break;
-                        case 2:
-                            statuscurrent = 'Antrag abgelehnt';
-                            break;
-                        case 3:
-                            ordercurrent = 'Antrag zu Gremium';
-                            break;
-                        case 4:
-                            statuscurrent = 'Antrag vom Gremium genehmigt';
-                            break;
-                        case 5:
-                            statuscurrent = 'Antrag vom Gremium abgelehnt';
-                            break;
-                    }
-                    let order = {
-                        'orderid': rows[i].orderid,
-                        'institut': rows[i].institut,
-                        'professur': rows[i].professur,
-                        'anrede': rows[i].anrede,
-                        'vorname': rows[i].vorname,
-                        'nachname': rows[i].nachname,
-                        'email': rows[i].email,
-                        'funktion': rows[i].funktion,
-                        'studiengang': rows[i].studiengang,
-                        'modulanlass': rows[i].modulanlass,
-                        'szenario': rows[i].szenario,
-                        'softwarename': rows[i].softwarename,
-                        'softwarewebseite': rows[i].softwarewebseite,
-                        'softwareupdate': rows[i].softwareupdate,
-                        'softwareupdatewelches': rows[i].softwareupdatewelches,
-                        'softwareversion': rows[i].softwareversion,
-                        'lizenzenanzahl': rows[i].lizenzenanzahl,
-                        'nutzeranzahl': rows[i].nutzeranzahl,
-                        'nutzungsdauer': rows[i].nutzungsdauer,
-                        'nutzungsdauertext': rows[i].nutzungsdauertext,
-                        'betriebssystem': rows[i].betriebssystem,
-                        'browser': rows[i].browser,
-                        'softwareverfuegung': rows[i].softwareverfuegung,
-                        'softwareinteresse': rows[i].softwareinteresse,
-                        'softwareinstitut': rows[i].softwareinstitut,
-                        'softwarehochschinteresse': rows[i].softwarehochschinteresse,
-                        'softwarehochschule': rows[i].softwarehochschule,
-                        'lizenzinstitution': rows[i].lizenzinstitution,
-                        'lizenzart': rows[i].lizenzart,
-                        'lizenzkosten': rows[i].lizenzkosten,
-                        'vergleichbarkeit': rows[i].vergleichbarkeit,
-                        'support': rows[i].support,
-                        'cloud': rows[i].cloud,
-                        'cloudwo':rows[i].cloudwo,
-                        'productowner': rows[i].productowner,
-                        'bemerkungen': rows[i].bemerkungen,
-                        'datumantrag': rows[i].datumantrag,
-                        'status': statuscurrent
-                    }
-                    // Add object into array
-                    softwareList.push(order);
+            if (url=="/submit-form"){
+                if (adminlog==true){
+                    sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") OR (email <> "'+obj_user.mail+'" AND status <> 10) ORDER BY applicationid DESC';
                 }
-            } else {
-                console.log(err)
+                else{
+                    sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
+                }
+                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, dateapp, deadline, comments, status, orderstatus) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'")';
+               connection.query(""+sql2+"",
+                    (err, rows) => {
+                        //  connection.release() // return the connection to pool
+                        connection.query(""+sql1+"",
+                            (err, rows) => {
+                                connection.release() // return the connection to pool
+                                if (!err) {
+                                    for (let i = 0; i < rows.length; i++) {
+                                        let statuscurrent;
+                                        orderidformail = rows[0].applicationid;
+                                        switch (rows[i].status) {
+                                            case 10:
+                                                statuscurrent = 'Entwurf';
+                                                break;
+                                            case 1:
+                                                statuscurrent = 'Antrag in Bearbeitung';
+                                                break;
+                                            case 2:
+                                                statuscurrent = 'Antrag in Prüfung';
+                                                break;
+                                            case 3:
+                                                statuscurrent = 'Antrag bei Gremium';
+                                                break;
+                                            case 4:
+                                                statuscurrent = 'Antrag Entscheid';
+                                                break;
+                                        }
+                                        switch (rows[i].orderstatus) {
+                                            case 1:
+                                                statuscurrent = 'Antrag genehmigt';
+                                                break;
+                                            case 2:
+                                                statuscurrent = 'Antrag abgelehnt';
+                                                break;
+                                            case 3:
+                                                ordercurrent = 'Antrag zu Gremium';
+                                                break;
+                                            case 4:
+                                                statuscurrent = 'Antrag vom Gremium genehmigt';
+                                                break;
+                                            case 5:
+                                                statuscurrent = 'Antrag vom Gremium abgelehnt';
+                                                break;
+                                        }
+
+                                        // Create an object to save current row's data
+                                        let order = {
+                                            'applicationid': rows[i].applicationid,
+                                            'orderidmail': rows[i].applicationid,
+                                            'application': rows[i].application,
+                                            'approvednr': rows[i].approvednr,
+                                            'title': rows[i].title,
+                                            'firstname': rows[i].firstname,
+                                            'lastname': rows[i].lastname,
+                                            'email': rows[i].email,
+                                            'institute': rows[i].institute,
+                                            'finance': rows[i].finance,
+                                            'subdiscipline': rows[i].subdiscipline,
+                                            'topic': rows[i].topic,
+                                            'summ': rows[i].summ,
+                                            'appraisal': rows[i].appraisal,
+                                            'registration': rows[i].registration,
+                                            'registrationtext': rows[i].registrationtext,
+                                            'participants': rows[i].participants,
+                                            'personaldata': rows[i].personaldata,
+                                            'recruited': rows[i].recruited,
+                                            'informedbefore': rows[i].informedbefore,
+                                            'execution': rows[i].execution,
+                                            'instructions': rows[i].instructions,
+                                            'informedafter': rows[i].informedafter,
+                                            'compensation': rows[i].compensation,
+                                            'compensationtext': rows[i].compensationtext,
+                                            'performanced': rows[i].performanced,
+                                            'voluntary': rows[i].voluntary,
+                                            'voluntaryfile': rows[i].voluntaryfile,
+                                            'notparticipate': rows[i].notparticipate,
+                                            'notparticipatetext': rows[i].notparticipatetext,
+                                            'withdraw': rows[i].withdraw,
+                                            'agreement': rows[i].agreement,
+                                            'agreementfile': rows[i].agreementfile,
+                                            'participationundersixteen': rows[i].participationundersixteen,
+                                            'participationundersixteentext': rows[i].participationundersixteentext,
+                                            'risk': rows[i].risk,
+                                            'risktext': rows[i].risktext,
+                                            'integrity': rows[i].integrity,
+                                            'integritytext': rows[i].integritytext,
+                                            'mentalintegrity': rows[i].mentalintegrity,
+                                            'mentalintegritytext': rows[i].mentalintegritytext,
+                                            'socialintegrity': rows[i].socialintegrity,
+                                            'socialintegritytext': rows[i].socialintegritytext,
+                                            'charges': rows[i].charges,
+                                            'reason': rows[i].reason,
+                                            'experience': rows[i].experience,
+                                            'experiencetext': rows[i].experiencetext,
+                                            'illusion': rows[i].illusion,
+                                            'illusiontext': rows[i].illusiontext,
+                                            'observation': rows[i].observation,
+                                            'media': rows[i].media,
+                                            'anonymized': rows[i].anonymized,
+                                            'confidentiality': rows[i].confidentiality,
+                                            'destroy': rows[i].destroy,
+                                            'deleted': rows[i].deleted,
+                                            'repo': rows[i].repo,
+                                            'located': rows[i].located,
+                                            'date': rows[i].date,
+                                            'deadline': "21.06.2023",
+                                            'comments': rows[i].notizen,
+                                            'status': statuscurrent
+                                        }
+                                        // Add object into array
+                                        softwareList.push(order);
+                                    }
+                                } else {
+                                    console.log(err)
+                                }
+                                if (title == "Neutrale Anrede"){
+                                    anredeMail = firstname +' '+lastname;
+                                }
+                                else{
+                                    anredeMail = title +' '+lastname;
+                                }
+                                if (req.body.status!=='10'){
+                                    let transport = nodemailer.createTransport({
+                                        host: "lmailer.fhnw.ch",
+                                        secure: false, // use SSL
+                                        port: 25,
+                                        tls: {
+                                            rejectUnauthorized: false
+                                        }
+                                    });
+                                    console.log('SMTP Configured');
+
+                                    // Message object
+                                    let messageSender = {
+
+                                        // sender info
+                                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                                        to: email,
+                                        // Subject of the message
+                                        subject: 'Santra: Antrag Nummer #'+orderidformail+'',
+
+                                        // plaintext body
+                                        text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
+                                            '\n' +
+                                            'Vielen Dank und freundliche Grüsse \n' +
+                                            'Ihr ApplProjekte Supportteam \n' +
+                                            'n|w\n',
+
+                                        // HTML body
+                                        html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
+                                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung.' +
+                                            '</br></br>Vielen Dank und freundliche Grüsse' +
+                                            '</br>Ihr ApplProjekte Supportteam ' +
+                                            '</br>n|w</p>'
+                                    };
+                                    let messageSupport = {
+                                        // sender info
+                                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                                        // Comma separated list of recipients
+                                        to: 'Applprojekte Team <alesya.heymann@fhnw.ch>',
+                                        //to: '<alesya.heymann@fhnw.ch>',
+                                        // Subject of the message
+                                        subject: 'Santra: Antrag Nummer #'+orderidformail+'',
+
+                                        // plaintext body
+                                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
+
+                                        // HTML body
+                                        html:'<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
+                                    };
+                                    console.log('Sending Mail');
+                                    transport.sendMail(messageSender, function(error){
+                                        if(error){
+                                            return console.log(error);
+                                        }
+                                    });
+                                    transport.sendMail(messageSupport, function(error){
+                                        if(error){
+                                            return console.log(error);
+                                        }
+                                    });
+                                }
+                            })
+                    })
             }
-        })
-}
+            else if (url == "/user"){
+                pool.getConnection((err, connection) => {
+                    if (err) throw err
+                    sql2 = "INSERT INTO users (email, vorname, nachname) SELECT '"+obj_user.mail+"', '"+decodeURIComponent(obj_user.givenName)+"', '"+decodeURIComponent(obj_user.surname)+"' FROM DUAL WHERE NOT EXISTS (SELECT * FROM users WHERE email='"+obj_user.mail+"')";
+                    connection.query(""+sql2+"",
+                        (err, rows) => {
+                        })
+                })
+                if (adminlog==true){
+                    sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") OR (email <> "'+obj_user.mail+'" AND status <> 10) ORDER BY applicationid DESC';
+                }
+                else{
+                    sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
+                }
+                connection.query(""+sql1+"",
+                    (err, rows) => {
+                        connection.release();
+                        if (!err) {
+                            for (let i = 0; i < rows.length; i++) {
+                                // Create an object to save current row's data
+                                let statuscurrent;
+                                switch (rows[i].status) {
+                                    case 10:
+                                        statuscurrent = 'Entwurf';
+                                        break;
+                                    case 1:
+                                        statuscurrent = 'Antrag in Bearbeitung';
+                                        break;
+                                    case 2:
+                                        statuscurrent = 'Antrag in Prüfung';
+                                        break;
+                                    case 3:
+                                        statuscurrent = 'Antrag bei Gremium';
+                                        break;
+                                    case 4:
+                                        statuscurrent = 'Antrag genehmigt';
+                                        break;
+                                    case 5:
+                                        statuscurrent = 'Antrag abgelehnt';
+                                        break;
+                                }
+                                switch (rows[i].orderstatus) {
+                                    case 1:
+                                        statuscurrent = 'Antrag genehmigt';
+                                        break;
+                                    case 2:
+                                        statuscurrent = 'Antrag abgelehnt';
+                                        break;
+                                    case 3:
+                                        ordercurrent = 'Antrag zu Gremium';
+                                        break;
+                                    case 4:
+                                        statuscurrent = 'Antrag vom Gremium genehmigt';
+                                        break;
+                                    case 5:
+                                        statuscurrent = 'Antrag vom Gremium abgelehnt';
+                                        break;
+                                }
+                                let order = {
+                                    'applicationid': rows[i].applicationid,
+                                    'orderidmail': rows[i].applicationid,
+                                    'application': rows[i].application,
+                                    'approvednr': rows[i].approvednr,
+                                    'title': rows[i].title,
+                                    'firstname': rows[i].firstname,
+                                    'lastname': rows[i].lastname,
+                                    'email': rows[i].email,
+                                    'institute': rows[i].institute,
+                                    'finance': rows[i].finance,
+                                    'subdiscipline': rows[i].subdiscipline,
+                                    'topic': rows[i].topic,
+                                    'summ': rows[i].summ,
+                                    'appraisal': rows[i].appraisal,
+                                    'registration': rows[i].registration,
+                                    'registrationtext': rows[i].registrationtext,
+                                    'participants': rows[i].participants,
+                                    'personaldata': rows[i].personaldata,
+                                    'recruited': rows[i].recruited,
+                                    'informedbefore': rows[i].informedbefore,
+                                    'execution': rows[i].execution,
+                                    'instructions': rows[i].instructions,
+                                    'informedafter': rows[i].informedafter,
+                                    'compensation': rows[i].compensation,
+                                    'compensationtext': rows[i].compensationtext,
+                                    'performanced': rows[i].performanced,
+                                    'voluntary': rows[i].voluntary,
+                                    'voluntaryfile': rows[i].voluntaryfile,
+                                    'notparticipate': rows[i].notparticipate,
+                                    'notparticipatetext': rows[i].notparticipatetext,
+                                    'withdraw': rows[i].withdraw,
+                                    'agreement': rows[i].agreement,
+                                    'agreementfile': rows[i].agreementfile,
+                                    'participationundersixteen': rows[i].participationundersixteen,
+                                    'participationundersixteentext': rows[i].participationundersixteentext,
+                                    'risk': rows[i].risk,
+                                    'risktext': rows[i].risktext,
+                                    'integrity': rows[i].integrity,
+                                    'integritytext': rows[i].integritytext,
+                                    'mentalintegrity': rows[i].mentalintegrity,
+                                    'mentalintegritytext': rows[i].mentalintegritytext,
+                                    'socialintegrity': rows[i].socialintegrity,
+                                    'socialintegritytext': rows[i].socialintegritytext,
+                                    'charges': rows[i].charges,
+                                    'reason': rows[i].reason,
+                                    'experience': rows[i].experience,
+                                    'experiencetext': rows[i].experiencetext,
+                                    'illusion': rows[i].illusion,
+                                    'illusiontext': rows[i].illusiontext,
+                                    'observation': rows[i].observation,
+                                    'media': rows[i].media,
+                                    'anonymized': rows[i].anonymized,
+                                    'confidentiality': rows[i].confidentiality,
+                                    'destroy': rows[i].destroy,
+                                    'deleted': rows[i].deleted,
+                                    'repo': rows[i].repo,
+                                    'located': rows[i].located,
+                                    'dateapp': rows[i].dateapp,
+                                    'deadline': rows[i].deadline,
+                                    'comments': rows[i].notizen,
+                                    'status': statuscurrent
+                                }
+                                // Add object into array
+                                softwareList.push(order);
+                            }
+                        } else {
+                            console.log(err)
+                        }
+                    })
+            }
             setTimeout(
                 function () {
                     res.render('layout_user', {

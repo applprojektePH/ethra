@@ -5,31 +5,6 @@
             i.fas.fa-file-excel
         table.table.table-striped.table-works#Softwaretable(data-toggle="table" data-pagination="true"
             data-search="true" data-sort="true")
-            //thead
-            //    tr(role='row')
-            //        th(role='columnheader') Ticketnr.
-            //        th.minwidth(role='columnheader') Software Name
-            //        th(role='columnheader') Beantragt am
-            //        th(role='columnheader') Ersteller*innen
-            //        th(role='columnheader') Institut
-            //        th(role='columnheader') Status
-            //tbody
-            //if (typeof (softwareList) !== 'undefined')
-            //    for order in softwareList
-            //            tr
-            //                td
-            //                    a#link(href="/santra/details?tsid="+ order.orderid class="link-id")= order.orderid
-            //                td= order.softwarename
-            //                td= order.datumantrag
-            //                td
-            //                    span= order.vorname
-            //                    span &nbsp;
-            //                    span= order.nachname
-            //                if((order.institut) && (order.institut !== 'undefined'))
-            //                    td= order.institut
-            //                else
-            //                    td=" "
-            //                td= order.status
             thead
                 tr(role='row')
                     th(role='columnheader') Antragsnr.
@@ -40,42 +15,72 @@
                     th(role='columnheader') Deadline
                     th(role='columnheader') Status
             tbody
-                    tr
-                        td
-                            a#link(href="#" class="link-id") 1
-                        td Projekt
-                        td 31.01.2023
-                        td
-                            span Peter
-                            span &nbsp;
-                            span Muster
-                        td Primarstufe
-                        td 1.06.2023
-                        td in Bearbeitung
-                    tr
-                        td
-                            a#link(href="#" class="link-id") 2
-                        td Projekt
-                        td 01.01.2023
-                        td
-                            span Muster
-                            span &nbsp;
-                            span Muster
-                        td Forschung und Entwicklung
-                        td 31.01.2023
-                        td Abgeschlossen
-                    tr
-                        td
-                            a#link(href="#" class="link-id") 3
-                        td Projekt
-                        td 01.12.2022
-                        td
-                            span Muster
-                            span &nbsp;
-                            span Muster
-                        td Sekundarstufe I und II
-                        td(class="red") 30.01.2023
-                        td in Bearbeitung
+            if (typeof (softwareList) !== 'undefined')
+                for order in softwareList
+                        tr
+                            td
+                                a#link(href="/ethra/details?tsid="+ order.applicationid class="link-id")= order.applicationid
+                            td= order.topic
+                            td= order.dateapp
+                            td
+                                span= order.vorname
+                                span &nbsp;
+                                span= order.nachname
+                            if((order.institut) && (order.institut !== 'undefined'))
+                                td= order.institut
+                            else
+                                td=" "
+                            if((order.deadline) && (order.deadline !== 'undefined'))
+                                td= order.deadline
+                            else
+                                td=" "
+                            td= order.status
+            //thead
+            //    tr(role='row')
+            //        th(role='columnheader') Antragsnr.
+            //        th.minwidth(role='columnheader') Name des Projektes
+            //        th(role='columnheader') Beantragt am
+            //        th(role='columnheader') Ersteller*innen
+            //        th(role='columnheader') Institut
+            //        th(role='columnheader') Deadline
+            //        th(role='columnheader') Status
+            //tbody
+            //        tr
+            //            td
+            //                a#link(href="#" class="link-id") 1
+            //            td Projekt
+            //            td 31.01.2023
+            //            td
+            //                span Peter
+            //                span &nbsp;
+            //                span Muster
+            //            td Primarstufe
+            //            td 1.06.2023
+            //            td in Bearbeitung
+            //        tr
+            //            td
+            //                a#link(href="#" class="link-id") 2
+            //            td Projekt
+            //            td 01.01.2023
+            //            td
+            //                span Muster
+            //                span &nbsp;
+            //                span Muster
+            //            td Forschung und Entwicklung
+            //            td 31.01.2023
+            //            td Abgeschlossen
+            //        tr
+            //            td
+            //                a#link(href="#" class="link-id") 3
+            //            td Projekt
+            //            td 01.12.2022
+            //            td
+            //                span Muster
+            //                span &nbsp;
+            //                span Muster
+            //            td Sekundarstufe I und II
+            //            td(class="red") 30.01.2023
+            //            td in Bearbeitung
 script(type='text/javascript' src="./static/js/libs/jquery.js")
 //script(type='text/javascript' src="./static/js/libs/bootstrap.bundle.min.js" crossorigin="anonymous")
 
