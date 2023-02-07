@@ -46,8 +46,8 @@ module.exports = function (models) {
             let email = req.body.email;
             let institute = req.body.institute;
             let finance = req.body.finance;
-            let func = req.body.func;
             let subdiscipline = req.body.subdiscipline;
+            let projectduration = req.body.projectduration;
             let topic = req.body.topic;
             let summ = req.body.summ;
             let appraisal = req.body.appraisal;
@@ -74,6 +74,7 @@ module.exports = function (models) {
             let participationundersixteentext = req.body.participationundersixteentext;
             let risk = req.body.risk;
             let risktext = req.body.risktext;
+            let riskfile = req.body.riskfile;
             let integrity = req.body.integrity;
             let integritytext = req.body.integritytext;
             let mentalintegrity = req.body.mentalintegrity;
@@ -108,7 +109,7 @@ module.exports = function (models) {
                 else{
                     sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
                 }
-                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, dateapp, deadline, comments, status, orderstatus) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'")';
+                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, dateapp, deadline, comments, status, orderstatus) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'")';
                connection.query(""+sql2+"",
                     (err, rows) => {
                         //  connection.release() // return the connection to pool
@@ -168,6 +169,7 @@ module.exports = function (models) {
                                             'finance': rows[i].finance,
                                             'subdiscipline': rows[i].subdiscipline,
                                             'topic': rows[i].topic,
+                                            'projectduration': rows[i].projectduration,
                                             'summ': rows[i].summ,
                                             'appraisal': rows[i].appraisal,
                                             'registration': rows[i].registration,
@@ -193,6 +195,7 @@ module.exports = function (models) {
                                             'participationundersixteentext': rows[i].participationundersixteentext,
                                             'risk': rows[i].risk,
                                             'risktext': rows[i].risktext,
+                                            'riskfile': rows[i].riskfile,
                                             'integrity': rows[i].integrity,
                                             'integritytext': rows[i].integritytext,
                                             'mentalintegrity': rows[i].mentalintegrity,
@@ -365,6 +368,7 @@ module.exports = function (models) {
                                     'finance': rows[i].finance,
                                     'subdiscipline': rows[i].subdiscipline,
                                     'topic': rows[i].topic,
+                                    'projectduration': rows[i].projectduration,
                                     'summ': rows[i].summ,
                                     'appraisal': rows[i].appraisal,
                                     'registration': rows[i].registration,
@@ -390,6 +394,7 @@ module.exports = function (models) {
                                     'participationundersixteentext': rows[i].participationundersixteentext,
                                     'risk': rows[i].risk,
                                     'risktext': rows[i].risktext,
+                                    'riskfile': rows[i].riskfile,
                                     'integrity': rows[i].integrity,
                                     'integritytext': rows[i].integritytext,
                                     'mentalintegrity': rows[i].mentalintegrity,

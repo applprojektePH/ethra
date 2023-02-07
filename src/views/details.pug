@@ -5,7 +5,7 @@
                 br
                 br
                 for order in softwareListDetails
-                    h2(id='tables') Softwareantrag #!{order.orderid} !{order.softwarename}
+                    h2(id='tables') Antrag #!{order.applicationid} !{order.topic}
                     for order in softwareListDetails
                         if(order.status == 10)
                             span.span-draft Entwurf
@@ -161,127 +161,177 @@
                             .col-md-12
                             if (admin == true)
                                 for order in softwareListDetails
-                                    if (order.notizen !== 'undefined') && ((order.notizen).length)
+                                    if (order.comments !== 'undefined') && ((order.comments).length)
                                         label(for='form-function')
                                             | Notizen zum Antrag (vertraulich)
-                                        p= order.notizen
-                                h3.alert.alert-primary Angaben zur Person
+                                        p= order.comments
                             for order in softwareListDetails
                                 label
-                                    | Institut
-                                p(name='institut')= order.institut
-                                label Professur/Zentrum/Ressort
-                                p(name='professur')= order.professur
-                                label
-                                    | Name
-                                if (order.anrede !== 'Neutrale Anrede')
-                                    span= order.anrede
-                                span= order.vorname
-                                span= order.nachname
+                                    | Antragtyp
+                                p(name='institut')= order.application
+                                label Genehmigungs-Nummer:
+                                p(name='professur')= order.approvednr
+                                h3.alert.alert-primary 1. Allgemeine Angaben
+                            for order in softwareListDetails
+                                if (order.title !== 'Neutrale Anrede')
+                                    span= order.title
+                                span= order.firstname
+                                span= order.lastname
                                 label
                                     | E-Mail-Adresse
                                 p= order.email
-                                label(for='form-function')
-                                    | Funktion
                             for order in softwareListDetails
-                                p= order.funktion
-                                label(for='form-function')
-                                    | Studiengang
-                                p= order.studiengang
-                                label(for='form-function')
-                                    | Modulanlass
-                                p= order.modulanlass
-                            .col-md-12
+                                label
+                                    | Institut
+                                p= order.institute
+                                label
+                                    | b. Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?
+                                p= order.finance
+                                label
+                                    | c. Teildisziplin
+                                p= order.subdiscipline
+                                label
+                                    | d. Thema/Titel des Vorhabens
+                                p= order.topic
+                                label
+                                    | e. Zusammenfassung des Vorhabens
+                                p= order.summ
+                                label
+                                    | f. Projektlaufzeit gemäss finanziertem Vorhaben sowie Zeitraum, für den die Genehmigung beantragt wird
+                                p= order.projectduration
+                                label
+                                    | g. Verlangt der Forschungsträger/Auftraggeber eine Begutachtung des Vorhabens durch eine Ethikkommission?
+                                p= order.appraisal
+                                label
+                                    | h. Verlangt der Forschungsträger/Auftraggeber oder die Gesetzgebung eine Registrierung des Vorhabens?
+                                p= order.registration
+                                if order.registration === 'Ja'
+                                    p= order.registrationtext
                             for order in softwareListDetails
-                                h3.alert.alert-primary Angaben zur Software
+                                h3.alert.alert-primary 2. Verfahren des Vorhabens
                                 label
-                                    | Anwendungs-/Lehr-/Lernszenario
-                                p= order.szenario
+                                    | a. Zielgruppe/Teilnehmende (Angestrebte Anzahl, Geschlecht, Alter, Ausbildung, Gruppenzugehörigkeit u.a. von Relevanz)
+                                p= order.participants
                                 label
-                                    | Name der Software
-                                p= order.softwarename
+                                    | b. Welche Personendaten werden erhoben?
+                                p= order.personaldata
                                 label
-                                    | Webseite der Software
-                                p= order.softwarewebseite
+                                    | c. Wie werden die zu untersuchenden Proband*innen rekrutiert?
+                                p= order.recruited
                                 label
-                                    | Version der Software
-                                p= order.softwareversion
+                                    | d. Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?
+                                a(href=order.informedbefore) Datei herunterladen
                                 label
-                                    | Handelt es sich um ein Update/Änderung eines bestehenden Paketes. Wenn ja, welches?
-                                p= order.softwareupdate
-                                if order.softwareupdate === 'Ja'
-                                    p= order.softwareupdatewelches
+                                    | e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?
+                                a(href=order.execution) Datei herunterladen
                                 label
-                                    | Anzahl Lizenzen
-                                p= order.lizenzenanzahl
+                                    | f. Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?
+                                a(href=order.instructions) Datei herunterladen
                                 label
-                                    | Anzahl geplante Nutzer*innen
-                                p= order.nutzeranzahl
-                                label(for='form-function')
-                                    | Nutzungsdauer
-                                p= order.nutzungsdauer
-                                if order.nutzungsdauertext
-                                    label(for='form-function')
-                                        | Nutzungsdauertext
-                                    p= order.nutzungsdauertext
-                                h3.alert.alert-primary Angaben zur Nutzung
-                                label
-                                    | Einsatz auf folgendem Betriebssystem
-                                p= order.betriebssystem
-                                label
-                                    | Verwendung mit folgendem Browser
-                                p= order.browser
-                                label
-                                    | Wie soll die Software zur Verfügung gestellt werden?
-                                p= order.softwareverfuegung
-                                label
-                                    | W&auml;re die Software auch f&uuml;r ein anderes Institut der PH interessant?
-                                p= order.softwareinteresse
-                                if order.softwareinteresse === 'Ja'
-                                    p= order.softwareinstitut
-                                label
-                                    | W&auml;re die Software auch f&uuml;r andere Hochschulen interessant?
-                                p= order.softwarehochschinteresse
-                                if order.softwarehochschinteresse === 'Ja'
-                                    p= order.softwarehochschule
-                            .col-md-12
+                                    | g. Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?
+                                a(href=order.informedafter) Datei herunterladen
                             for order in softwareListDetails
-                                h3.alert.alert-primary Lizenzierung
+                                h3.alert.alert-primary 3. Spezifische ethische Aspekte des Vorhabens
                                 label
-                                    | F&uuml;r welche Institution
-                                p= order.lizenzinstitution
+                                    | a. Wird die Teilnahme an dem Vorhaben den untersuchten Personen (Proband*innen) vergütet oder bekommen sie eine Aufwandsentschädigung?
+                                p= order.compensation
+                                    if order.registration === 'Ja'
+                                        p= order.compensationtext
                                 label
-                                    | Art
-                                p= order.lizenzart
-                                h3.alert.alert-primary Kosten
+                                    | b. Wenn die Teilnahme als Studienleistung erbracht wird (z. B. obligatorische Versuchspersonen- stunden), kann die Leistung durch andere alternative Leistungen ersetzt werden?
+                                p= order.performanced
                                 label
-                                    | Kosten Lizenzmodell
-                                p= order.lizenzkosten
-                                h3.alert.alert-primary Zus&auml;tzliche Angaben
+                                    | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?
+                                p= order.voluntary
+                                    if order.voluntary === 'Ja'
+                                        a(href=order.voluntaryfile) Datei herunterladen
                                 label
-                                    | Vergleichbarkeit
-                                p= order.vergleichbarkeit
+                                    | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?
+                                p= order.notparticipate
+                                    if order.notparticipate === 'Ja'
+                                        p= order.notparticipatetext
                                 label
-                                    | Support durch
-                                p= order.support
+                                    | e. Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?
+                                p= order.withdraw
                                 label
-                                    | Rechtliche Frage: Datenspeicherung in einer Cloud?
-                                p= order.cloud
-                                for order in softwareListDetails
-                                    if order.cloud === 'Nein'
-                                        p= order.cloudwo
-                                label(for='form-function')
-                                    | Product Owner
-                                p= order.productowner
-                                for order in softwareListDetails
-                                    if order.bemerkungen!== 'undefined' && ((order.bemerkungen).length)
-                                      label(for='form-function')
-                                        | Bemerkungen
-                                      p= order.bemerkungen
-                                label(for='form-function')
-                                    | Datum
-                                p= order.datumantrag
-                                iframe#pdfframe(srcpdf="/santra/document.pdf?tsid="+ order.orderid frameborder='0' style='border:0;' height='0')
+                                    | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?
+                                p= order.agreement
+                                    if order.agreement === 'Ja'
+                                        a(href=order.agreementfile) Datei herunterladen
+                                label
+                                    | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?
+                                p= order.participationundersixteen
+                                    if order.participationundersixteen === 'Ja'
+                                        p= order.participationundersixteentext
+                                label
+                                    | h. Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?
+                                p= order.risk
+                                    if order.risk === 'Ja'
+                                        p= order.risktext
+                            for order in softwareListDetails
+                                h3.alert.alert-primary 4. Belastungen während der Untersuchung
+                                label
+                                    | a. Wird die physische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. durch Einnahme von Arzneimitteln, Entnahme von Blut)? Können negative Folgen entstehen (z. B. Kopfschmerzen)?
+                                p= order.integrity
+                                    if order.integrity === 'Ja'
+                                        p= order.integritytext
+                                label
+                                    | b. Wird die psychische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. Konzentrationsfähigkeit, Induktion von negativen Emotionen)? Können negative psychische Folgen eintreten?
+                                p= order.mentalintegrity
+                                    if order.mentalintegrity === 'Ja'
+                                        p= order.mentalintegritytext
+                                label
+                                    | c. Wird durch die Teilnahme die soziale Integrität tangiert (z. B. die Teilnahme trägt zu einem schlechten Ruf bei). Können negative soziale Folgen entstehen?
+                                p= order.socialintegrity
+                                    if order.socialintegrity === 'Ja'
+                                        p= order.socialintegritytext
+                                label
+                                    | d. Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?
+                                p= order.charges
+                                label
+                                    | e. Wenn Sie bei Frage 4d mit Ja geantwortet haben, geben Sie bitte eine Begründung für Ihr Vorgehen an und erläutern Sie die Schutzmassnahmen, die Sie für die untersuchten Personen (Proband*innen) treffen werden, um die Belastungen zu minimieren:
+                                p= order.reason
+                                label
+                                    | f. Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?
+                                p= order.experience
+                                    if order.experience === 'Ja'
+                                        p= order.experiencetext
+                                label
+                                    | g. Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?
+                                p= order.illusion
+                                    if order.illusion === 'Ja'
+                                        p= order.illusiontext
+                                label
+                                    | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?
+                                p= order.observation
+                            for order in softwareListDetails
+                                h3.alert.alert-primary 5. Angaben zum Datenschutz
+                                label
+                                    | a. Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?
+                                p= order.media
+                                label
+                                    | b. Werden die erhobenen Daten anonymisiert?
+                                p= order.anonymized
+                                label
+                                    | c. Wird die Vertraulichkeit der Daten gewährleistet?
+                                p= order.confidentiality
+                                label
+                                    | d. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
+                                p= order.destroy
+                                label
+                                    | e. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
+                                p= order.deleted
+                                label
+                                    | f. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
+                                p= order.repo
+                            for order in softwareListDetails
+                                h3.alert.alert-primary 6. Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
+                                label
+                                    | a. Ort
+                                p= order.located
+                                label
+                                    | b. Datum
+                                p= order.dateapp
 
 script(type='text/javascript' src="./static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')
 script(type='text/javascript').

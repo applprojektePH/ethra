@@ -31,13 +31,13 @@ module.exports = function (models) {
 
         let tsID = parseInt(req.query.tsid);
         let status = parseInt(req.query.status);
-        let anrede;
-        let vorname;
-        let nachname;
+        let title;
+        let firstname;
+        let lastname;
         let email;
-        let orderid;
+        let applicationid;
         let reqBody = req.body;
-        let softwarename;
+        let topic;
         let statuschange;
         let mailtext;
         let datetime;
@@ -45,6 +45,7 @@ module.exports = function (models) {
         let orderstatus;
         let statuscurrent;
         let anredeMail;
+
         if(reqBody !=='undefined'){
            statuschange = reqBody.statuschange;
            mailtext = reqBody.mailtext;
@@ -52,7 +53,7 @@ module.exports = function (models) {
            mailtype = reqBody.mailtype;
            orderstatus = reqBody.orderstatus;
         }
-        page.title = "Santra - Softwareantrag\n" +
+        page.title = "Ethra - Softwareantrag\n" +
             "Pädagogische Hochschule FHNW";
         if (CONSTANTS.SETTINGS.WEB.SUB_PATH)
             page.path = "/" + CONSTANTS.SETTINGS.WEB.PATH_STRING;
@@ -61,28 +62,28 @@ module.exports = function (models) {
         pool.getConnection((err, connection) => {
             if (err) throw err
             let softwareListDetails = [];
-            sql1 = 'SELECT * FROM orders WHERE ("' + obj_user.mail + '" IN (SELECT email FROM users) AND orderid IN (SELECT ' + tsID + ' FROM orders))';
+            sql1 = 'SELECT * FROM applications WHERE ("' + obj_user.mail + '" IN (SELECT email FROM users) AND applicationid IN (SELECT ' + tsID + ' FROM applications))';
             if ((!isNaN(statuschange))) {
-                sql4 = 'UPDATE orders SET status=' + statuschange + ' WHERE orderid IN (SELECT ' + tsID + ' FROM orders)';
+                sql4 = 'UPDATE applications SET status=' + statuschange + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
                 connection.query("" + sql4 + "",
                     (err, rows) => {
                     })
             }
             if ((!isNaN(statuschange))) {
-                sql5 = 'UPDATE orders SET orderstatus=' + orderstatus + ' WHERE orderid IN (SELECT ' + tsID + ' FROM orders)';
+                sql5 = 'UPDATE applications SET orderstatus=' + orderstatus + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
                 connection.query("" + sql5 + "",
                     (err, rows) => {
                     })
             }
             //nur für Entwurf einreichen
             if ((!isNaN(status))) {
-                sql4 = 'UPDATE orders SET status=' + status + ' WHERE orderid IN (SELECT ' + tsID + ' FROM orders)';
+                sql4 = 'UPDATE applications SET status=' + status + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
                 connection.query("" + sql4 + "",
                     (err, rows) => {
                     })
             }
-            if ((!isNaN(orderid)) || (!isNaN(datetime)) || (!isNaN(mailtype)) || (!isNaN(mailtext) || (!isNaN(orderstatus)))) {
-                sql3 = "INSERT INTO history (orderid, datetime, mailuser, mailtype, mailtext, orderstatus) VALUES ( '" + tsID + "', '" + datetime + "', 'alesya.heymann@fhnw.ch', '" + mailtype + "', '" + mailtext + "', '" + orderstatus + "')";
+            if ((!isNaN(applicationid)) || (!isNaN(datetime)) || (!isNaN(mailtype)) || (!isNaN(mailtext) || (!isNaN(orderstatus)))) {
+                sql3 = "INSERT INTO history (applicationid, datetime, mailuser, mailtype, mailtext, orderstatus) VALUES ( '" + tsID + "', '" + datetime + "', 'alesya.heymann@fhnw.ch', '" + mailtype + "', '" + mailtext + "', '" + orderstatus + "')";
                 connection.query("" + sql3 + "",
                     (err, rows) => {
                     })
@@ -111,63 +112,87 @@ module.exports = function (models) {
                         }
                         // Create an object to save current row's data
                         let order = {
-                            'orderid': rows[i].orderid,
-                            'institut': (rows[i].institut === "undefined" ? " " : rows[i].institut),
-                            'professur': (rows[i].professur === "undefined" ? " " : rows[i].professur),
-                            'anrede': (rows[i].anrede === "undefined" ? " " : rows[i].anrede),
-                            'vorname': (rows[i].vorname === "undefined" ? " " : rows[i].vorname),
-                            'nachname': (rows[i].nachname === "undefined" ? " " : rows[i].nachname),
+                            'applicationid': rows[i].applicationid,
+                            'application': (rows[i].application === "undefined" ? " " : rows[i].application),
+                            'approvednr': (rows[i].approvednr === "undefined" ? " " : rows[i].approvednr),
+                            'title': (rows[i].title === "undefined" ? " " : rows[i].title),
+                            'firstname': (rows[i].firstname === "undefined" ? " " : rows[i].firstname),
+                            'lastname': (rows[i].lastname === "undefined" ? " " : rows[i].lastname),
                             'email': (rows[i].email === "undefined" ? " " : rows[i].email),
-                            'funktion': (rows[i].funktion === "undefined" ? " " : rows[i].funktion),
-                            'studiengang': (rows[i].studiengang === "undefined" ? " " : rows[i].studiengang),
-                            'modulanlass': (rows[i].modulanlass === "undefined" ? " " : rows[i].modulanlass),
-                            'szenario': (rows[i].szenario === "undefined" ? " " : rows[i].szenario),
-                            'softwarename': (rows[i].softwarename === "undefined" ? " " : rows[i].softwarename),
-                            'softwarewebseite': (rows[i].softwarewebseite === "undefined" ? " " : rows[i].softwarewebseite),
-                            'softwareversion': (rows[i].softwareversion === "undefined" ? " " : rows[i].softwareversion),
-                            'softwareupdate': (rows[i].softwareupdate === "undefined" ? " " : rows[i].softwareupdate),
-                            'softwareupdatewelches': (rows[i].softwareupdatewelches === "undefined" ? " " : rows[i].softwareupdatewelches),
-                            'lizenzenanzahl': (rows[i].lizenzenanzahl === "undefined" ? " " : rows[i].lizenzenanzahl),
-                            'nutzeranzahl': (rows[i].nutzeranzahl === "undefined" ? " " : rows[i].nutzeranzahl),
-                            'nutzungsdauer': (rows[i].nutzungsdauer === "undefined" ? " " : rows[i].nutzungsdauer),
-                            'nutzungsdauertext': (rows[i].nutzungsdauertext === "undefined" ? " " : rows[i].nutzungsdauertext),
-                            'betriebssystem': (rows[i].betriebssystem === "undefined" ? " " : rows[i].betriebssystem),
-                            'browser': (rows[i].browser === "undefined" ? " " : rows[i].browser),
-                            'softwareverfuegung': (rows[i].softwareverfuegung === "undefined" ? " " : rows[i].softwareverfuegung),
-                            'softwareinteresse': (rows[i].softwareinteresse === "undefined" ? " " : rows[i].softwareinteresse),
-                            'softwareinstitut': (rows[i].softwareinstitut === "undefined" ? " " : rows[i].softwareinstitut),
-                            'softwarehochschinteresse': (rows[i].softwarehochschinteresse === "undefined" ? "" : rows[i].softwarehochschinteresse),
-                            'softwarehochschule': (rows[i].softwarehochschule === "undefined" ? " " : rows[i].softwarehochschule),
-                            'lizenzinstitution': (rows[i].lizenzinstitution === "undefined" ? " " : rows[i].lizenzinstitution),
-                            'lizenzart': (rows[i].lizenzart === "undefined" ? " " : rows[i].lizenzart),
-                            'lizenzkosten': (rows[i].lizenzkosten === "undefined" ? " " : rows[i].lizenzkosten),
-                            'vergleichbarkeit': (rows[i].vergleichbarkeit === "undefined" ? " " : rows[i].vergleichbarkeit),
-                            'support': (rows[i].support === "undefined" ? " " : rows[i].support),
-                            'cloud': (rows[i].cloud === "undefined" ? " " : rows[i].cloud),
-                            'cloudwo': (rows[i].cloudwo === "undefined" ? " " : rows[i].cloudwo),
-                            'productowner': (rows[i].productowner === "undefined" ? " " : rows[i].productowner),
-                            'bemerkungen': (rows[i].bemerkungen === "undefined" ? " " : rows[i].bemerkungen),
-                            'datumantrag': (rows[i].datumantrag === "undefined" ? " " : rows[i].datumantrag),
-                            'notizen': (rows[i].notizen === "undefined" ? " " : rows[i].notizen),
+                            'institute': (rows[i].institute === "undefined" ? " " : rows[i].institute),
+                            'finance': (rows[i].finance === "undefined" ? " " : rows[i].finance),
+                            'subdiscipline': (rows[i].subdiscipline === "undefined" ? " " : rows[i].subdiscipline),
+                            'topic': (rows[i].topic === "undefined" ? " " : rows[i].topic),
+                            'projectduration': (rows[i].projectduration === "undefined" ? " " : rows[i].projectduration),
+                            'summ': (rows[i].summ === "undefined" ? " " : rows[i].summ),
+                            'appraisal': (rows[i].appraisal === "undefined" ? " " : rows[i].appraisal),
+                            'registration': (rows[i].registration === "undefined" ? " " : rows[i].registration),
+                            'registrationtext': (rows[i].registrationtext === "undefined" ? " " : rows[i].registrationtext),
+                            'participants': (rows[i].participants === "undefined" ? " " : rows[i].participants),
+                            'personaldata': (rows[i].personaldata === "undefined" ? " " : rows[i].personaldata),
+                            'recruited': (rows[i].recruited === "undefined" ? " " : rows[i].recruited),
+                            'informedbefore': (rows[i].informedbefore === "undefined" ? " " : rows[i].informedbefore),
+                            'execution': (rows[i].execution === "undefined" ? " " : rows[i].execution),
+                            'instructions': (rows[i].instructions === "undefined" ? " " : rows[i].instructions),
+                            'informedafter': (rows[i].informedafter === "undefined" ? " " : rows[i].informedafter),
+                            'compensation': (rows[i].compensation === "undefined" ? " " : rows[i].compensation),
+                            'compensationtext': (rows[i].compensationtext === "undefined" ? " " : rows[i].compensationtext),
+                            'performanced': (rows[i].performanced === "undefined" ? " " : rows[i].performanced),
+                            'voluntary': (rows[i].voluntary === "undefined" ? "" : rows[i].voluntary),
+                            'voluntaryfile': (rows[i].voluntaryfile === "undefined" ? " " : rows[i].voluntaryfile),
+                            'notparticipate': (rows[i].notparticipate === "undefined" ? " " : rows[i].notparticipate),
+                            'notparticipatetext': (rows[i].notparticipatetext === "undefined" ? " " : rows[i].notparticipatetext),
+                            'withdraw': (rows[i].withdraw === "undefined" ? " " : rows[i].withdraw),
+                            'agreement': (rows[i].agreement === "undefined" ? " " : rows[i].agreement),
+                            'agreementfile': (rows[i].agreementfile === "undefined" ? " " : rows[i].agreementfile),
+                            'participationundersixteen': (rows[i].participationundersixteen === "undefined" ? " " : rows[i].participationundersixteen),
+                            'participationundersixteentext': (rows[i].participationundersixteentext === "undefined" ? " " : rows[i].participationundersixteentext),
+                            'risk': (rows[i].risk === "undefined" ? " " : rows[i].risk),
+                            'risktext': (rows[i].risktext === "undefined" ? " " : rows[i].risktext),
+                            'riskfile': (rows[i].riskfile === "undefined" ? " " : rows[i].riskfile),
+                            'integrity': (rows[i].integrity === "undefined" ? " " : rows[i].integrity),
+                            'integritytext': (rows[i].integritytext === "undefined" ? " " : rows[i].integritytext),
+                            'mentalintegrity': (rows[i].mentalintegrity === "undefined" ? " " : rows[i].mentalintegrity),
+                            'mentalintegritytext': (rows[i].mentalintegritytext === "undefined" ? " " : rows[i].mentalintegritytext),
+                            'socialintegrity': (rows[i].socialintegrity === "undefined" ? " " : rows[i].socialintegrity),
+                            'socialintegritytext': (rows[i].socialintegritytext === "undefined" ? " " : rows[i].socialintegritytext),
+                            'charges': (rows[i].charges === "undefined" ? " " : rows[i].charges),
+                            'reason': (rows[i].reason === "undefined" ? " " : rows[i].reason),
+                            'experience': (rows[i].experience === "undefined" ? " " : rows[i].experience),
+                            'experiencetext': (rows[i].experiencetext === "undefined" ? " " : rows[i].experiencetext),
+                            'illusion': (rows[i].illusion === "undefined" ? " " : rows[i].illusion),
+                            'illusiontext': (rows[i].illusiontext === "undefined" ? " " : rows[i].illusiontext),
+                            'observation': (rows[i].observation === "undefined" ? " " : rows[i].observation),
+                            'media': (rows[i].media === "undefined" ? " " : rows[i].media),
+                            'anonymized': (rows[i].anonymized === "undefined" ? " " : rows[i].anonymized),
+                            'confidentiality': (rows[i].confidentiality === "undefined" ? " " : rows[i].confidentiality),
+                            'destroy': (rows[i].destroy === "undefined" ? " " : rows[i].destroy),
+                            'deleted': (rows[i].deleted === "undefined" ? " " : rows[i].deleted),
+                            'repo': (rows[i].repo === "undefined" ? " " : rows[i].repo),
+                            'located': (rows[i].located === "undefined" ? " " : rows[i].located),
+                            'dateapp': (rows[i].dateapp === "undefined" ? " " : rows[i].dateapp),
+                            'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
+                            'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
+                            'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
                             'status': rows[i].status
                         }
                         // Add object into array
-                        anrede = rows[i].anrede;
-                        vorname = rows[i].vorname;
-                        nachname = rows[i].nachname;
+                        title = rows[i].title;
+                        firstname = rows[i].firstname;
+                        lastname = rows[i].lastname;
                         email = rows[i].email;
-                        orderid = rows[i].orderid;
-                        softwarename = rows[i].softwarename;
+                        applicationid = rows[i].applicationid;
+                        topic = rows[i].topic;
                         softwareListDetails.push(order);
                     }
                 } else {
                     console.log(err)
                 }
-                if (anrede == "Neutrale Anrede"){
-                    anredeMail = vorname +' '+nachname;
+                if (title == "Neutrale Anrede"){
+                    anredeMail = vorname +' '+lastname;
                 }
                 else{
-                    anredeMail = anrede +' '+nachname;
+                    anredeMail = title +' '+lastname;
                 }
                 if ((mailtype == 2) && (typeof statuschange != 'undefined') && (typeof email != 'undefined')) {
                     let transport2 = nodemailer.createTransport({
@@ -185,7 +210,7 @@ module.exports = function (models) {
                         to: email, //NICHT ABÄNDERN EMAIL
                         bcc: 'alesya.heymann@fhnw.ch',
                         // Subject of the message
-                        subject: 'Santra: Antrag Nummer #' + orderid + '',
+                        subject: 'Ethra: Antrag Nummer #' + applicationid + '',
                         // plaintext body
                         text: mailtext,
                         // HTML body
@@ -215,17 +240,17 @@ module.exports = function (models) {
                         // Comma separated list of recipients
                         to: email, //NICHT ABÄNDERN EMAIL
                         // Subject of the message
-                        subject: "Santra: Antrag Nummer #" + orderid + " in Bearbeitung",
+                        subject: "Ethra: Antrag Nummer #" + applicationid + " in Bearbeitung",
 
                         // plaintext body
-                        text: 'Guten Tag ' + anredeMail + ', Ihr Antrag wurde zur Bearbeitung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid=' + orderid + ' nach der Anmeldung. \n' +
+                        text: 'Guten Tag ' + anredeMail + ', Ihr Antrag wurde zur Bearbeitung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid=' + applicationid + ' nach der Anmeldung. \n' +
                             '\n' +
                             'Vielen Dank und freundliche Grüsse \n' +
                             'Ihr ApplProjekte Supportteam \n' +
                             'n|w\n',
                         // HTML body
                         html: '<p><span>Guten Tag ' + anredeMail + '</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
-                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid=' + orderid + ' nach der Anmeldung.' +
+                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/ethra/details?tsid=' + applicationid + ' nach der Anmeldung.' +
                             '</br></br>Vielen Dank und freundliche Grüsse' +
                             '</br>Ihr ApplProjekte Supportteam ' +
                             '</br>n|w</p>'
@@ -237,9 +262,9 @@ module.exports = function (models) {
                          to: 'Applprojekte Team <alesya.heymann@fhnw.ch>',
                        // to: '<alesya.heymann@fhnw.ch>',
                         // Subject of the message
-                        subject: "Santra: Antrag Nummer #" + orderid + "",
+                        subject: "Santra: Antrag Nummer #" + applicationid + "",
                         // plaintext body
-                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer ' + orderid + ' </br> Name der Software ' + softwarename + ' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid=' + orderid + ' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
+                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer ' + applicationid + ' </br> Name der Software ' + softwarename + ' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid=' + applicationid + ' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
                         // HTML body
                         html: '<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer ' + orderid + ' </br> Name der Software ' + softwarename + ' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid=' + orderid + ' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
 
