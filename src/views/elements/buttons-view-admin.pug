@@ -1,29 +1,29 @@
 span.service-buttons-wrapper.service-buttons-wrapper-admin
     for order in softwareListDetails
         a.btn.btn-primary.btn-sm.btn-orderedit(href="edit?tsid="+ order.applicationid class="link-id")
-                | Antrag bearbeiten
+                | Ethikantrag bearbeiten
                 i.fas.fa-edit
         button.pdfexport.btn.btn-primary.btn-sm
-            | Antrag als PDF speichern
+            | Ethikantrag als PDF speichern
             i.fas.fa-file-pdf
         button.btn.btn-primary.btn-sm.hidden-xs(type='button' data-bs-toggle='modal' data-bs-target='#removeModal')
-            | Antrag l&ouml;schen
+            | Ethikantrag l&ouml;schen
             i.fas.fa-trash-alt
         #removeModal.modal(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
             .modal-dialog.modal-dialog-centered(role='document')
                 .modal-content
                     .modal-header
-                        h5.modal-title Antrag l&ouml;schen
+                        h5.modal-title Ethikantrag l&ouml;schen
                     .modal-body
-                        | Wollen Sie wirklich den Antrag unwiderruflich l&ouml;schen?
+                        | Wollen Sie wirklich den Ethikantrag unwiderruflich l&ouml;schen?
                     .modal-footer
                         button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss="modal") Abbrechen
                         for order in softwareListDetails
                             a.btn.btn-primary.btn-sm.btn-remove.link-id-delete(href="#")
-                                | Antrag l&ouml;schen
+                                | Ethikantrag l&ouml;schen
         for order in softwareListDetails
             a(href="history?tsid="+ order.applicationid class="link-id").btn.btn-primary.btn-sm
-                    | Detallierter Verlauf der Bestellung
+                    | Detaillierter Verlauf des Antrags
                     i.fas.fa-history
         a(href='user').btn.btn-primary.btn-sm.floatright
             | Zur&uuml;ck zu

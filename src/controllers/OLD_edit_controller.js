@@ -41,7 +41,7 @@ module.exports = function (models) {
                             'applicationid': rows[i].applicationid,
                             'orderidmail': rows[i].applicationid,
                             'application': rows[i].application,
-                            'approvednr': rows[i].approvednr,
+                            'approvednr': (rows[i].approvednr === "undefined" ? " " : rows[i].approvednr),
                             'title': rows[i].title,
                             'firstname': rows[i].firstname,
                             'lastname': rows[i].lastname,
@@ -97,8 +97,8 @@ module.exports = function (models) {
                             'deleted': rows[i].deleted,
                             'repo': rows[i].repo,
                             'located': rows[i].located,
-                            'date': rows[i].date,
-                            'deadline': "21.06.2023",
+                            'dateapp': rows[i].dateapp,
+                            'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': rows[i].comments,
                             'status':rows[i].status
                         }

@@ -53,7 +53,7 @@ module.exports = function (models) {
            mailtype = reqBody.mailtype;
            orderstatus = reqBody.orderstatus;
         }
-        page.title = "Ethra - Softwareantrag\n" +
+        page.title = "Ethra - Ethikantrag\n" +
             "Pädagogische Hochschule FHNW";
         if (CONSTANTS.SETTINGS.WEB.SUB_PATH)
             page.path = "/" + CONSTANTS.SETTINGS.WEB.PATH_STRING;
@@ -189,7 +189,7 @@ module.exports = function (models) {
                     console.log(err)
                 }
                 if (title == "Neutrale Anrede"){
-                    anredeMail = vorname +' '+lastname;
+                    anredeMail = firstname +' '+lastname;
                 }
                 else{
                     anredeMail = title +' '+lastname;

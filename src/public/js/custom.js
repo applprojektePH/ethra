@@ -126,7 +126,7 @@ $(document).ready(function () {
             const urlParams = new URLSearchParams(window.location.search);
             const currenturlParam = urlParams.get('tsid');
         setTimeout(function () {
-            document.title = "Softwareantrag"+currenturlParam;
+            document.title = "Ethikantrag"+currenturlParam;
             window.frames["pdfframe"].contentWindow.print();
     }, 1300);
         });

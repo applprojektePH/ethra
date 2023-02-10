@@ -34,7 +34,7 @@ module.exports = function (models) {
         pool.getConnection((err, connection) => {
             if(err) throw err
             let softwareListHistory = [];
-            sql1 = 'SELECT * FROM history WHERE (orderid = "'+tsID+'")';
+            sql1 = 'SELECT * FROM history WHERE (applicationid = "'+tsID+'")';
             connection.query(""+sql1+"", (err, rows) => {
                 //connection.release() // return the connection to pool
                 if (!err) {
@@ -64,7 +64,7 @@ module.exports = function (models) {
                                 break;
                         }
                       let order = {
-                            'orderid':rows[i].orderid,
+                            'applicationid':rows[i].applicationid,
                             'datetime':rows[i].datetime,
                             'mailuser':rows[i].mailuser,
                             'mailtext':rows[i].mailtext,
@@ -82,7 +82,7 @@ module.exports = function (models) {
             setTimeout(
                 function(){
                     res.render('layout_history', {
-                        "softwareListHistory": softwareListHistory, "orderid": tsID, "orderstatus":status,
+                        "softwareListHistory": softwareListHistory, "applicationid": tsID, "orderstatus":status,
                         "vornamelog": decodeURIComponent("Peter"),
                         "nachnamelog": decodeURIComponent("Muster"),
                         "emaillog": "alesya.heymann@fhnw.ch",

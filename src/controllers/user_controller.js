@@ -251,7 +251,7 @@ module.exports = function (models) {
                                         from: 'Santra <alesya.heymann@fhnw.ch>',
                                         to: email,
                                         // Subject of the message
-                                        subject: 'Santra: Antrag Nummer #'+orderidformail+'',
+                                        subject: 'Ethra: Ethikantrag #'+orderidformail+'',
 
                                         // plaintext body
                                         text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +

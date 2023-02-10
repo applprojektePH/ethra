@@ -79,19 +79,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     label.custom-control-label(for='customRadioDisabled03') Gruppenantrag
                     .invalid-feedback
                         | Pflichtfeld
-        .col-md-6
-            .form-check
-                label.form-check-label
-                    |  (Genehmigungs-Nummer: )
-                    if (typeof (softwareListDetails) !== 'undefined')
-                        for order in softwareListDetails
-                            input.form-control(type='text' required='' name='approvednr' value=order.approvednr)
-                    else
-                        input.form-control(type='text' required='' name='approvednr')
-        .form-check.form-check-inline
-            label.form-check-label
-                .invalid-feedback
-                    | Pflichtfeld
+br
 #accordionForm.accordion
     .accordion-item
         h2#headingOne.accordion-header
@@ -1783,7 +1771,8 @@ script(type='text/javascript').
                 formsubmit = false;
             }
         })
-
+        $('.datepicker').datepicker(
+        );
         $('.accordion-collapse').on('shown.bs.collapse', function (e) {
             var $panel = $(this).closest('.accordion-item');
             let offset;

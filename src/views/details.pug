@@ -5,11 +5,11 @@
                 br
                 br
                 for order in softwareListDetails
-                    h2(id='tables') Antrag #!{order.applicationid} !{order.topic}
+                    h2(id='tables') Ethikantrag #!{order.applicationid} !{order.topic}
                     for order in softwareListDetails
                         if(order.status == 10)
                             span.span-draft Entwurf
-                                i &nbsp;(Um den Antrag einreichen zu können, bitte "Antrag bearbeiten" auswählen)
+                                i &nbsp;(Um den Ethikantrag einreichen zu können, bitte "Antrag bearbeiten" auswählen)
                             if (admin == true)
                                 include elements/buttons-view-admin
                             else
@@ -165,12 +165,16 @@
                                         label(for='form-function')
                                             | Notizen zum Antrag (vertraulich)
                                         p= order.comments
+                                    if (order.approvednr !== 'undefined') && ((order.approvednr).length)
+                                        label Genehmigungs-Nummer:
+                                        p= order.approvednr
+                                    if (order.deadline !== 'undefined') && ((order.deadline).length)
+                                    label Stichtag:
+                                    p= order.deadline
                             for order in softwareListDetails
                                 label
                                     | Antragstyp
-                                p(name='institut')= order.application
-                                label Genehmigungs-Nummer:
-                                p(name='professur')= order.approvednr
+                                p= order.application
                                 h3.alert.alert-primary 1. Allgemeine Angaben
                             for order in softwareListDetails
                                 p

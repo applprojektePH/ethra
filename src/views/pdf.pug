@@ -25,12 +25,18 @@ div(id='wrapper-screen-pdf')
                                             label(style="font-weight: 700;")
                                                 | Notizen zum Antrag (vertraulich)
                                             p= order.comments
+                                        if (order.approvednr !== 'undefined') && ((order.approvednr).length)
+                                            label(style="font-weight: 700;")
+                                                | Genehmigungs-Nummer:
+                                            p= order.approvednr
+                                        if (order.deadline !== 'undefined') && ((order.deadline).length)
+                                        label(style="font-weight: 700;")
+                                            | Stichtag:
+                                        p= order.deadline
                                 for order in softwareListDetails
                                     label(style="font-weight: 700;")
-                                        | Antragstyp
-                                    p(name='institut')= order.application
-                                    label(style="font-weight: 700;") Genehmigungs-Nummer:
-                                    p(name='professur')= order.approvednr
+                                        | Ethikantragstyp
+                                    p(name='application')= order.application
                                     h3.alert.alert-primary 1. Allgemeine Angaben
                                 for order in softwareListDetails
                                     p

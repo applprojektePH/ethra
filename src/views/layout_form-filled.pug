@@ -29,6 +29,26 @@ html(lang="en")
                                             else
                                                 textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='comments')
                                     br
+                                    .row
+                                        .col-md-6
+                                            label.form-check-label
+                                                |  (Genehmigungs-Nummer: )
+                                                if (typeof (softwareListDetails) !== 'undefined')
+                                                    for order in softwareListDetails
+                                                        input.form-control(type='text' name='approvednr' value=order.approvednr)
+                                                else
+                                                    input.form-control(type='text' name='approvednr')
+                                        .col-md-6
+                                            label.form-check-label
+                                                |  Stichtag
+                                                if (typeof (softwareListDetails) !== 'undefined')
+                                                    for order in softwareListDetails
+                                                        input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' value=order.deadline data-provide='datepicker' data-date-format="dd.mm.yyyy")
+
+                                                else
+                                                    input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' data-provide='datepicker' data-date-format="dd.mm.yyyy")
+                                    br
+                                    hr
                                     br
                                 include form
     include footer
