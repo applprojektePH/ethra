@@ -95,7 +95,7 @@ module.exports = function (models) {
             let deleted = req.body.deleted;
             let repo = req.body.repo;
             let located = req.body.located;
-            let dateapp = req.body.date;
+            let dateapp = req.body.dateapp;
             let status = req.body.status;
             let orderstatus = 0;
             let softwareList = [];
@@ -216,9 +216,9 @@ module.exports = function (models) {
                                             'deleted': rows[i].deleted,
                                             'repo': rows[i].repo,
                                             'located': rows[i].located,
-                                            'date': rows[i].date,
+                                            'dateapp': rows[i].dateapp,
                                             'deadline': "21.06.2023",
-                                            'comments': rows[i].notizen,
+                                            'comments': rows[i].comments,
                                             'status': statuscurrent
                                         }
                                         // Add object into array
@@ -277,10 +277,10 @@ module.exports = function (models) {
                                         subject: 'Santra: Antrag Nummer #'+orderidformail+'',
 
                                         // plaintext body
-                                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
+                                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
 
                                         // HTML body
-                                        html:'<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
+                                        html:'<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
                                     };
                                     console.log('Sending Mail');
                                     transport.sendMail(messageSender, function(error){
@@ -417,7 +417,7 @@ module.exports = function (models) {
                                     'located': rows[i].located,
                                     'dateapp': rows[i].dateapp,
                                     'deadline': rows[i].deadline,
-                                    'comments': rows[i].notizen,
+                                    'comments': rows[i].comments,
                                     'status': statuscurrent
                                 }
                                 // Add object into array

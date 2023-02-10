@@ -88,11 +88,11 @@ $(document).ready(function () {
         $.ajax({
             type: 'post',
             data: {str: parseInt(currenturlParam)},
-            url: '/ethra/user'
+            url: 'user'
         });
         setTimeout(
             function () {
-                window.location.replace('/ethra/user');
+                window.location.replace('user');
             }, 500);
     })
     $('.btn-reload').one("click", function () {

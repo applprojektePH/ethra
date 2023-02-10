@@ -1,6 +1,6 @@
 span.service-buttons-wrapper.service-buttons-wrapper-admin
     for order in softwareListDetails
-        a.btn.btn-primary.btn-sm.btn-orderedit(href="/santra/edit?tsid="+ order.orderid class="link-id")
+        a.btn.btn-primary.btn-sm.btn-orderedit(href="edit?tsid="+ order.applicationid class="link-id")
                 | Antrag bearbeiten
                 i.fas.fa-edit
         button.pdfexport.btn.btn-primary.btn-sm
@@ -15,17 +15,17 @@ span.service-buttons-wrapper.service-buttons-wrapper-admin
                     .modal-header
                         h5.modal-title Antrag l&ouml;schen
                     .modal-body
-                        | Wollen Sie wirklich den Antrag unwiderruflich l&ouml;schen und Antragssteller*inn dar&uuml;ber informieren?
+                        | Wollen Sie wirklich den Antrag unwiderruflich l&ouml;schen?
                     .modal-footer
                         button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss="modal") Abbrechen
                         for order in softwareListDetails
                             a.btn.btn-primary.btn-sm.btn-remove.link-id-delete(href="#")
                                 | Antrag l&ouml;schen
         for order in softwareListDetails
-            a(href="/santra/history?tsid="+ order.orderid class="link-id").btn.btn-primary.btn-sm
+            a(href="history?tsid="+ order.applicationid class="link-id").btn.btn-primary.btn-sm
                     | Detallierter Verlauf der Bestellung
                     i.fas.fa-history
-        a(href='/santra/user').btn.btn-primary.btn-sm.floatright
+        a(href='user').btn.btn-primary.btn-sm.floatright
             | Zur&uuml;ck zu
             | allen Antr&auml;gen
             i.fas.fa-search

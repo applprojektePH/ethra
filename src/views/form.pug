@@ -1,4 +1,4 @@
-input#form-id.form-control.hidden(type='text' name='userid' value=useridlog)
+//input#form-id.form-control.hidden(type='text' name='userid' value=useridlog)
 input#form-status-input.form-control.hidden(type='text' name='status')
 .col-md-12.fields
     .row
@@ -24,11 +24,11 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     else if (order.application == "Veränderungsantrag")
                         div.custom-radio-wrapper(filled=order.application)
                             .custom-control.custom-radio
-                                input#customRadioDisabled01.custom-control-input(type='radio' name='application' value="Einzelantrag" required='' checked)
+                                input#customRadioDisabled01.custom-control-input(type='radio' name='application' value="Einzelantrag" required='' )
                                 label.custom-control-label(for='customRadioDisabled01') Einzelantrag
 
                             .custom-control.custom-radio
-                                input#customRadioDisabled02.custom-control-input(type='radio' name='application' value="Veränderungsantrag" required='')
+                                input#customRadioDisabled02.custom-control-input(type='radio' name='application' value="Veränderungsantrag" required='' checked)
                                 label.custom-control-label(for='customRadioDisabled02') Veränderungsantrag
 
                             .custom-control.custom-radio
@@ -37,10 +37,25 @@ input#form-status-input.form-control.hidden(type='text' name='status')
 
                                 .invalid-feedback
                                     | Pflichtfeld
+                    else if (order.application == "Gruppenantrag")
+                        div.custom-radio-wrapper(filled=order.application)
+                            .custom-control.custom-radio
+                                input#customRadioDisabled01.custom-control-input(type='radio' name='application' value="Einzelantrag" required='')
+                                label.custom-control-label(for='customRadioDisabled01' ) Einzelantrag
+
+                            .custom-control.custom-radio
+                                input#customRadioDisabled02.custom-control-input(type='radio' name='application' value="Veränderungsantrag" required='')
+                                label.custom-control-label(for='customRadioDisabled02') Veränderungsantrag
+
+                            .custom-control.custom-radio
+                                input#customRadioDisabled03.custom-control-input(type='radio' name='application' value="Gruppenantrag" required='' checked)
+                                label.custom-control-label(for='customRadioDisabled03' ) Gruppenantrag
+                                .invalid-feedback
+                                    | Pflichtfeld
                     else
                         div.custom-radio-wrapper(filled=order.application)
                             .custom-control.custom-radio
-                                input#customRadioDisabled01.custom-control-input(type='radio' name='application' value="Einzelantrag" required='' checked)
+                                input#customRadioDisabled01.custom-control-input(type='radio' name='application' value="Einzelantrag" required='')
                                 label.custom-control-label(for='customRadioDisabled01' ) Einzelantrag
 
                             .custom-control.custom-radio
@@ -52,7 +67,6 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                 label.custom-control-label(for='customRadioDisabled03' ) Gruppenantrag
                                 .invalid-feedback
                                     | Pflichtfeld
-
             else
                 .custom-control.custom-radio
                     input#customRadioDisabled01.custom-control-input(type='radio' name='application' value="Einzelantrag" required='')
@@ -256,11 +270,11 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                                         input#customRadioDisabled1.custom-control-input(type='radio' name='appraisal' value="Ja" required='' checked)
                                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled1') Ja
                                                     .custom-control.custom-radio
-                                                        input#customRadioDisabled2.custom-control-input(type='radio' name='cloud' value="Nein" required='')
+                                                        input#customRadioDisabled2.custom-control-input(type='radio' name='appraisal' value="Nein" required='')
                                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled2') Nein
                                                         .invalid-feedback
                                                             | Pflichtfeld
-                                            else if (order.cloud == "Ja")
+                                            else if (order.appraisal == "Nein")
                                                 div.custom-radio-wrapper(filled=order.appraisal)
                                                     .custom-control.custom-radio
                                                         input#customRadioDisabled1.custom-control-input(type='radio' name='appraisal' value="Ja" required='' )
@@ -295,7 +309,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                             | h. Verlangt der Forschungsträger/Auftraggeber oder die Gesetzgebung eine Registrierung des Vorhabens?*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
-                                            if (order.cloud == "Ja")
+                                            if (order.registration == "Ja")
                                                 div.custom-radio-wrapper(filled=order.registration)
                                                     .custom-control.custom-radio
                                                         input#customRadioDisabled3.custom-control-input(type='radio' name='registration' value="Ja" required='' checked)
@@ -308,7 +322,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
                                                         .invalid-feedback
                                                             | Pflichtfeld
-                                            else if (order.cloud == "Nein")
+                                            else if (order.registration == "Nein")
                                                 div.custom-radio-wrapper(filled=order.registration)
                                                     .custom-control.custom-radio
                                                         input#customRadioDisabled3.custom-control-input(type='radio' name='registration' value="Ja" required='' )
@@ -402,15 +416,15 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(name="informedbefore" href=order.informedbefore)
-                                            i.fas.fa-file-download
-                                                |  Dateiname.pdf
+                                        a(name="informedbefore" href="http://10.51.7.122/ethra/static/download/"+order.informedbefore)= order.informedbefore
+                                        span &nbsp;
+                                        i.fas.fa-file-download
+                                        input.form-control(type='file' name='informedbefore')
                                 else
                                     input.form-control(type='file' required='' name='informedbefore')
-                                .invalid-feedback
-                                    | Pflichtfeld
+                                    .invalid-feedback
+                                        | Pflichtfeld
                                 br
-
                     .col-md-12.fields
                         label.form-label
                             | e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?*
@@ -420,9 +434,10 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(href=order.execution)
-                                            i.fas.fa-file-download
-                                                |  Dateiname.pdf
+                                        a(name="execution" href="http://10.51.7.122/ethra/static/download/" + order.execution)= order.execution
+                                        span &nbsp;
+                                        i.fas.fa-file-download
+                                        input.form-control(type='file' name='execution')
                                 else
                                     input#form-softwareversion.form-control(type='file' required='' name='execution')
                                 .invalid-feedback
@@ -437,9 +452,10 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(href=order.instructions)
-                                            i.fas.fa-file-download
-                                                |  Dateiname.pdf
+                                        a(name="instructions" href="http://10.51.7.122/ethra/static/download/" + order.instructions)= order.instructions
+                                        span &nbsp;
+                                        i.fas.fa-file-download
+                                        input.form-control(type='file' name='instructions')
                                 else
                                     input#form-softwareversion.form-control(type='file' required='' name='instructions')
                                 .invalid-feedback
@@ -454,9 +470,10 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(href=order.informedafter)
-                                            i.fas.fa-file-download
-                                                |  Dateiname.pdf
+                                        a(name="informedafter" href="http://10.51.7.122/ethra/static/download/" + order.informedafter)= order.informedafter
+                                        span &nbsp;
+                                        i.fas.fa-file-download
+                                        input.form-control(type='file' name='informedafter')
                                 else
                                     input#form-softwareversion.form-control(type='file' required='' name='informedafter')
                                 .invalid-feedback
@@ -474,26 +491,26 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                         | a. Wird die Teilnahme an dem Vorhaben den untersuchten Personen (Proband*innen) vergütet oder bekommen sie eine Aufwandsentschädigung?
                     if (typeof (softwareListDetails) !== 'undefined')
                         for order in softwareListDetails
-                            if (order.cloud == "Ja")
+                            if (order.compensation == "Ja")
                                 div.custom-radio-wrapper(filled=order.compensation)
                                     .custom-control.custom-radio
                                         input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
                                     .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="compensation" value=order.compensation placeholder="Einschlägige Gesetzgebung: ")
+                                            input#form-safety.form-control(type='text' name="compensationtext" value=order.compensationtext placeholder="Einschlägige Gesetzgebung: ")
                                     .custom-control.custom-radio
                                         input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
-                            else if (order.cloud == "Nein")
+                            else if (order.compensation == "Nein")
                                 div.custom-radio-wrapper(filled=order.compensation)
                                     .custom-control.custom-radio
                                         input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
                                     .card.card-body
-                                        input#form-safety.form-control(type='text' name="compensation" value=order.compensationtext)
+                                        input#form-safety.form-control(type='text' name="compensationtext" value=order.compensationtext)
                                     .custom-control.custom-radio
                                         input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
@@ -541,61 +558,69 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                 br
                 label
                     | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?*
-                if (typeof (softwareListDetails) !== 'undefined')
-                    for order in softwareListDetails
-                        if (order.cloud == "Ja")
-                            div.custom-radio-wrapper(filled=order.voluntary)
-                                .custom-control.custom-radio
-                                    input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' checked)
-                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
-                                .collapse.inputHide
-                                    .card.card-body
-                                        a.form-control(name="voluntaryfile" href=order.voluntaryfile)
-                                .custom-control.custom-radio
-                                    input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
-                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
-                                    .invalid-feedback
-                                        | Pflichtfeld
-                        else if (order.cloud == "Nein")
-                            div.custom-radio-wrapper(filled=order.voluntary)
-                                .custom-control.custom-radio
-                                    input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' )
-                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
-                                .card.card-body
-                                    a.form-control(name="voluntaryfile" href=order.voluntaryfile)
-                                .custom-control.custom-radio
-                                    input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='' checked)
-                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
-                                    .invalid-feedback
-                                        | Pflichtfeld
+                .row
+                    .col-md-6.fields
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                if (order.voluntary == "Ja")
+                                    div.custom-radio-wrapper(filled=order.voluntary)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
+                                        .collapse.inputHide.card.card-body
+                                                a(name="voluntaryfile" href="http://10.51.7.122/ethra/static/download/" + order.voluntaryfile)= order.voluntaryfile
+                                                span &nbsp;
+                                                i.fas.fa-file-download
+                                                input.form-control(type='file' name='voluntaryfile')
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
+
+                                else if (order.voluntary == "Nein")
+                                    div.custom-radio-wrapper(filled=order.voluntary)
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' )
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
+                                        .card.card-body
+                                            a(name="voluntaryfile" href="http://10.51.7.122/ethra/static/download/" + order.voluntaryfile)= order.voluntaryfile
+                                            span &nbsp;
+                                            i.fas.fa-file-download
+                                            input.form-control(type='file' name='voluntaryfile')
+                                        .custom-control.custom-radio
+                                            input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='' checked)
+                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
+
+
+                                else
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
+                                        .collapse.inputHide
+                                            .card.card-body
+                                                a(name="voluntaryfile" href="http://10.51.7.122/ethra/static/download/" + order.voluntaryfile)= order.voluntaryfile
+                                                span &nbsp;
+                                                i.fas.fa-file-download
+                                                input.form-control(type='file' required='' name='voluntaryfile')
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
 
                         else
                             .custom-control.custom-radio
                                 input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
-                                .collapse.inputHide
-                                    .card.card-body
-                                        a.form-control(name="voluntaryfile" href=order.voluntaryfile)
+                            .collapse.inputHide
+                                .card.card-body
+                                    small
+                                        | Bitte Einverständniserklärung einreichen.
+                                    input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
                             .custom-control.custom-radio
                                 input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
-
-                else
-                    .custom-control.custom-radio
-                        input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='')
-                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
-                    .collapse.inputHide
-                        .card.card-body
-                            small
-                                | Bitte Einverständniserklärung einreichen.
-                            input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
-                    .custom-control.custom-radio
-                        input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
-                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
-                        .invalid-feedback
-                            | Pflichtfeld
                 br
                 label
                     | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?*
@@ -1384,7 +1409,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | c. Wird die Vertraulichkeit der Daten gewährleistet?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
+                                if (order.confidentiality == "Ja")
                                     div.custom-radio-wrapper(filled=order.confidentiality)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled37.custom-control-input(type='radio' name='confidentiality' value="Ja" required='' checked)
@@ -1395,7 +1420,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                             label.custom-control-label(for='customRadioDisabled38') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
+                                else if (order.confidentiality == "Nein")
                                     div.custom-radio-wrapper(filled=order.confidentiality)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled37.custom-control-input(type='radio' name='confidentiality' value="Ja" required='' )
@@ -1430,7 +1455,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | d. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
+                                if (order.destroy == "Ja")
                                     div.custom-radio-wrapper(filled=order.destroy)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled39.custom-control-input(type='radio' name='destroy' value="Ja" required='' checked)
@@ -1441,7 +1466,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                             label.custom-control-label(for='customRadioDisabled40' answer='Nein') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
+                                else if (order.destroy == "Nein")
                                     div.custom-radio-wrapper(filled=order.destroy)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled39.custom-control-input(type='radio' name='destroy' value="Ja" required='' )
@@ -1476,7 +1501,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | e. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
-                                    if (order.cloud == "Ja")
+                                    if (order.deleted == "Ja")
                                         div.custom-radio-wrapper(filled=order.deleted)
                                             .custom-control.custom-radio
                                                 input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='' checked)
@@ -1487,7 +1512,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                                 label.custom-control-label(for='customRadioDisabled46') Nein
                                                 .invalid-feedback
                                                     | Pflichtfeld
-                                    else if (order.cloud == "Nein")
+                                    else if (order.deleted == "Nein")
                                         div.custom-radio-wrapper(filled=order.deleted)
                                             .custom-control.custom-radio
                                                 input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='' )
@@ -1522,7 +1547,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | f. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                if (order.cloud == "Ja")
+                                if (order.repo == "Ja")
                                     div.custom-radio-wrapper(filled=order.repo)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled41.custom-control-input(type='radio' name='repo' value="Ja" required='' checked)
@@ -1533,7 +1558,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                                             label.custom-control-label(for='customRadioDisabled42') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.cloud == "Nein")
+                                else if (order.repo == "Nein")
                                     div.custom-radio-wrapper(filled=order.repo)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled41.custom-control-input(type='radio' name='repo' value="Ja" required='' )
@@ -1587,7 +1612,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                             | b. Datum:
                         label.form-date
                             |
-                        input.hidden.form-date-input(name="date")
+                        input.hidden.form-date-input(name="dateapp")
                             |
 
 
@@ -1619,6 +1644,7 @@ script(type='text/javascript').
                 $('#form-status-input').attr('value', '1');
             });
             $('#buttonsubmitsavechanges').click(function () {
+                event.stopPropagation();
                 $('#form-status-input').attr('value', '0');
             });
 
@@ -1704,7 +1730,7 @@ script(type='text/javascript').
         });
         $(".submitformbtnaction").on("click", function (event) {
             event.stopPropagation();
-            $("#headingThree").removeClass('required-header');
+         //   $("#headingThree").removeClass('required-header');
             $("#accordionForm").find(".accordion-item").each(function () {
                 $(this).find("input, textarea, select").filter('[required]').each(function () {
                     if (($(this).val() == " ") || ($(this).val() == null) || ($.trim($(this).val()).length == 0)) {

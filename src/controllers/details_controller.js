@@ -35,7 +35,7 @@ module.exports = function (models) {
         let firstname;
         let lastname;
         let email;
-        let applicationid;
+        let applicationid ;
         let reqBody = req.body;
         let topic;
         let statuschange;
@@ -62,7 +62,7 @@ module.exports = function (models) {
         pool.getConnection((err, connection) => {
             if (err) throw err
             let softwareListDetails = [];
-            sql1 = 'SELECT * FROM applications WHERE ("' + obj_user.mail + '" IN (SELECT email FROM users) AND applicationid IN (SELECT ' + tsID + ' FROM applications))';
+            sql1 = 'SELECT * FROM applications WHERE ("alesya.heymann@fhnw.ch" IN (SELECT email FROM users) AND applicationid IN (SELECT ' + tsID + ' FROM applications))';
             if ((!isNaN(statuschange))) {
                 sql4 = 'UPDATE applications SET status=' + statuschange + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
                 connection.query("" + sql4 + "",

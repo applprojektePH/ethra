@@ -24,58 +24,83 @@ module.exports = function (models) {
         JSON.stringify(obj_user);
         adminlog=LOGIN.admins.includes("alesya.heymann@fhnw.ch")
         /* USER end */
-        page.title = "Santra - Softwareantrag\n" +
+        page.title = "Ethra - Antrag auf Genehmigung eines Forschungsvorhabens" +
             "Pädagogische Hochschule FHNW";
         let tsID = parseInt(req.query.tsid);
         let status = req.body.status;
         let sendorder;
         pool.getConnection((err, connection) => {
-            let institut = req.body.institut;
-            let professur = req.body.professur;
-            let anrede = req.body.anrede;
-            let vorname = req.body.vorname;
-            let nachname = req.body.nachname;
+            let application = req.body.application;
+            let approvednr = req.body.approvednr;
+            let title = req.body.title;
+            let firstname = req.body.firstname;
+            let lastname = req.body.lastname;
             let email = req.body.email;
-            let funktion = req.body.funktion;
-            let studiengang = req.body.studiengang;
-            let modulanlass = req.body.modulanlass;
-            let szenario = req.body.szenario;
-            let softwarename = req.body.softwarename;
-            let softwarewebseite = req.body.softwarewebseite;
-            let softwareversion = req.body.softwareversion;
-            let softwareupdate = req.body.softwareupdate;
-            let softwareupdatewelches = req.body.softwareupdatewelches;
-            let lizenzenanzahl = req.body.lizenzenanzahl;
-            let nutzeranzahl = req.body.nutzeranzahl;
-            let nutzungsdauer = req.body.nutzungsdauer;
-            let nutzungsdauertext = req.body.nutzungsdauertext;
-            let betriebssystem = req.body.betriebssystem;
-            let browser = req.body.browser;
-            let softwareverfuegung = req.body.softwareverfuegung;
-            let softwareinteresse = req.body.softwareinteresse;
-            let softwareinstitut = req.body.softwareinstitut;
-            let softwarehochschinteresse = req.body.softwarehochschinteresse;
-            let softwarehochschule = req.body.softwarehochschule;
-            let lizenzinstitution = req.body.lizenzinstitution;
-            let lizenzart = req.body.lizenzart;
-            let lizenzkosten = req.body.lizenzkosten;
-            let vergleichbarkeit = req.body.vergleichbarkeit;
-            let support = req.body.support;
-            let cloud = req.body.cloud;
-            let cloudwo = req.body.cloudwo;
-            let productowner = req.body.productowner;
-            let bemerkungen = req.body.bemerkungen;
-            let notizen = req.body.notizen;
+            let institute = req.body.institute;
+            let finance = req.body.finance;
+            let subdiscipline = req.body.subdiscipline;
+            let projectduration = req.body.projectduration;
+            let topic = req.body.topic;
+            let summ = req.body.summ;
+            let appraisal = req.body.appraisal;
+            let registration = req.body.registration;
+            let registrationtext = req.body.registrationtext;
+            let participants = req.body.participants;
+            let personaldata = req.body.personaldata;
+            let recruited = req.body.recruited;
+            let informedbefore = req.body.informedbefore;
+            let execution = req.body.execution;
+            let instructions = req.body.instructions;
+            let informedafter = req.body.informedafter;
+            let compensation = req.body.compensation;
+            let compensationtext = req.body.compensationtext;
+            let performanced = req.body.performanced;
+            let voluntary = req.body.voluntary;
+            let voluntaryfile = req.body.voluntaryfile;
+            let notparticipate = req.body.notparticipate;
+            let notparticipatetext = req.body.notparticipatetext;
+            let withdraw = req.body.withdraw;
+            let agreement = req.body.agreement;
+            let agreementfile = req.body.agreementfile;
+            let participationundersixteen = req.body.participationundersixteen;
+            let participationundersixteentext = req.body.participationundersixteentext;
+            let risk = req.body.risk;
+            let risktext = req.body.risktext;
+            let riskfile = req.body.riskfile;
+            let integrity = req.body.integrity;
+            let integritytext = req.body.integritytext;
+            let mentalintegrity = req.body.mentalintegrity;
+            let mentalintegritytext = req.body.mentalintegritytext;
+            let socialintegrity = req.body.socialintegrity;
+            let socialintegritytext = req.body.socialintegritytext;
+            let charges = req.body.charges;
+            let reason = req.body.reason;
+            let experience = req.body.experience;
+            let experiencetext = req.body.experiencetext;
+            let illusion = req.body.illusion;
+            let illusiontext = req.body.illusiontext;
+            let observation = req.body.observation;
+            let media = req.body.media;
+            let anonymized = req.body.anonymized;
+            let confidentiality = req.body.confidentiality;
+            let destroy = req.body.destroy;
+            let deleted = req.body.deleted;
+            let repo = req.body.repo;
+            let located = req.body.located;
+            let dateapp = req.body.dateapp;
+            let deadline = req.body.deadline;
+            let comments = req.body.comments;
+            let status = req.body.status;
             let softwareListDetails = [];
             let anredeMail;
             if (status == 1) {
                 if (anrede == "Neutrale Anrede"){
-                    anredeMail = req.body.vorname +' '+req.body.nachname;
+                    anredeMail = req.body.firstname +' '+req.body.lastname;
                 }
                 else{
-                    anredeMail = anrede +' '+req.body.nachname;
+                    anredeMail = anrede +' '+req.body.lastname;
                 }
-                sql = 'UPDATE orders SET institut="'+institut+'", professur="'+professur+'", anrede="'+anrede+'", nachname="'+nachname+'", vorname="'+vorname+'", email="'+email+'", funktion="'+funktion+'", studiengang="'+studiengang+'", modulanlass="'+modulanlass+'", szenario="'+szenario+'", softwarename="'+softwarename+'", softwarewebseite="'+softwarewebseite+'", softwareversion="'+softwareversion+'", softwareupdate="'+softwareupdate+'", softwareupdatewelches="'+softwareupdatewelches+'", lizenzenanzahl="'+lizenzenanzahl+'", nutzeranzahl="'+nutzeranzahl+'", nutzungsdauer="'+nutzungsdauer+'", nutzungsdauertext="'+nutzungsdauertext+'", betriebssystem="'+betriebssystem+'", browser="'+browser+'", softwareverfuegung="'+softwareverfuegung+'", softwareinteresse="'+softwareinteresse+'", softwareinstitut="'+softwareinstitut+'", softwarehochschinteresse="'+softwarehochschinteresse+'", softwarehochschule="'+softwarehochschule+'", lizenzinstitution="'+lizenzinstitution+'", lizenzart="'+lizenzart+'", lizenzkosten="'+lizenzkosten+'", vergleichbarkeit="'+vergleichbarkeit+'", support="'+support+'", cloud="'+cloud+'", cloudwo="'+cloudwo+'", productowner="'+productowner+'", bemerkungen="'+bemerkungen+'", notizen="'+notizen+'", status="'+status+'" WHERE orderid="'+tsID+'"'
+                sql = 'UPDATE applications SET application="'+application+'", approvednr="'+approvednr+'", title="'+title+'", firstname="'+firstname+'", lastname="'+lastname+'", email="'+email+'", institute="'+institute+'", finance="'+finance+'", subdiscipline="'+subdiscipline+'", topic="'+topic+'", summ="'+summ+'", appraisal="'+appraisal+'", registration="'+registration+'", registrationtext="'+registrationtext+'", participants="'+participants+'", personaldata="'+personaldata+'", recruited="'+recruited+'", informedbefore="'+informedbefore+'", execution="'+execution+'", instructions="'+instructions+'", informedafter="'+informedafter+'", compensation="'+compensation+'", compensationtext="'+compensationtext+'", performanced="'+performanced+'", voluntary="'+voluntary+'", voluntaryfile="'+voluntaryfile+'", notparticipate="'+notparticipate+'", notparticipatetext="'+notparticipatetext+'", withdraw="'+withdraw+'", agreement="'+agreement+'", agreementfile="'+agreementfile+'", participationundersixteen="'+participationundersixteen+'", participationundersixteentext="'+participationundersixteentext+'", risk="'+risk+'", risktext="'+risktext+'", integrity="'+integrity+'", integritytext="'+integritytext+'", mentalintegrity="'+mentalintegrity+'", mentalintegritytext="'+mentalintegritytext+'", socialintegrity="'+socialintegrity+'", socialintegritytext="'+socialintegritytext+'", charges="'+charges+'", reason="'+reason+'", experience="'+experience+'", experiencetext="'+experiencetext+'", illusion="'+illusion+'", illusiontext="'+illusiontext+'", observation="'+observation+'", media="'+media+'", anonymized="'+anonymized+'", confidentiality="'+confidentiality+'", destroy="'+destroy+'", deleted="'+deleted+'", repo="'+repo+'", located="'+located+'", dateapp="'+dateapp+'", deadline="'+deadline+'", comments="'+comments+'", status="'+status+'" WHERE applicationid="'+tsID+'"'
                 sendorder = 1;
                 let transport2 = nodemailer.createTransport({
                     host: "lmailer.fhnw.ch",
@@ -136,7 +161,7 @@ module.exports = function (models) {
                 });
             }
                 else if (status == 0) {
-                sql = 'UPDATE orders SET institut="'+institut+'", professur="'+professur+'", anrede="'+anrede+'", nachname="'+nachname+'", vorname="'+vorname+'", email="'+email+'", funktion="'+funktion+'", studiengang="'+studiengang+'", modulanlass="'+modulanlass+'", szenario="'+szenario+'", softwarename="'+softwarename+'", softwarewebseite="'+softwarewebseite+'", softwareversion="'+softwareversion+'", softwareupdate="'+softwareupdate+'", softwareupdatewelches="'+softwareupdatewelches+'", lizenzenanzahl="'+lizenzenanzahl+'", nutzeranzahl="'+nutzeranzahl+'", nutzungsdauer="'+nutzungsdauer+'", nutzungsdauertext="'+nutzungsdauertext+'", betriebssystem="'+betriebssystem+'", browser="'+browser+'", softwareverfuegung="'+softwareverfuegung+'", softwareinteresse="'+softwareinteresse+'", softwareinstitut="'+softwareinstitut+'", softwarehochschinteresse="'+softwarehochschinteresse+'", softwarehochschule="'+softwarehochschule+'", lizenzinstitution="'+lizenzinstitution+'", lizenzart="'+lizenzart+'", lizenzkosten="'+lizenzkosten+'", vergleichbarkeit="'+vergleichbarkeit+'", support="'+support+'", cloud="'+cloud+'", cloudwo="'+cloudwo+'", productowner="'+productowner+'", bemerkungen="'+bemerkungen+'", notizen="'+notizen+'" WHERE orderid="'+tsID+'"'
+                sql = 'UPDATE applications SET application="'+application+'", approvednr="'+approvednr+'", title="'+title+'", firstname="'+firstname+'", lastname="'+lastname+'", email="'+email+'", institute="'+institute+'", finance="'+finance+'", subdiscipline="'+subdiscipline+'", topic="'+topic+'", summ="'+summ+'", appraisal="'+appraisal+'", registration="'+registration+'", registrationtext="'+registrationtext+'", participants="'+participants+'", personaldata="'+personaldata+'", recruited="'+recruited+'", informedbefore="'+informedbefore+'", execution="'+execution+'", instructions="'+instructions+'", informedafter="'+informedafter+'", compensation="'+compensation+'", compensationtext="'+compensationtext+'", performanced="'+performanced+'", voluntary="'+voluntary+'", voluntaryfile="'+voluntaryfile+'", notparticipate="'+notparticipate+'", notparticipatetext="'+notparticipatetext+'", withdraw="'+withdraw+'", agreement="'+agreement+'", agreementfile="'+agreementfile+'", participationundersixteen="'+participationundersixteen+'", participationundersixteentext="'+participationundersixteentext+'", risk="'+risk+'", risktext="'+risktext+'", integrity="'+integrity+'", integritytext="'+integritytext+'", mentalintegrity="'+mentalintegrity+'", mentalintegritytext="'+mentalintegritytext+'", socialintegrity="'+socialintegrity+'", socialintegritytext="'+socialintegritytext+'", charges="'+charges+'", reason="'+reason+'", experience="'+experience+'", experiencetext="'+experiencetext+'", illusion="'+illusion+'", illusiontext="'+illusiontext+'", observation="'+observation+'", media="'+media+'", anonymized="'+anonymized+'", confidentiality="'+confidentiality+'", destroy="'+destroy+'", deleted="'+deleted+'", repo="'+repo+'", located="'+located+'", dateapp="'+dateapp+'", deadline="'+deadline+'", comments="'+comments+'", status="'+status+'" WHERE applicationid="'+tsID+'"'
                 sendorder = 0;
                 }
             connection.query(""+sql+"",
@@ -146,44 +171,69 @@ module.exports = function (models) {
                     for (let i = 0; i < rows.length; i++) {
                         // Create an object to save current row's data
                         let order = {
-                            'orderid':rows[i].orderid,
-                            'institut':rows[i].institut,
-                            'professur':rows[i].professur,
-                            'anrede':rows[i].anrede,
-                            'vorname':rows[i].vorname,
-                            'nachname':rows[i].nachname,
-                            'email':rows[i].email,
-                            'funktion':rows[i].funktion,
-                            'studiengang':rows[i].studiengang,
-                            'modulanlass':rows[i].modulanlass,
-                            'szenario':rows[i].szenario,
-                            'softwarename':rows[i].softwarename,
-                            'softwarewebseite':rows[i].softwarewebseite,
-                            'softwareversion':rows[i].softwareversion,
-                            'softwareupdate': rows[i].softwareupdate,
-                            'softwareupdatewelches': rows[i].softwareupdatewelches,
-                            'lizenzenanzahl':rows[i].lizenzenanzahl,
-                            'nutzeranzahl':rows[i].nutzeranzahl,
-                            'nutzungsdauer':rows[i].nutzungsdauer,
-                            'nutzungsdauertext':rows[i].nutzungsdauertext,
-                            'betriebssystem':rows[i].betriebssystem,
-                            'browser':rows[i].browser,
-                            'softwareverfuegung':rows[i].softwareverfuegung,
-                            'softwareinteresse':rows[i].softwareinteresse,
-                            'softwareinstitut':rows[i].softwareinstitut,
-                            'softwarehochschule':rows[i].softwarehochschule,
-                            'lizenzinstitution':rows[i].lizenzinstitution,
-                            'lizenzart':rows[i].lizenzart,
-                            'lizenzkosten':rows[i].lizenzkosten,
-                            'vergleichbarkeit':rows[i].vergleichbarkeit,
-                            'support':rows[i].support,
-                            'cloud':rows[i].cloud,
-                            'cloudwo':rows[i].cloudwo,
-                            'productowner':rows[i].productowner,
-                            'bemerkungen':rows[i].bemerkungen,
-                            'datumantrag': rows[i].datumantrag,
-                            'notizen': rows[i].notizen,
-                            'status':rows[i].status
+                            'applicationid': rows[i].applicationid,
+                            'orderidmail': rows[i].applicationid,
+                            'application': rows[i].application,
+                            'approvednr': rows[i].approvednr,
+                            'title': rows[i].title,
+                            'firstname': rows[i].firstname,
+                            'lastname': rows[i].lastname,
+                            'email': rows[i].email,
+                            'institute': rows[i].institute,
+                            'finance': rows[i].finance,
+                            'subdiscipline': rows[i].subdiscipline,
+                            'topic': rows[i].topic,
+                            'projectduration': rows[i].projectduration,
+                            'summ': rows[i].summ,
+                            'appraisal': rows[i].appraisal,
+                            'registration': rows[i].registration,
+                            'registrationtext': rows[i].registrationtext,
+                            'participants': rows[i].participants,
+                            'personaldata': rows[i].personaldata,
+                            'recruited': rows[i].recruited,
+                            'informedbefore': rows[i].informedbefore,
+                            'execution': rows[i].execution,
+                            'instructions': rows[i].instructions,
+                            'informedafter': rows[i].informedafter,
+                            'compensation': rows[i].compensation,
+                            'compensationtext': rows[i].compensationtext,
+                            'performanced': rows[i].performanced,
+                            'voluntary': rows[i].voluntary,
+                            'voluntaryfile': rows[i].voluntaryfile,
+                            'notparticipate': rows[i].notparticipate,
+                            'notparticipatetext': rows[i].notparticipatetext,
+                            'withdraw': rows[i].withdraw,
+                            'agreement': rows[i].agreement,
+                            'agreementfile': rows[i].agreementfile,
+                            'participationundersixteen': rows[i].participationundersixteen,
+                            'participationundersixteentext': rows[i].participationundersixteentext,
+                            'risk': rows[i].risk,
+                            'risktext': rows[i].risktext,
+                            'riskfile': rows[i].riskfile,
+                            'integrity': rows[i].integrity,
+                            'integritytext': rows[i].integritytext,
+                            'mentalintegrity': rows[i].mentalintegrity,
+                            'mentalintegritytext': rows[i].mentalintegritytext,
+                            'socialintegrity': rows[i].socialintegrity,
+                            'socialintegritytext': rows[i].socialintegritytext,
+                            'charges': rows[i].charges,
+                            'reason': rows[i].reason,
+                            'experience': rows[i].experience,
+                            'experiencetext': rows[i].experiencetext,
+                            'illusion': rows[i].illusion,
+                            'illusiontext': rows[i].illusiontext,
+                            'observation': rows[i].observation,
+                            'media': rows[i].media,
+                            'anonymized': rows[i].anonymized,
+                            'confidentiality': rows[i].confidentiality,
+                            'destroy': rows[i].destroy,
+                            'deleted': rows[i].deleted,
+                            'repo': rows[i].repo,
+                            'located': rows[i].located,
+                            'dateapp': rows[i].dateapp,
+                            'deadline': rows[i].deadline,
+                            'comments': rows[i].comments,
+                            'status': rows[i].status
                         }
                         // Add object into array
                         softwareListDetails.push(order);

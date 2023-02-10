@@ -36,9 +36,9 @@ module.exports = function (models) {
 
         pool.getConnection((err, connection) => {
             if (err) throw err
-            sql4 = 'DELETE FROM orders WHERE orderid IN (SELECT '+ts+' FROM orders)';
-            sql5 = 'DELETE FROM history WHERE orderid IN (SELECT '+ts+' FROM history)';
-            sqlIdupdate = "ALTER TABLE orders AUTO_INCREMENT = 1";
+            sql4 = 'DELETE FROM applications WHERE applicationid IN (SELECT '+ts+' FROM applications)';
+            sql5 = 'DELETE FROM history WHERE applicationid IN (SELECT '+ts+' FROM history)';
+            sqlIdupdate = "ALTER TABLE applications AUTO_INCREMENT = 1";
             connection.query(""+sql4+"",
                 (err, rows) => {
                     connection.query(""+sql5+"",

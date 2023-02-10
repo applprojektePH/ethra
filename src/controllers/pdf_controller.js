@@ -31,12 +31,12 @@ module.exports = function (models) {
 
 		let tsID = parseInt(req.query.tsid);
 		let status = parseInt(req.query.status);
-		let anrede;
-		let nachname;
+		let title;
+		let lastname;
 		let email;
 		let orderid;
 		let reqBody = req.body;
-		let softwarename;
+		let topic;
 		let statuschange;
 		let mailtext;
 		let datetime;
@@ -53,59 +53,83 @@ module.exports = function (models) {
 		pool.getConnection((err, connection) => {
 			if (err) throw err
 			let softwareListDetails = [];
-			sql1 = 'SELECT * FROM orders WHERE ("' + obj_user.mail + '" IN (SELECT email FROM users) AND orderid IN (SELECT ' + tsID + ' FROM orders))';
+			sql1 = 'SELECT * FROM applications WHERE ("alesya.heymann@fhnw.ch" IN (SELECT email FROM users) AND applicationid IN (SELECT ' + tsID + ' FROM applications))';
 			connection.query("" + sql1 + "", (err, rows) => {
 				connection.release() // return the connection to pool
 				if (!err) {
 					for (let i = 0; i < rows.length; i++) {
 						// Create an object to save current row's data
 						let order = {
-							'orderid': rows[i].orderid,
-							'institut': (rows[i].institut === "undefined" ? " " : rows[i].institut),
-							'professur': (rows[i].professur === "undefined" ? " " : rows[i].professur),
-							'anrede': (rows[i].anrede === "undefined" ? " " : rows[i].anrede),
-							'vorname': (rows[i].vorname === "undefined" ? " " : rows[i].vorname),
-							'nachname': (rows[i].nachname === "undefined" ? " " : rows[i].nachname),
+							'applicationid': rows[i].applicationid,
+							'application': (rows[i].application === "undefined" ? " " : rows[i].application),
+							'approvednr': (rows[i].approvednr === "undefined" ? " " : rows[i].approvednr),
+							'title': (rows[i].title === "undefined" ? " " : rows[i].title),
+							'firstname': (rows[i].firstname === "undefined" ? " " : rows[i].firstname),
+							'lastname': (rows[i].lastname === "undefined" ? " " : rows[i].lastname),
 							'email': (rows[i].email === "undefined" ? " " : rows[i].email),
-							'funktion': (rows[i].funktion === "undefined" ? " " : rows[i].funktion),
-							'studiengang': (rows[i].studiengang === "undefined" ? " " : rows[i].studiengang),
-							'modulanlass': (rows[i].modulanlass === "undefined" ? " " : rows[i].modulanlass),
-							'szenario': (rows[i].szenario === "undefined" ? " " : rows[i].szenario),
-							'softwarename': (rows[i].softwarename === "undefined" ? " " : rows[i].softwarename),
-							'softwarewebseite': (rows[i].softwarewebseite === "undefined" ? " " : rows[i].softwarewebseite),
-							'softwareversion': (rows[i].softwareversion === "undefined" ? " " : rows[i].softwareversion),
-							'softwareupdate': (rows[i].softwareupdate === "undefined" ? " " : rows[i].softwareupdate),
-							'softwareupdatewelches': (rows[i].softwareupdatewelches === "undefined" ? " " : rows[i].softwareupdatewelches),
-							'lizenzenanzahl': (rows[i].lizenzenanzahl === "undefined" ? " " : rows[i].lizenzenanzahl),
-							'nutzeranzahl': (rows[i].nutzeranzahl === "undefined" ? " " : rows[i].nutzeranzahl),
-							'nutzungsdauer': (rows[i].nutzungsdauer === "undefined" ? " " : rows[i].nutzungsdauer),
-							'nutzungsdauertext': (rows[i].nutzungsdauertext === "undefined" ? " " : rows[i].nutzungsdauertext),
-							'betriebssystem': (rows[i].betriebssystem === "undefined" ? " " : rows[i].betriebssystem),
-							'browser': (rows[i].browser === "undefined" ? " " : rows[i].browser),
-							'softwareverfuegung': (rows[i].softwareverfuegung === "undefined" ? " " : rows[i].softwareverfuegung),
-							'softwareinteresse': (rows[i].softwareinteresse === "undefined" ? " " : rows[i].softwareinteresse),
-							'softwareinstitut': (rows[i].softwareinstitut === "undefined" ? " " : rows[i].softwareinstitut),
-							'softwarehochschinteresse': (rows[i].softwarehochschinteresse === "undefined" ? "" : rows[i].softwarehochschinteresse),
-							'softwarehochschule': (rows[i].softwarehochschule === "undefined" ? " " : rows[i].softwarehochschule),
-							'lizenzinstitution': (rows[i].lizenzinstitution === "undefined" ? " " : rows[i].lizenzinstitution),
-							'lizenzart': (rows[i].lizenzart === "undefined" ? " " : rows[i].lizenzart),
-							'lizenzkosten': (rows[i].lizenzkosten === "undefined" ? " " : rows[i].lizenzkosten),
-							'vergleichbarkeit': (rows[i].vergleichbarkeit === "undefined" ? " " : rows[i].vergleichbarkeit),
-							'support': (rows[i].support === "undefined" ? " " : rows[i].support),
-							'cloud': (rows[i].cloud === "undefined" ? " " : rows[i].cloud),
-							'cloudwo': (rows[i].cloudwo === "undefined" ? " " : rows[i].cloudwo),
-							'productowner': (rows[i].productowner === "undefined" ? " " : rows[i].productowner),
-							'bemerkungen': (rows[i].bemerkungen === "undefined" ? " " : rows[i].bemerkungen),
-							'datumantrag': (rows[i].datumantrag === "undefined" ? " " : rows[i].datumantrag),
-							'notizen': (rows[i].notizen === "undefined" ? " " : rows[i].notizen),
+							'institute': (rows[i].institute === "undefined" ? " " : rows[i].institute),
+							'finance': (rows[i].finance === "undefined" ? " " : rows[i].finance),
+							'subdiscipline': (rows[i].subdiscipline === "undefined" ? " " : rows[i].subdiscipline),
+							'topic': (rows[i].topic === "undefined" ? " " : rows[i].topic),
+							'projectduration': (rows[i].projectduration === "undefined" ? " " : rows[i].projectduration),
+							'summ': (rows[i].summ === "undefined" ? " " : rows[i].summ),
+							'appraisal': (rows[i].appraisal === "undefined" ? " " : rows[i].appraisal),
+							'registration': (rows[i].registration === "undefined" ? " " : rows[i].registration),
+							'registrationtext': (rows[i].registrationtext === "undefined" ? " " : rows[i].registrationtext),
+							'participants': (rows[i].participants === "undefined" ? " " : rows[i].participants),
+							'personaldata': (rows[i].personaldata === "undefined" ? " " : rows[i].personaldata),
+							'recruited': (rows[i].recruited === "undefined" ? " " : rows[i].recruited),
+							'informedbefore': (rows[i].informedbefore === "undefined" ? " " : rows[i].informedbefore),
+							'execution': (rows[i].execution === "undefined" ? " " : rows[i].execution),
+							'instructions': (rows[i].instructions === "undefined" ? " " : rows[i].instructions),
+							'informedafter': (rows[i].informedafter === "undefined" ? " " : rows[i].informedafter),
+							'compensation': (rows[i].compensation === "undefined" ? " " : rows[i].compensation),
+							'compensationtext': (rows[i].compensationtext === "undefined" ? " " : rows[i].compensationtext),
+							'performanced': (rows[i].performanced === "undefined" ? " " : rows[i].performanced),
+							'voluntary': (rows[i].voluntary === "undefined" ? "" : rows[i].voluntary),
+							'voluntaryfile': (rows[i].voluntaryfile === "undefined" ? " " : rows[i].voluntaryfile),
+							'notparticipate': (rows[i].notparticipate === "undefined" ? " " : rows[i].notparticipate),
+							'notparticipatetext': (rows[i].notparticipatetext === "undefined" ? " " : rows[i].notparticipatetext),
+							'withdraw': (rows[i].withdraw === "undefined" ? " " : rows[i].withdraw),
+							'agreement': (rows[i].agreement === "undefined" ? " " : rows[i].agreement),
+							'agreementfile': (rows[i].agreementfile === "undefined" ? " " : rows[i].agreementfile),
+							'participationundersixteen': (rows[i].participationundersixteen === "undefined" ? " " : rows[i].participationundersixteen),
+							'participationundersixteentext': (rows[i].participationundersixteentext === "undefined" ? " " : rows[i].participationundersixteentext),
+							'risk': (rows[i].risk === "undefined" ? " " : rows[i].risk),
+							'risktext': (rows[i].risktext === "undefined" ? " " : rows[i].risktext),
+							'riskfile': (rows[i].riskfile === "undefined" ? " " : rows[i].riskfile),
+							'integrity': (rows[i].integrity === "undefined" ? " " : rows[i].integrity),
+							'integritytext': (rows[i].integritytext === "undefined" ? " " : rows[i].integritytext),
+							'mentalintegrity': (rows[i].mentalintegrity === "undefined" ? " " : rows[i].mentalintegrity),
+							'mentalintegritytext': (rows[i].mentalintegritytext === "undefined" ? " " : rows[i].mentalintegritytext),
+							'socialintegrity': (rows[i].socialintegrity === "undefined" ? " " : rows[i].socialintegrity),
+							'socialintegritytext': (rows[i].socialintegritytext === "undefined" ? " " : rows[i].socialintegritytext),
+							'charges': (rows[i].charges === "undefined" ? " " : rows[i].charges),
+							'reason': (rows[i].reason === "undefined" ? " " : rows[i].reason),
+							'experience': (rows[i].experience === "undefined" ? " " : rows[i].experience),
+							'experiencetext': (rows[i].experiencetext === "undefined" ? " " : rows[i].experiencetext),
+							'illusion': (rows[i].illusion === "undefined" ? " " : rows[i].illusion),
+							'illusiontext': (rows[i].illusiontext === "undefined" ? " " : rows[i].illusiontext),
+							'observation': (rows[i].observation === "undefined" ? " " : rows[i].observation),
+							'media': (rows[i].media === "undefined" ? " " : rows[i].media),
+							'anonymized': (rows[i].anonymized === "undefined" ? " " : rows[i].anonymized),
+							'confidentiality': (rows[i].confidentiality === "undefined" ? " " : rows[i].confidentiality),
+							'destroy': (rows[i].destroy === "undefined" ? " " : rows[i].destroy),
+							'deleted': (rows[i].deleted === "undefined" ? " " : rows[i].deleted),
+							'repo': (rows[i].repo === "undefined" ? " " : rows[i].repo),
+							'located': (rows[i].located === "undefined" ? " " : rows[i].located),
+							'dateapp': (rows[i].dateapp === "undefined" ? " " : rows[i].dateapp),
+							'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
+							'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
+							'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
 							'status': rows[i].status
 						}
 						// Add object into array
-						anrede = rows[i].anrede;
-						nachname = rows[i].nachname;
+						title = rows[i].title;
+						lastname = rows[i].lastname;
 						email = rows[i].email;
 						orderid = rows[i].orderid;
-						softwarename = rows[i].softwarename;
+						topic = rows[i].topic;
 						softwareListDetails.push(order);
 					}
 				} else {

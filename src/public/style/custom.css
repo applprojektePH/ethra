@@ -598,9 +598,11 @@ header {
 
 .btn-primary {
     background-color: crimson;
-    border: 1px solid #212121;
+    border: 2px solid #212121;
 }
-
+a.btn-primary {
+    border: 2px solid #212121;
+}
 .input-group-addon {
     margin-bottom: 0;
     font-size: 1rem;
@@ -948,9 +950,7 @@ table.dataTable tbody td:last-child, table.dataTable thead tr th:last-child {
 .form-group-view-wrapper span {
     display: inline-block;
     width: auto;
-    padding-right: 0;
-    padding-left: 5px;
-    margin-bottom: 1.5rem;
+    padding-right: 5px;
 }
 
 .form-group-view-wrapper label + span {
@@ -958,7 +958,7 @@ table.dataTable tbody td:last-child, table.dataTable thead tr th:last-child {
 }
 
 .form-group-view-wrapper p {
-    padding-left: 15px;
+    padding-left: 22px;
 }
 
 .form-group-view-wrapper p {

@@ -10,7 +10,7 @@ html(lang="en")
                         br
                         br
                         for order in softwareListDetails
-                            h2(id='tables') Antrag #!{order.orderid} !{order.softwarename} bearbeiten
+                            h2(id='tables') Antrag #!{order.applicationid} !{order.topic} bearbeiten
                         form#formOrder.needs-validation(method='POST' novalidate='')
                             for order in softwareListDetails
                                 if(order.status == 10)
@@ -23,11 +23,11 @@ html(lang="en")
                                     label.form-label(for='validationTextarea') Notizen zum Antrag (vertraulich)
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
-                                            if (order.notizen !== 'undefined')
-                                                textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='notizen')
-                                                    | #{order.notizen}
+                                            if (order.comments !== 'undefined')
+                                                textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='comments')
+                                                    | #{order.comments}
                                             else
-                                                textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='notizen')
+                                                textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='comments')
                                     br
                                     br
                                 include form

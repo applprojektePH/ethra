@@ -167,16 +167,17 @@
                                         p= order.comments
                             for order in softwareListDetails
                                 label
-                                    | Antragtyp
+                                    | Antragstyp
                                 p(name='institut')= order.application
                                 label Genehmigungs-Nummer:
                                 p(name='professur')= order.approvednr
                                 h3.alert.alert-primary 1. Allgemeine Angaben
                             for order in softwareListDetails
-                                if (order.title !== 'Neutrale Anrede')
-                                    span= order.title
-                                span= order.firstname
-                                span= order.lastname
+                                p
+                                    if (order.title !== 'Neutrale Anrede')
+                                        span= order.title
+                                    span= order.firstname
+                                    span= order.lastname
                                 label
                                     | E-Mail-Adresse
                                 p= order.email
@@ -220,16 +221,28 @@
                                 p= order.recruited
                                 label
                                     | d. Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?
-                                a(href=order.informedbefore) Datei herunterladen
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href=order.informedbefore) Datei herunterladen
                                 label
                                     | e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?
-                                a(href=order.execution) Datei herunterladen
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href=order.execution) Datei herunterladen
                                 label
                                     | f. Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?
-                                a(href=order.instructions) Datei herunterladen
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href=order.instructions) Datei herunterladen
                                 label
                                     | g. Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?
-                                a(href=order.informedafter) Datei herunterladen
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href=order.informedafter) Datei herunterladen
                             for order in softwareListDetails
                                 h3.alert.alert-primary 3. Spezifische ethische Aspekte des Vorhabens
                                 label
@@ -244,7 +257,10 @@
                                     | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?
                                 p= order.voluntary
                                     if order.voluntary === 'Ja'
-                                        a(href=order.voluntaryfile) Datei herunterladen
+                                        p
+                                            i.fas.fa-file-download
+                                            span &nbsp;
+                                            a(href=order.voluntaryfile) Datei herunterladen
                                 label
                                     | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?
                                 p= order.notparticipate
@@ -257,7 +273,10 @@
                                     | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?
                                 p= order.agreement
                                     if order.agreement === 'Ja'
-                                        a(href=order.agreementfile) Datei herunterladen
+                                        p
+                                            i.fas.fa-file-download
+                                            span &nbsp;
+                                            a(href=order.agreementfile) Datei herunterladen
                                 label
                                     | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?
                                 p= order.participationundersixteen
@@ -332,6 +351,7 @@
                                 label
                                     | b. Datum
                                 p= order.dateapp
+                                iframe#pdfframe(srcpdf="document.pdf?tsid="+ order.applicationid frameborder='0' style='border:0;' height='0')
 
 script(type='text/javascript' src="./static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')
 script(type='text/javascript').
