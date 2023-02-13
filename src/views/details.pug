@@ -330,22 +330,19 @@
                             for order in softwareListDetails
                                 h3.alert.alert-primary 5. Angaben zum Datenschutz
                                 label
-                                    | a. Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?
-                                p= order.media
-                                label
-                                    | b. Werden die erhobenen Daten anonymisiert?
+                                    | a. Werden die erhobenen Daten anonymisiert?
                                 p= order.anonymized
                                 label
-                                    | c. Wird die Vertraulichkeit der Daten gewährleistet?
+                                    | b. Wird die Vertraulichkeit der Daten gewährleistet?
                                 p= order.confidentiality
                                 label
-                                    | d. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
+                                    | c. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
                                 p= order.destroy
                                 label
-                                    | e. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
+                                    | d. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
                                 p= order.deleted
                                 label
-                                    | f. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
+                                    | e. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
                                 p= order.repo
                             for order in softwareListDetails
                                 h3.alert.alert-primary 6. Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
@@ -355,6 +352,10 @@
                                 label
                                     | b. Datum
                                 p= order.dateapp
+                                p= order.signature
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href=order.agreementfile) Unterschriftdatei herunterladen
                                 iframe#pdfframe(srcpdf="document.pdf?tsid="+ order.applicationid frameborder='0' style='border:0;' height='0')
 
 script(type='text/javascript' src="./static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')

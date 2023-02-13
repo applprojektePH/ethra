@@ -74,6 +74,8 @@ div(id='wrapper-screen-pdf')
                                     p= order.registration
                                     if order.registration === 'Ja'
                                         p= order.registrationtext
+                    img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
+                    div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 2. Verfahren des Vorhabens
                                     label(style="font-weight: 700;")
@@ -88,17 +90,27 @@ div(id='wrapper-screen-pdf')
                                     label(style="font-weight: 700;")
                                         | d. Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?
                                     p
-                                        i(fas fa-file-download)
+                                        i.fas.fa-file-download
+                                        span &nbsp;
                                         a(href=order.informedbefore) Datei herunterladen
                                     label(style="font-weight: 700;")
                                         | e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?
-                                    a(href=order.execution) Datei herunterladen
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href=order.informedbefore) Datei herunterladen
                                     label(style="font-weight: 700;")
                                         | f. Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?
-                                    a(href=order.instructions) Datei herunterladen
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href=order.informedbefore) Datei herunterladen
                                     label(style="font-weight: 700;")
                                         | g. Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?
-                                    a(href=order.informedafter) Datei herunterladen
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href=order.informedbefore) Datei herunterladen
                     img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
                     div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
@@ -115,7 +127,10 @@ div(id='wrapper-screen-pdf')
                                         | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?
                                     p= order.voluntary
                                         if order.voluntary === 'Ja'
-                                            a(href=order.voluntaryfile) Datei herunterladen
+                                        p
+                                            i.fas.fa-file-download
+                                            span &nbsp;
+                                            a(href=order.informedbefore) Datei herunterladen
                                     label(style="font-weight: 700;")
                                         | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?
                                     p= order.notparticipate
@@ -128,7 +143,10 @@ div(id='wrapper-screen-pdf')
                                         | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?
                                     p= order.agreement
                                         if order.agreement === 'Ja'
-                                            a(href=order.agreementfile) Datei herunterladen
+                                            p
+                                                i.fas.fa-file-download
+                                                span &nbsp;
+                                                a(href=order.informedbefore) Datei herunterladen
                                     label(style="font-weight: 700;")
                                         | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?
                                     p= order.participationundersixteen
@@ -139,6 +157,8 @@ div(id='wrapper-screen-pdf')
                                     p= order.risk
                                         if order.risk === 'Ja'
                                             p= order.risktext
+        img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
+        div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 4. Belastungen während der Untersuchung
                                     label(style="font-weight: 700;")
@@ -175,25 +195,24 @@ div(id='wrapper-screen-pdf')
                                     label(style="font-weight: 700;")
                                         | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?
                                     p= order.observation
+        img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
+        div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 5. Angaben zum Datenschutz
                                     label(style="font-weight: 700;")
-                                        | a. Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?
-                                    p= order.media
-                                    label(style="font-weight: 700;")
-                                        | b. Werden die erhobenen Daten anonymisiert?
+                                        | a. Werden die erhobenen Daten anonymisiert?
                                     p= order.anonymized
                                     label(style="font-weight: 700;")
-                                        | c. Wird die Vertraulichkeit der Daten gewährleistet?
+                                        | b. Wird die Vertraulichkeit der Daten gewährleistet?
                                     p= order.confidentiality
                                     label(style="font-weight: 700;")
-                                        | d. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
+                                        | c. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
                                     p= order.destroy
                                     label(style="font-weight: 700;")
-                                        | e. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
+                                        | d. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
                                     p= order.deleted
                                     label(style="font-weight: 700;")
-                                        | f. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
+                                        | e. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
                                     p= order.repo
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 6. Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
@@ -203,5 +222,9 @@ div(id='wrapper-screen-pdf')
                                     label(style="font-weight: 700;")
                                         | b. Datum
                                     p= order.dateapp
+                                    p= order.signature
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href=order.agreementfile) Unterschriftdatei herunterladen
                                 span(class='pdfSep')
 

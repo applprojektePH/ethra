@@ -327,9 +327,9 @@ br
                                                 .custom-control.custom-radio
                                                     input#customRadioDisabled3.custom-control-input(type='radio' name='registration' value="Ja" required='')
                                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled3' answer='open') Ja
-                                                    .collapse.inputHide
-                                                        .card.card-body
-                                                            input.form-control(type='text' name="registrationtext")
+                                                .collapse.inputHide
+                                                    .card.card-body
+                                                        input#form-safety.form-control(type='text' name="registrationtext" placeholder="Einschlägige Gesetzgebung: ")
                                                 .custom-control.custom-radio
                                                     input#customRadioDisabled4.custom-control-input(type='radio' name='registration' value="Nein" required='')
                                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
@@ -509,9 +509,9 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="compensationtext")
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="compensationtext" placeholder="Was, wie viel?")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
@@ -533,16 +533,14 @@ br
                     br
                     label
                         | b. Wenn die Teilnahme als Studienleistung erbracht wird (z. B. obligatorische Versuchspersonen- stunden), kann die Leistung durch andere alternative Leistungen ersetzt werden?*
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            input#form-modul.form-control(type='text' required='' name='performanced' value=order.performanced)
+                    else
+                        input#form-modul.form-control(type='text' required='' name='performanced')
+                    .invalid-feedback
+                        | Pflichtfeld
 
-                        .row
-                            .col-md-6.fields
-                                if (typeof (softwareListDetails) !== 'undefined')
-                                    for order in softwareListDetails
-                                        input#form-modul.form-control(type='text' required='' name='performanced' value=order.performanced)
-                                else
-                                    input#form-modul.form-control(type='text' required='' name='performanced')
-                                .invalid-feedback
-                                    | Pflichtfeld
                 br
                 label
                     | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?*
@@ -583,12 +581,11 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
-                                        .collapse.inputHide
-                                            .card.card-body
-                                                a(name="voluntaryfile" href="http://10.51.7.122/ethra/static/download/" + order.voluntaryfile)= order.voluntaryfile
-                                                span &nbsp;
-                                                i.fas.fa-file-download
-                                                input.form-control(type='file' required='' name='voluntaryfile')
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            small
+                                                | Bitte Einverständniserklärung einreichen.
+                                            input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
                                     .custom-control.custom-radio
                                         input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
@@ -644,9 +641,9 @@ br
                             .custom-control.custom-radio
                                 input#customRadioDisabled11.custom-control-input(type='radio' name='notparticipate' value="Ja" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
-                                .collapse.inputHide
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="notparticipatetext")
+                            .collapse.inputHide
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="notparticipatetext" placeholder="Welche?")
                             .custom-control.custom-radio
                                 input#customRadioDisabled12.custom-control-input(type='radio' name='notparticipate' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
@@ -712,185 +709,190 @@ br
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled8' answer='Nein') Nein
                         .invalid-feedback
                             | Pflichtfeld
-                    br
-                    label
-                        | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
-                    if (typeof (softwareListDetails) !== 'undefined')
-                        for order in softwareListDetails
-                            if (order.withdraw == "Ja")
-                                div.custom-radio-wrapper(filled=order.agreement)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            a.form-control(href=order.agreementfile)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-                            else if (order.withdraw == "Nein")
-                                div.custom-radio-wrapper(filled=order.agreement)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' )
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                br
+                label
+                    | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        if (order.withdraw == "Ja")
+                            div.custom-radio-wrapper(filled=order.agreement)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                                .collapse.inputHide
                                     .card.card-body
                                         a.form-control(href=order.agreementfile)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-
-                            else
-                                .custom-control.custom-radio
-                                    input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
-                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="agreementtext")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
-
-                    else
-                        .custom-control.custom-radio
-                            input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
-                        .collapse.inputHide
-                            .card.card-body
-                                small
-                                    | Bitte Einverständniserklärung einreichen.
-                                input#form-softwareversion.form-control(type='file' required='' name='agreementtext')
-                        .custom-control.custom-radio
-                            input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
-                            .invalid-feedback
-                                | Pflichtfeld
-                    br
-                    label
-                        | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?*
-                    if (typeof (softwareListDetails) !== 'undefined')
-                        for order in softwareListDetails
-                            if (order.participationundersixteen == "Ja")
-                                div.custom-radio-wrapper(filled=order.participationundersixteen)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="participationundersixteentext" value=order.participationundersixteentext placeholder="Bitte erläutern: ")
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-                            else if (order.participationundersixteen == "Nein")
-                                div.custom-radio-wrapper(filled=order.participationundersixteen)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='' )
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="participationundersixteentext" value=order.participationundersixteentext)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-
-                            else
+                        else if (order.withdraw == "Nein")
+                            div.custom-radio-wrapper(filled=order.agreement)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='')
+                                    input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' )
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                                .card.card-body
+                                    a.form-control(href=order.agreementfile)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                            .collapse.inputHide
+                                .card.card-body
+                                    small
+                                        | Bitte Einverständniserklärung einreichen.
+                                    input#form-softwareversion.form-control(type='file' required='' name='agreementtext')
+                            .custom-control.custom-radio
+                                input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+
+                else
+                    .custom-control.custom-radio
+                        input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                    .collapse.inputHide
+                        .card.card-body
+                            small
+                                | Bitte Einverständniserklärung einreichen.
+                            input#form-softwareversion.form-control(type='file' required='' name='agreementtext')
+                    .custom-control.custom-radio
+                        input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
+                        .invalid-feedback
+                            | Pflichtfeld
+                br
+                label
+                    | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?*
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        if (order.participationundersixteen == "Ja")
+                            div.custom-radio-wrapper(filled=order.participationundersixteen)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="participationundersixteentext")
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="participationundersixteentext" value=order.participationundersixteentext placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
-
-                    else
-                        .custom-control.custom-radio
-                            input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
-                        .collapse.inputHide
-                            .card.card-body
-                                input#form-safety.form-control(type='text' name="participationundersixteentext" placeholder="Bitte erläutern: ")
-                        .custom-control.custom-radio
-                            input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
-                            .invalid-feedback
-                                | Pflichtfeld
-                    br
-                    label
-                        | h. Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?*
-                    if (typeof (softwareListDetails) !== 'undefined')
-                        for order in softwareListDetails
-                            if (order.risk == "Ja")
-                                div.custom-radio-wrapper(filled=order.risk)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="risktext" value=order.risktext placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
-                                            br
-                                            small
-                                                | Bitte allfällige Versicherungsunterlagen beifügen.
-                                            input#form-softwareversion.form-control(type='file' required='' name='riskfile')
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-                            else if (order.risk == "Nein")
-                                div.custom-radio-wrapper(filled=order.risk)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='' )
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="risktext" value=order.risktext)
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='' checked)
-                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-
-                            else
+                        else if (order.participationundersixteen == "Nein")
+                            div.custom-radio-wrapper(filled=order.participationundersixteen)
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='')
+                                    input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='' )
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="participationundersixteentext" value=order.participationundersixteentext)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
+                            .collapse.inputHide
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="participationundersixteentext" placeholder="Bitte erläutern: ")
+                            .custom-control.custom-radio
+                                input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+
+                else
+                    .custom-control.custom-radio
+                        input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
+                    .collapse.inputHide
+                        .card.card-body
+                            input#form-safety.form-control(type='text' name="participationundersixteentext" placeholder="Bitte erläutern: ")
+                    .custom-control.custom-radio
+                        input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled18' answer='Nein') Nein
+                        .invalid-feedback
+                            | Pflichtfeld
+                br
+                label
+                    | h. Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?*
+                if (typeof (softwareListDetails) !== 'undefined')
+                    for order in softwareListDetails
+                        if (order.risk == "Ja")
+                            div.custom-radio-wrapper(filled=order.risk)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="risktext")
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="risktext" value=order.risktext placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                                        br
+                                        small
+                                            | Bitte allfällige Versicherungsunterlagen beifügen.
+                                        input#form-softwareversion.form-control(type='file' required='' name='riskfile')
                                 .custom-control.custom-radio
                                     input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
+                        else if (order.risk == "Nein")
+                            div.custom-radio-wrapper(filled=order.risk)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='' )
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="risktext" value=order.risktext)
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='' checked)
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
 
-                    else
-                        .custom-control.custom-radio
-                            input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
-                        .collapse.inputHide
-                            .card.card-body
-                                input#form-safety.form-control(type='text' name="risktext" placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
-                                br
-                                small
-                                    | Bitte allfällige Versicherungsunterlagen beifügen.
-                                input#form-softwareversion.form-control(type='file' required='' name='riskfile')
-                        .custom-control.custom-radio
-                            input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
-                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
-                            .invalid-feedback
-                                | Pflichtfeld
-                    br
+                        else
+                            .custom-control.custom-radio
+                                input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                            .collapse.inputHide
+                                .card.card-body
+                                    input#form-safety.form-control(type='text' name="risktext" placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                                    br
+                                    small
+                                        | Bitte allfällige Versicherungsunterlagen beifügen.
+                                    input#form-softwareversion.form-control(type='file' required='' name='riskfile')
+                            .custom-control.custom-radio
+                                input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
+                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                                .invalid-feedback
+                                    | Pflichtfeld
+
+                else
+                    .custom-control.custom-radio
+                        input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
+                    .collapse.inputHide
+                        .card.card-body
+                            input#form-safety.form-control(type='text' name="risktext" placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                            br
+                            small
+                                | Bitte allfällige Versicherungsunterlagen beifügen.
+                            input#form-softwareversion.form-control(type='file' required='' name='riskfile')
+                    .custom-control.custom-radio
+                        input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
+                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
+                        .invalid-feedback
+                            | Pflichtfeld
+                br
     .accordion-item
         h2#headingFour.accordion-header
             button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFour' aria-expanded='false' aria-controls='collapseFour')
@@ -934,9 +936,9 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled43.custom-control-input(type='radio' name='integrity' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled43' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="integritytext")
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="integritytext" placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled44.custom-control-input(type='radio' name='integrity' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled44' answer='Nein') Nein
@@ -992,9 +994,9 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled21.custom-control-input(type='radio' name='mentalintegrity' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="mentalintegritytext")
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="mentalintegritytext" placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled22.custom-control-input(type='radio' name='affected' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
@@ -1050,9 +1052,9 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled23.custom-control-input(type='radio' name='socialintegrity' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="socialintegritytext")
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="socialintegritytext" placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled24.custom-control-input(type='radio' name='socialintegrity' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
@@ -1121,15 +1123,13 @@ br
                     br
                     label
                         | e. Wenn Sie bei Frage 4d mit Ja geantwortet haben, geben Sie bitte eine Begründung für Ihr Vorgehen an und erläutern Sie die Schutzmassnahmen, die Sie für die untersuchten Personen (Proband*innen) treffen werden, um die Belastungen zu minimieren:*
-                    .row
-                        .col-md-6.fields
-                            if (typeof (softwareListDetails) !== 'undefined')
-                                for order in softwareListDetails
-                                    input#form-modul.form-control(type='text' required='' name='reason' value=order.reason)
-                            else
-                                input#form-modul.form-control(type='text' required='' name='reason')
-                            .invalid-feedback
-                                | Pflichtfeld
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            input#form-modul.form-control(type='text' required='' name='reason' value=order.reason)
+                    else
+                        input#form-modul.form-control(type='text' required='' name='reason')
+                    .invalid-feedback
+                        | Pflichtfeld
                     br
                     label
                         | f. Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?*
@@ -1166,9 +1166,9 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled27.custom-control-input(type='radio' name='experience' value="Ja" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="experiencetext")
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="experiencetext" placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
@@ -1187,109 +1187,109 @@ br
                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
                             .invalid-feedback
                                 | Pflichtfeld
-                        br
-                        label
-                            | g. Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?*
-                        if (typeof (softwareListDetails) !== 'undefined')
-                            for order in softwareListDetails
-                                if (order.illusion == "Ja")
-                                    div.custom-radio-wrapper(filled=order.illusion)
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='' checked)
-                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='open') Ja
-                                        .collapse.inputHide
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="illusiontext" value=order.illusiontext placeholder="Bitte erläutern (insbesondere das «Debriefing»):")
-
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Nein" required='')
-                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
-                                            .invalid-feedback
-                                                | Pflichtfeld
-                                else if (order.illusion == "Nein")
-                                    div.custom-radio-wrapper(filled=order.illusion)
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='' )
-                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
+                    br
+                    label
+                        | g. Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?*
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            if (order.illusion == "Ja")
+                                div.custom-radio-wrapper(filled=order.illusion)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='' checked)
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='open') Ja
+                                    .collapse.inputHide
                                         .card.card-body
-                                            input#form-safety.form-control(type='text' name="illusiontext" value=order.illusiontext)
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='' checked)
-                                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
-                                            .invalid-feedback
-                                                | Pflichtfeld
+                                            input#form-safety.form-control(type='text' name="illusiontext" value=order.illusiontext placeholder="Bitte erläutern (insbesondere das «Debriefing»):")
 
-                                else
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='')
+                                        input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Nein" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            else if (order.illusion == "Nein")
+                                div.custom-radio-wrapper(filled=order.illusion)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
-                                        .collapse.inputHide
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="illusiontext")
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="illusiontext" value=order.illusiontext)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='')
+                                        input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
-                        else
-                            .custom-control.custom-radio
-                                input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='')
-                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
-                            .collapse.inputHide
-                                .card.card-body
-                                    input#form-safety.form-control(type='text' name="illusiontext" placeholder="Bitte erläutern (insbesondere das «Debriefing»): ")
-                            .custom-control.custom-radio
-                                input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='')
-                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
-                                .invalid-feedback
-                                    | Pflichtfeld
-                        br
-                        label
-                            | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?*
-                        if (typeof (softwareListDetails) !== 'undefined')
-                            for order in softwareListDetails
-                                if (order.observation == "Ja")
-                                    div.custom-radio-wrapper(filled=order.observation)
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled25') Ja
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
+                                .collapse.inputHide
+                                    .card.card-body
+                                        input#form-safety.form-control(type='text' name="illusiontext" placeholder="Bitte erläutern (insbesondere das «Debriefing»): ")
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='')
+                                    label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
 
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
-                                            label.custom-control-label(for='customRadioDisabled26') Nein
-                                            .invalid-feedback
-                                                | Pflichtfeld
-                                else if (order.observation == "Nein")
-                                    div.custom-radio-wrapper(filled=order.observation)
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='' )
-                                            label.custom-control-label(for='customRadioDisabled31') Ja
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled32') Nein
-                                            .invalid-feedback
-                                                | Pflichtfeld
-
-                                else
+                    else
+                        .custom-control.custom-radio
+                            input#customRadioDisabled29.custom-control-input(type='radio' name='illusion' value="Ja" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled29' answer='open') Ja
+                        .collapse.inputHide
+                            .card.card-body
+                                input#form-safety.form-control(type='text' name="illusiontext" placeholder="Bitte erläutern (insbesondere das «Debriefing»): ")
+                        .custom-control.custom-radio
+                            input#customRadioDisabled30.custom-control-input(type='radio' name='illusion' value="Nein" required='')
+                            label.custom-control-label.custom-control-label-js(for='customRadioDisabled30' answer='Nein') Nein
+                            .invalid-feedback
+                                | Pflichtfeld
+                    br
+                    label
+                        | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?*
+                    if (typeof (softwareListDetails) !== 'undefined')
+                        for order in softwareListDetails
+                            if (order.observation == "Ja")
+                                div.custom-radio-wrapper(filled=order.observation)
                                     .custom-control.custom-radio
-                                        input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='')
-                                        label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
+                                        input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='' checked)
+                                        label.custom-control-label(for='customRadioDisabled25') Ja
+
                                     .custom-control.custom-radio
                                         input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
-                                        label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
+                                        label.custom-control-label(for='customRadioDisabled26') Nein
+                                        .invalid-feedback
+                                            | Pflichtfeld
+                            else if (order.observation == "Nein")
+                                div.custom-radio-wrapper(filled=order.observation)
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='' )
+                                        label.custom-control-label(for='customRadioDisabled31') Ja
+                                    .custom-control.custom-radio
+                                        input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='' checked)
+                                        label.custom-control-label(for='customRadioDisabled32') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
 
-                        else
-                            .custom-control.custom-radio
-                                input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='')
-                                label.custom-control-label(for='customRadioDisabled31') Ja
-                            .custom-control.custom-radio
-                                input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
-                                label.custom-control-label(for='customRadioDisabled32') Nein
-                                .invalid-feedback
-                                    | Pflichtfeld
+                            else
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='')
+                                    label.custom-control-label(for='customRadioDisabled31' answer='open') Ja
+                                .custom-control.custom-radio
+                                    input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
+                                    label.custom-control-label(for='customRadioDisabled32' answer='Nein') Nein
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
+                    else
+                        .custom-control.custom-radio
+                            input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='')
+                            label.custom-control-label(for='customRadioDisabled31') Ja
+                        .custom-control.custom-radio
+                            input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
+                            label.custom-control-label(for='customRadioDisabled32') Nein
+                            .invalid-feedback
+                                | Pflichtfeld
     .accordion-item
         h2#headingFive.accordion-header
             button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFive' aria-expanded='false' aria-controls='collapseFour')
@@ -1299,53 +1299,7 @@ br
                 .row
                     .col-md-12.fields
                         label
-                            | a. Sind Bild-, Film- oder Tonaufnahmen oder andere Verhaltensregistrierungen vorgesehen?*
-                        if (typeof (softwareListDetails) !== 'undefined')
-                            for order in softwareListDetails
-                                if (order.media == "Ja")
-                                    div.custom-radio-wrapper(filled=order.media)
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
-
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='')
-                                            label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
-                                            .invalid-feedback
-                                                | Pflichtfeld
-                                else if (order.media == "Nein")
-                                    div.custom-radio-wrapper(filled=order.media)
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='' )
-                                            label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
-                                        .custom-control.custom-radio
-                                            input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
-                                            .invalid-feedback
-                                                | Pflichtfeld
-
-                                else
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='')
-                                        label.custom-control-label(for='customRadioDisabled33' answer='open') Ja
-                                    .custom-control.custom-radio
-                                        input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='')
-                                        label.custom-control-label(for='customRadioDisabled34' answer='Nein') Nein
-                                        .invalid-feedback
-                                            | Pflichtfeld
-
-                        else
-                            .custom-control.custom-radio
-                                input#customRadioDisabled33.custom-control-input(type='radio' name='media' value="Ja" required='')
-                                label.custom-control-label(for='customRadioDisabled33') Ja
-                            .custom-control.custom-radio
-                                input#customRadioDisabled34.custom-control-input(type='radio' name='media' value="Nein" required='')
-                                label.custom-control-label(for='customRadioDisabled34') Nein
-                                .invalid-feedback
-                                    | Pflichtfeld
-                        br
-                        label
-                            | b. Werden die erhobenen Daten anonymisiert?*
+                            | a. Werden die erhobenen Daten anonymisiert?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.anonymized == "Ja")
@@ -1394,7 +1348,7 @@ br
                                     | Pflichtfeld
                         br
                         label
-                            | c. Wird die Vertraulichkeit der Daten gewährleistet?*
+                            | b. Wird die Vertraulichkeit der Daten gewährleistet?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.confidentiality == "Ja")
@@ -1440,7 +1394,7 @@ br
                                     | Pflichtfeld
                         br
                         label
-                            | d. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?*
+                            | c. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.destroy == "Ja")
@@ -1486,7 +1440,7 @@ br
                                     | Pflichtfeld
                         br
                         label
-                            | e. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?*
+                            | d. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?*
                             if (typeof (softwareListDetails) !== 'undefined')
                                 for order in softwareListDetails
                                     if (order.deleted == "Ja")
@@ -1504,7 +1458,7 @@ br
                                         div.custom-radio-wrapper(filled=order.deleted)
                                             .custom-control.custom-radio
                                                 input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='' )
-                                                label.custom-control-label(for='customRadioDisabled45' answer='open') Ja
+                                                label.custom-control-label(for='customRadioDisabled45' answer='Ja') Ja
                                             .custom-control.custom-radio
                                                 input#customRadioDisabled46.custom-control-input(type='radio' name='deleted' value="Nein" required='' checked)
                                                 label.custom-control-label(for='customRadioDisabled46' answer='Nein') Nein
@@ -1514,7 +1468,7 @@ br
                                     else
                                         .custom-control.custom-radio
                                             input#customRadioDisabled45.custom-control-input(type='radio' name='deleted' value="Ja" required='')
-                                            label.custom-control-label(for='customRadioDisabled45' answer='open') Ja
+                                            label.custom-control-label(for='customRadioDisabled45' answer='Ja') Ja
                                         .custom-control.custom-radio
                                             input#customRadioDisabled46.custom-control-input(type='radio' name='deleted' value="Nein" required='')
                                             label.custom-control-label(for='customRadioDisabled46' answer='Nein') Nein
@@ -1532,7 +1486,7 @@ br
                                         | Pflichtfeld
                             br
                             label
-                            | f. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?*
+                            | e. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?*
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
                                 if (order.repo == "Ja")
@@ -1602,7 +1556,24 @@ br
                             |
                         input.hidden.form-date-input(name="dateapp")
                             |
-
+                .row
+                    .col-md-6.fields
+                        br
+                        label
+                            | c. Unterschrift
+                        small
+                            | Bitte Bilddatei hochladen
+                        if (typeof (softwareListDetails) !== 'undefined')
+                            for order in softwareListDetails
+                                a(name="signature")= order.signature
+                                span &nbsp;
+                                i.fas.fa-file-download
+                                input.form-control(type='file' name='signature')
+                        else
+                            input.form-control(type='file' required='' name='signature')
+                            .invalid-feedback
+                                | Pflichtfeld
+                        br
 
 script(type='text/javascript' src="./static/js/libs/jquery.js")
 script(type='text/javascript' src="./static/js/validator.js")
@@ -1668,6 +1639,7 @@ script(type='text/javascript').
         //     }
         // });
         $(".custom-control-label-js").click(function () {
+
             if ($(this).attr('answer') == "open") {
                 $(this).closest(".custom-control").next(".inputHide").delay(300).slideDown("slow");
             } else {
