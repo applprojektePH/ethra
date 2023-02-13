@@ -15,7 +15,7 @@ module.exports = function (models) {
         JSON.stringify(obj_user);
 
         /* USER end */
-        page.title = "Santra - Softwareantrag\n" +
+        page.title = "Ethra - Antrag auf Genehmigung eines Forschungsvorhabens\n" +
             "Pädagogische Hochschule FHNW";
         if (CONSTANTS.SETTINGS.WEB.SUB_PATH)
             page.path = "/" + CONSTANTS.SETTINGS.WEB.PATH_STRING;

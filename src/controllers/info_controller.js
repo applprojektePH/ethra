@@ -33,7 +33,7 @@ module.exports = function (models) {
 				(err, rows) => {
 				})
 		})
-		page.title = "Santra - Softwareantrag\n" +
+		page.title = "Ethra - Antrag auf Genehmigung eines Forschungsvorhabens\n" +
 			"Pädagogische Hochschule FHNW";
 		if(CONSTANTS.SETTINGS.WEB.SUB_PATH)
 			page.path = "/"+CONSTANTS.SETTINGS.WEB.PATH_STRING;

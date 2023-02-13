@@ -12,7 +12,7 @@ module.exports = function (models) {
         database: CONSTANTS.SETTINGS.DBNAME.NAME
     })
     this.main = function (req, res, next) {
-        page.title = "Santra - Softwareantrag\n" +
+        page.title = "Ethra - Antrag auf Genehmigung eines Forschungsvorhabens\n" +
             "Pädagogische Hochschule FHNW";
         if (CONSTANTS.SETTINGS.WEB.SUB_PATH)
             page.path = "/" + CONSTANTS.SETTINGS.WEB.PATH_STRING;

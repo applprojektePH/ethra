@@ -27,7 +27,7 @@ module.exports = function (models) {
         /* USER end */
         let tsID = req.body;
         let ts = parseInt(tsID.str);
-        page.title = "Santra - Softwareantrag\n" +
+        page.title = "Ethra - Antrag auf Genehmigung eines Forschungsvorhabens\n" +
             "Pädagogische Hochschule FHNW";
         if(CONSTANTS.SETTINGS.WEB.SUB_PATH)
             page.path = "/"+CONSTANTS.SETTINGS.WEB.PATH_STRING;

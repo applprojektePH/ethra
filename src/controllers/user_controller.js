@@ -19,7 +19,7 @@ module.exports = function (models) {
         res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         res.setHeader("Expires", "0"); // Proxies.
         let url = req.url;
-        page.title = "Santra - Softwareantrag\n" +
+        page.title = "Ethra - Antrag auf Genehmigung eines Forschungsvorhabens\n" +
             "Pädagogische Hochschule FHNW";
         if(CONSTANTS.SETTINGS.WEB.SUB_PATH)
             page.path = "/"+CONSTANTS.SETTINGS.WEB.PATH_STRING;

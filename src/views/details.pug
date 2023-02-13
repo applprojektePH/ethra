@@ -398,12 +398,12 @@ script(type='text/javascript').
                         mailtype: mailtype,
                         orderstatus: orderstatus
                     },
-                    url: '/santra/details?tsid=' + currenturlParam,
+                    url: 'details?tsid=' + currenturlParam,
                     success: function (data) {
 
                             $('.green').removeClass('hidden');
                             window.setTimeout(function () {
-                                window.location.replace("/santra/details?tsid=" + currenturlParam);
+                                window.location.replace("details?tsid=" + currenturlParam);
                             }, 500);
 
                     },

@@ -74,7 +74,7 @@ div(id='wrapper-screen-pdf')
                                     p= order.registration
                                     if order.registration === 'Ja'
                                         p= order.registrationtext
-                    img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
+                    img(class='FHNWLogo' src='static/style/FHNW_PH.svg')
                     div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 2. Verfahren des Vorhabens
@@ -111,7 +111,7 @@ div(id='wrapper-screen-pdf')
                                         i.fas.fa-file-download
                                         span &nbsp;
                                         a(href=order.informedbefore) Datei herunterladen
-                    img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
+                    img(class='FHNWLogo' src='static/style/FHNW_PH.svg')
                     div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 3. Spezifische ethische Aspekte des Vorhabens
@@ -157,7 +157,7 @@ div(id='wrapper-screen-pdf')
                                     p= order.risk
                                         if order.risk === 'Ja'
                                             p= order.risktext
-        img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
+        img(class='FHNWLogo' src='static/style/FHNW_PH.svg')
         div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 4. Belastungen während der Untersuchung
@@ -195,7 +195,7 @@ div(id='wrapper-screen-pdf')
                                     label(style="font-weight: 700;")
                                         | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?
                                     p= order.observation
-        img(class='FHNWLogo' src='/santra/static/style/FHNW_PH.svg')
+        img(class='FHNWLogo' src='static/style/FHNW_PH.svg')
         div(style="page-break-after: always; height:50vh; position: relative; top:20px;" )
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 5. Angaben zum Datenschutz

@@ -26,7 +26,7 @@ module.exports = function (models) {
         JSON.stringify(obj_user);
         adminlog=LOGIN.admins.includes("alesya.heymann@fhnw.ch")
         /* USER end */
-        page.title = "Santra - Softwareantrag\n" +
+        page.title = "Ethra - Antrag auf Genehmigung eines Forschungsvorhabens\n" +
             "Pädagogische Hochschule FHNW";
         pool.getConnection((err, connection) => {
             let tsID = parseInt(req.query.tsid);
