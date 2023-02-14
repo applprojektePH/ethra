@@ -152,7 +152,7 @@ nav {
 .navbar-brand img {
     width: 290px;
     height: 100%;
-    margin-top: 2px;
+    margin-top: 0;
 }
 
 .navbar-start {
@@ -1221,4 +1221,8 @@ span i{
 }
 .charleft{
     margin-left: -3px;
+}
+.datepicker table tr td.active.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active.disabled:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active:active, .datepicker table tr td.active:hover, .datepicker table tr td.active:hover.active, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active:hover:active, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active[disabled], td.active.day{
+    background-image: none!important;
+    background: #0f0f0f!important;
 }
