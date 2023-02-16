@@ -2,6 +2,7 @@ var path = require('path');
 var express = require('express');
 const bodyParser = require('body-parser');
 const controllers = require("./controllers/");
+const multer = require("multer");
 
 module.exports = function (app, models) {
 
@@ -24,4 +25,21 @@ module.exports = function (app, models) {
     app.get('/datenschutz', controllers.datenschutzController.main);
     app.get('/impressum', controllers.impressumController.main);
     app.get('/document.pdf',controllers.pdfController.main);
+    let storage = multer.diskStorage(
+        {
+            destination: './src/public/uploads/',
+            filename: function ( req, file, cb ) {
+                //req.body is empty...
+                //How could I get the new_file_name property sent from client here?
+                cb( null, file.originalname);
+            }
+        }
+    );
+    const upload = multer({storage: storage })
+
+    app.post('/stats', upload.any(), function (req, res) {
+        // req.file is the name of your file in the form above, here 'uploaded_file'
+        // req.body will hold the text fields, if there were any
+        console.log(req.file, req.body)
+    });
 };

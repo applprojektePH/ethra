@@ -118,6 +118,7 @@ module.exports = function (models) {
 							'deleted': (rows[i].deleted === "undefined" ? " " : rows[i].deleted),
 							'repo': (rows[i].repo === "undefined" ? " " : rows[i].repo),
 							'located': (rows[i].located === "undefined" ? " " : rows[i].located),
+							'signature': (rows[i].signature === "undefined" ? " " : rows[i].signature),
 							'dateapp': (rows[i].dateapp === "undefined" ? " " : rows[i].dateapp),
 							'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
 							'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),

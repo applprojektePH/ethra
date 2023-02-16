@@ -92,6 +92,7 @@ br
                         .col-md-12.fields
                             .row
                                 .col-md-4.fields
+
                                     label
                                         | a. Anrede*
                                     .custom-select-js
@@ -113,7 +114,6 @@ br
                                                 option(value="Neutrale Anrede") Neutrale Anrede
                                             .invalid-feedback
                                                 | Pflichtfeld
-
                                 .col-md-4.fields
                                     label
                                         | Vorname*
@@ -404,14 +404,16 @@ br
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(name="informedbefore" href="http://10.51.7.122/ethra/static/download/"+order.informedbefore)= order.informedbefore
+                                        if (order.informedbefore !== "")
+                                            a(name="informedbefore" href="static/uploads/" + order.informedbefore target="_blank")= order.informedbefore
                                         span &nbsp;
                                         i.fas.fa-file-download
-                                        input.form-control(type='file' name='informedbefore')
+                                        input.form-control(type='file' name="fileinformedbefore")
+                                        input.form-control.hidden(type='text' name='informedbefore' value="" + order.informedbefore)
                                 else
-                                    input.form-control(type='file' required='' name='informedbefore')
-                                    .invalid-feedback
-                                        | Pflichtfeld
+                                    input.form-control(type='file' required='' name='informedbefore' id="fileInput")
+                                .invalid-feedback
+                                    | Pflichtfeld
                                 br
                     .col-md-12.fields
                         label.form-label
@@ -741,13 +743,17 @@ br
                                         | Pflichtfeld
                         else
                             .custom-control.custom-radio
-                                input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
-                                label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
+                                .row
+                                    .col-md-6.fields
+                                        input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='')
+                                        label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
                             .collapse.inputHide
                                 .card.card-body
                                     small
                                         | Bitte Einverständniserklärung einreichen.
-                                    input#form-softwareversion.form-control(type='file' required='' name='agreementtext')
+                                    .row
+                                        .col-md-6.fields
+                                            input#form-softwareversion.form-control(type='file' required='' name='agreementfile')
                             .custom-control.custom-radio
                                 input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
@@ -762,7 +768,9 @@ br
                         .card.card-body
                             small
                                 | Bitte Einverständniserklärung einreichen.
-                            input#form-softwareversion.form-control(type='file' required='' name='agreementtext')
+                            .row
+                                .col-md-6.fields
+                                    input#form-softwareversion.form-control(type='file' required='' name='agreementfile')
                     .custom-control.custom-radio
                         input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
@@ -1579,6 +1587,27 @@ script(type='text/javascript' src="./static/js/libs/jquery.js")
 script(type='text/javascript' src="./static/js/validator.js")
 script(type='text/javascript').
     $(document).ready(function () {
+        $("input[type='file']").change(function (event) {
+            event.preventDefault();
+            let form = $("#formOrder")[0];
+            let formData = new FormData(form);
+            if ($(this).next('input').length) {
+                let filename = $(this).prop('files')[0].name;
+                $(this).next().val(filename);
+            }
+            $.ajax({
+                type: "POST",
+                url: "stats/",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (r) {
+                },
+                error: function (e) {
+                }
+            });
+        })
+
         if (window.location.href.indexOf("form") > -1) {
             $('#buttonsubmitformdraft').click(function (event) {
                 event.stopPropagation();

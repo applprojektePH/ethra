@@ -225,28 +225,48 @@
                                 p= order.recruited
                                 label
                                     | d. Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?
-                                p
-                                    i.fas.fa-file-download
-                                    span &nbsp;
-                                    a(href=order.informedbefore) Datei herunterladen
+                                if (order.informedbefore !== "")
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href="static/uploads/"+order.informedbefore target="_blank") Datei herunterladen
+                                else
+                                    p(class="red")
+                                        span
+                                            | fehlende Datei
                                 label
                                     | e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?
-                                p
-                                    i.fas.fa-file-download
-                                    span &nbsp;
-                                    a(href=order.execution) Datei herunterladen
+                                if (order.execution !== "")
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href="static/uploads/" + order.execution target="_blank") Datei herunterladen
+                                else
+                                    p(class="red")
+                                        span
+                                            | fehlende Datei
                                 label
                                     | f. Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?
-                                p
-                                    i.fas.fa-file-download
-                                    span &nbsp;
-                                    a(href=order.instructions) Datei herunterladen
+                                if (order.instructions !== "")
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href="static/uploads/" + order.instructions target="_blank") Datei herunterladen
+                                else
+                                    p(class="red")
+                                        span
+                                            | fehlende Datei
                                 label
                                     | g. Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?
-                                p
-                                    i.fas.fa-file-download
-                                    span &nbsp;
-                                    a(href=order.informedafter) Datei herunterladen
+                                if (order.informedafter !== "")
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href="static/uploads/" + order.informedafter target="_blank") Datei herunterladen
+                                else
+                                    p(class="red")
+                                        span
+                                            | fehlende Datei
                             for order in softwareListDetails
                                 h3.alert.alert-primary 3. Spezifische ethische Aspekte des Vorhabens
                                 label
@@ -261,10 +281,15 @@
                                     | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?
                                 p= order.voluntary
                                     if order.voluntary === 'Ja'
-                                        p
-                                            i.fas.fa-file-download
-                                            span &nbsp;
-                                            a(href=order.voluntaryfile) Datei herunterladen
+                                        if (order.voluntaryfile !== "")
+                                            p
+                                                i.fas.fa-file-download
+                                                span &nbsp;
+                                                a(href="static/uploads/" + order.voluntaryfile target="_blank") Datei herunterladen
+                                        else
+                                            p(class="red")
+                                                span
+                                                    | fehlende Datei
                                 label
                                     | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?
                                 p= order.notparticipate
@@ -277,10 +302,15 @@
                                     | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?
                                 p= order.agreement
                                     if order.agreement === 'Ja'
-                                        p
-                                            i.fas.fa-file-download
-                                            span &nbsp;
-                                            a(href=order.agreementfile) Datei herunterladen
+                                        if (order.agreementfile !== "")
+                                            p
+                                                i.fas.fa-file-download
+                                                span &nbsp;
+                                                a(href="static/uploads/" + order.agreementfile target="_blank") Datei herunterladen
+                                        else
+                                            p(class="red")
+                                                span
+                                                    | fehlende Datei
                                 label
                                     | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?
                                 p= order.participationundersixteen
@@ -291,6 +321,15 @@
                                 p= order.risk
                                     if order.risk === 'Ja'
                                         p= order.risktext
+                                            if (order.riskfile !== "")
+                                                p
+                                                    i.fas.fa-file-download
+                                                    span &nbsp;
+                                                    a(href="static/uploads/" + order.riskfile target="_blank") Datei herunterladen
+                                            else
+                                                p(class="red")
+                                                    span
+                                                        | fehlende Datei
                             for order in softwareListDetails
                                 h3.alert.alert-primary 4. Belastungen während der Untersuchung
                                 label
@@ -308,6 +347,7 @@
                                 p= order.socialintegrity
                                     if order.socialintegrity === 'Ja'
                                         p= order.socialintegritytext
+
                                 label
                                     | d. Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?
                                 p= order.charges
@@ -352,10 +392,18 @@
                                 label
                                     | b. Datum
                                 p= order.dateapp
-                                p= order.signature
-                                    i.fas.fa-file-download
-                                    span &nbsp;
-                                    a(href=order.agreementfile) Unterschriftdatei herunterladen
+                                label
+                                    | c. Unterschrift
+                                if (order.signature !== "")
+                                    p
+                                        i.fas.fa-file-download
+                                        span &nbsp;
+                                        a(href="static/uploads/" + order.signature target="_blank") Unterschriftdatei herunterladen
+                                else
+                                    p(class="red")
+                                        span
+                                            | fehlende Datei
+
                                 iframe#pdfframe(srcpdf="document.pdf?tsid="+ order.applicationid frameborder='0' style='border:0;' height='0')
 
 script(type='text/javascript' src="./static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')

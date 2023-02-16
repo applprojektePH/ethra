@@ -95,6 +95,7 @@ module.exports = function (models) {
             let deleted = req.body.deleted;
             let repo = req.body.repo;
             let located = req.body.located;
+            let signature = req.body.signature;
             let dateapp = req.body.dateapp;
             let status = req.body.status;
             let orderstatus = 0;
@@ -109,7 +110,7 @@ module.exports = function (models) {
                 else{
                     sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
                 }
-                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, dateapp, deadline, comments, status, orderstatus) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'")';
+                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, signature, dateapp, deadline, comments, status, orderstatus) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'")';
                connection.query(""+sql2+"",
                     (err, rows) => {
                         //  connection.release() // return the connection to pool
@@ -216,6 +217,7 @@ module.exports = function (models) {
                                             'deleted': rows[i].deleted,
                                             'repo': rows[i].repo,
                                             'located': rows[i].located,
+                                            'signature': rows[i].signature,
                                             'dateapp': rows[i].dateapp,
                                             'deadline': "21.06.2023",
                                             'comments': rows[i].comments,
@@ -415,6 +417,7 @@ module.exports = function (models) {
                                     'deleted': rows[i].deleted,
                                     'repo': rows[i].repo,
                                     'located': rows[i].located,
+                                    'signature': rows[i].signature,
                                     'dateapp': rows[i].dateapp,
                                     'deadline': rows[i].deadline,
                                     'comments': rows[i].comments,

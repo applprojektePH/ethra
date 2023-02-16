@@ -95,6 +95,7 @@ $(document).ready(function () {
                 window.location.replace('user');
             }, 500);
     })
+
     $('.btn-reload').one("click", function () {
         window.location.reload();
     })
