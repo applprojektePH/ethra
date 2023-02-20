@@ -302,9 +302,8 @@ br
                                                     .custom-control.custom-radio
                                                         input#customRadioDisabled3.custom-control-input(type='radio' name='registration' value="Ja" required='' checked)
                                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled3' answer='open') Ja
-                                                    .collapse.inputHide
-                                                        .card.card-body
-                                                            input.form-control(type='text' name="registrationtext" value=order.registrationtext placeholder="Einschlägige Gesetzgebung: ")
+                                                        input.form-control(type='text' name="registrationtext" value=order.registrationtext placeholder="Einschlägige Gesetzgebung: ")
+                                                        br
                                                     .custom-control.custom-radio
                                                         input#customRadioDisabled4.custom-control-input(type='radio' name='registration' value="Nein" required='')
                                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
@@ -406,8 +405,8 @@ br
                                     for order in softwareListDetails
                                         if (order.informedbefore !== "")
                                             a(name="informedbefore" href="static/uploads/" + order.informedbefore target="_blank")= order.informedbefore
-                                        span &nbsp;
-                                        i.fas.fa-file-download
+                                            span &nbsp;
+                                            i.fas.fa-file-download
                                         input.form-control(type='file' name="fileinformedbefore")
                                         input.form-control.hidden(type='text' name='informedbefore' value="" + order.informedbefore)
                                 else
@@ -424,12 +423,14 @@ br
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(name="execution" href="http://10.51.7.122/ethra/static/download/" + order.execution)= order.execution
-                                        span &nbsp;
-                                        i.fas.fa-file-download
-                                        input.form-control(type='file' name='execution')
+                                        if (order.execution !== "")
+                                            a(name="informedbefore" href="static/uploads/" + order.execution target="_blank")= order.execution
+                                            span &nbsp;
+                                            i.fas.fa-file-download
+                                        input.form-control(type='file' name="fileexecution")
+                                        input.form-control.hidden(type='text' name='execution' value="" + order.execution)
                                 else
-                                    input#form-softwareversion.form-control(type='file' required='' name='execution')
+                                    input.form-control(type='file' required='' name='execution' id="fileInput")
                                 .invalid-feedback
                                     | Pflichtfeld
                                 br
@@ -442,10 +443,12 @@ br
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(name="instructions" href="http://10.51.7.122/ethra/static/download/" + order.instructions)= order.instructions
-                                        span &nbsp;
-                                        i.fas.fa-file-download
-                                        input.form-control(type='file' name='instructions')
+                                        if (order.instructions !== "")
+                                            a(name="instructions" href="static/uploads/" + order.instructions target="_blank")= order.instructions
+                                            span &nbsp;
+                                            i.fas.fa-file-download
+                                        input.form-control(type='file' name="fileinstructions")
+                                        input.form-control.hidden(type='text' name='instructions' value="" + order.instructions)
                                 else
                                     input#form-softwareversion.form-control(type='file' required='' name='instructions')
                                 .invalid-feedback
@@ -460,10 +463,12 @@ br
                             .col-md-6.fields
                                 if (typeof (softwareListDetails) !== 'undefined')
                                     for order in softwareListDetails
-                                        a(name="informedafter" href="http://10.51.7.122/ethra/static/download/" + order.informedafter)= order.informedafter
-                                        span &nbsp;
-                                        i.fas.fa-file-download
-                                        input.form-control(type='file' name='informedafter')
+                                        if (order.informedafter !== "")
+                                            a(name="informedafter" href="static/uploads/" + order.informedafter target="_blank")= order.informedafter
+                                            span &nbsp;
+                                            i.fas.fa-file-download
+                                        input.form-control(type='file' name="fileinformedafter")
+                                        input.form-control.hidden(type='text' name='informedafter' value="" + order.informedafter)
                                 else
                                     input#form-softwareversion.form-control(type='file' required='' name='informedafter')
                                 .invalid-feedback
@@ -486,9 +491,8 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="compensationtext" value=order.compensationtext placeholder="Einschlägige Gesetzgebung: ")
+                                        input#form-safety.form-control(type='text' name="compensationtext" value=order.compensationtext placeholder="Einschlägige Gesetzgebung: ")
+                                    br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
@@ -499,8 +503,9 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled5.custom-control-input(type='radio' name='compensation' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled5' answer='open') Ja
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="compensationtext" value=order.compensationtext)
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="compensationtext")
                                     .custom-control.custom-radio
                                         input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
@@ -555,30 +560,26 @@ br
                                         .custom-control.custom-radio
                                             input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
-                                        .collapse.inputHide.card.card-body
-                                                a(name="voluntaryfile" href="http://10.51.7.122/ethra/static/download/" + order.voluntaryfile)= order.voluntaryfile
+                                            if (order.voluntaryfile !== "")
+                                                a(name="voluntaryfile" href="static/uploads/" + order.voluntaryfile target="_blank")= order.voluntaryfile
                                                 span &nbsp;
                                                 i.fas.fa-file-download
-                                                input.form-control(type='file' name='voluntaryfile')
+                                            input.form-control(type='file' name="filevoluntaryfile")
+                                            input.form-control.hidden(type='text' name='voluntaryfile' value="" + order.voluntaryfile)
+                                        br
                                         .custom-control.custom-radio
                                             input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
-
                                 else if (order.voluntary == "Nein")
                                     div.custom-radio-wrapper(filled=order.voluntary)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' )
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
                                         .card.card-body
-                                            a(name="voluntaryfile" href="http://10.51.7.122/ethra/static/download/" + order.voluntaryfile)= order.voluntaryfile
-                                            span &nbsp;
-                                            i.fas.fa-file-download
-                                            input.form-control(type='file' name='voluntaryfile')
+                                            input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
                                         .custom-control.custom-radio
                                             input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
-
-
                                 else
                                     .custom-control.custom-radio
                                         input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='')
@@ -587,7 +588,8 @@ br
                                         .card.card-body
                                             small
                                                 | Bitte Einverständniserklärung einreichen.
-                                            input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
+                                            input.form-control(type='file' name="filevoluntaryfile")
+                                            input.form-control.hidden(type='text' name='voluntaryfile' value="" + order.voluntaryfile)
                                     .custom-control.custom-radio
                                         input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
@@ -618,9 +620,8 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled11.custom-control-input(type='radio' name='notparticipate' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
-                                .collapse.inputHide
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="notparticipatetext" value=order.notparticipatetext placeholder="Welche?")
+                                    input#form-safety.form-control(type='text' name="notparticipatetext" value=order.notparticipatetext placeholder="Welche?")
+                                    br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled12.custom-control-input(type='radio' name='notparticipate' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
@@ -631,8 +632,9 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled11.custom-control-input(type='radio' name='notparticipate' value="Ja" required='' )
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled11' answer='open') Ja
-                                .card.card-body
-                                    input#form-safety.form-control(type='text' name="notparticipatetext" value=order.notparticipatetext)
+                                .collapse.inputHide
+                                    .card.card-body
+                                    input#form-safety.form-control(type='text' name="notparticipatetext")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled12.custom-control-input(type='radio' name='notparticipate' value="Nein" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled12' answer='Nein') Nein
@@ -716,26 +718,31 @@ br
                     | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?*
                 if (typeof (softwareListDetails) !== 'undefined')
                     for order in softwareListDetails
-                        if (order.withdraw == "Ja")
+                        if (order.agreement == "Ja")
                             div.custom-radio-wrapper(filled=order.agreement)
                                 .custom-control.custom-radio
                                     input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
-                                .collapse.inputHide
-                                    .card.card-body
-                                        a.form-control(href=order.agreementfile)
+                                    if (order.agreementfile !== "")
+                                        a(name="agreementfile" href="static/uploads/" + order.agreementfile target="_blank")= order.agreementfile
+                                        span &nbsp;
+                                        i.fas.fa-file-download
+                                    input.form-control(type='file' name="fileagreementfile")
+                                    input.form-control.hidden(type='text' name='agreementfile' value="" + order.agreementfile)
+                                br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
-                        else if (order.withdraw == "Nein")
+                        else if (order.agreement == "Nein")
                             div.custom-radio-wrapper(filled=order.agreement)
                                 .custom-control.custom-radio
                                     input#customRadioDisabled15.custom-control-input(type='radio' name='agreement' value="Ja" required='' )
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
-                                .card.card-body
-                                    a.form-control(href=order.agreementfile)
+                                .collapse.inputHide.card.card-body
+                                    input.form-control(type='file' name="fileagreementfile")
+                                    input.form-control.hidden(type='text' name='agreementfile' value="" + order.agreementfile)
                                 .custom-control.custom-radio
                                     input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
@@ -753,7 +760,8 @@ br
                                         | Bitte Einverständniserklärung einreichen.
                                     .row
                                         .col-md-6.fields
-                                            input#form-softwareversion.form-control(type='file' required='' name='agreementfile')
+                                            input.form-control(type='file' name="agreementfile")
+                                            input.form-control.hidden(type='text' name='agreementfile')
                             .custom-control.custom-radio
                                 input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
@@ -786,8 +794,6 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled17.custom-control-input(type='radio' name='participationundersixteen' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled17' answer='open') Ja
-                                .collapse.inputHide
-                                    .card.card-body
                                         input#form-safety.form-control(type='text' name="participationundersixteentext" value=order.participationundersixteentext placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
                                     input#customRadioDisabled18.custom-control-input(type='radio' name='participationundersixteen' value="Nein" required='')
@@ -842,13 +848,19 @@ br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled19.custom-control-input(type='radio' name='risk' value="Ja" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
-                                .collapse.inputHide
-                                    .card.card-body
                                         input#form-safety.form-control(type='text' name="risktext" value=order.risktext placeholder="Welches Risiko besteht und welche Versicherung wurde abgeschlossen?")
+                                        br
+
+                                        if (order.riskfile !== "")
+                                            a(name="agreementfile" href="static/uploads/" + order.riskfile target="_blank")= order.riskfile
+                                            span &nbsp;
+                                            i.fas.fa-file-download
                                         br
                                         small
                                             | Bitte allfällige Versicherungsunterlagen beifügen.
-                                        input#form-softwareversion.form-control(type='file' required='' name='riskfile')
+                                        input.form-control(type='file' name="fileriskfile")
+                                        input.form-control.hidden(type='text' name='riskfile' value="" + order.riskfile)
+                                br
                                 .custom-control.custom-radio
                                     input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
@@ -861,6 +873,11 @@ br
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled19' answer='open') Ja
                                 .card.card-body
                                     input#form-safety.form-control(type='text' name="risktext" value=order.risktext)
+                                    br
+                                    small
+                                        | Bitte allfällige Versicherungsunterlagen beifügen.
+                                    input.form-control(type='file' required='' name='fileriskfile')
+                                    input.form-control.hidden(type='text' name='riskfile' value="" + order.riskfile)
                                 .custom-control.custom-radio
                                     input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='' checked)
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
@@ -877,7 +894,8 @@ br
                                     br
                                     small
                                         | Bitte allfällige Versicherungsunterlagen beifügen.
-                                    input#form-softwareversion.form-control(type='file' required='' name='riskfile')
+                                    input.form-control(type='file' required='' name='fileriskfile')
+                                    input.form-control.hidden(type='text' name='riskfile' value="" + order.riskfile)
                             .custom-control.custom-radio
                                 input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
@@ -895,6 +913,7 @@ br
                             small
                                 | Bitte allfällige Versicherungsunterlagen beifügen.
                             input#form-softwareversion.form-control(type='file' required='' name='riskfile')
+
                     .custom-control.custom-radio
                         input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled20' answer='Nein') Nein
@@ -918,9 +937,7 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled43.custom-control-input(type='radio' name='integrity' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled43' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="integritytext" value=order.integritytext placeholder="Bitte erläutern:")
+                                        input#form-safety.form-control(type='text' name="integritytext" value=order.integritytext placeholder="Bitte erläutern:")
 
                                     .custom-control.custom-radio
                                         input#customRadioDisabled44.custom-control-input(type='radio' name='integrity' value="Nein" required='')
@@ -932,8 +949,9 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled43.custom-control-input(type='radio' name='integrity' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled43' answer='open') Ja
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="integritytext" value=order.integritytext)
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="integritytext")
                                     .custom-control.custom-radio
                                         input#customRadioDisabled44.custom-control-input(type='radio' name='integrity' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled44' answer='Nein') Nein
@@ -976,9 +994,7 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled21.custom-control-input(type='radio' name='mentalintegrity' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="mentalintegritytext" value=order.mentalintegritytext placeholder="Bitte erläutern:")
+                                        input#form-safety.form-control(type='text' name="mentalintegritytext" value=order.mentalintegritytext placeholder="Bitte erläutern:")
 
                                     .custom-control.custom-radio
                                         input#customRadioDisabled22.custom-control-input(type='radio' name='mentalintegrity' value="Nein" required='')
@@ -990,8 +1006,9 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled21.custom-control-input(type='radio' name='mentalintegrity' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled21' answer='open') Ja
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="mentalintegritytext" value=order.mentalintegritytext)
+                                    .collapse.inputHide
+                                        .card.card-body
+                                        input#form-safety.form-control(type='text' name="mentalintegritytext")
                                     .custom-control.custom-radio
                                         input#customRadioDisabled22.custom-control-input(type='radio' name='mentalintegrity' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
@@ -1034,9 +1051,7 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled23.custom-control-input(type='radio' name='socialintegrity' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="cloudwo" value=order.socialintegritytext placeholder="Bitte erläutern:")
+                                        input#form-safety.form-control(type='text' name="cloudwo" value=order.socialintegritytext placeholder="Bitte erläutern:")
 
                                     .custom-control.custom-radio
                                         input#customRadioDisabled24.custom-control-input(type='radio' name='socialintegrity' value="Nein" required='')
@@ -1048,8 +1063,9 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled23.custom-control-input(type='radio' name='socialintegrity' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled23' answer='open') Ja
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="socialintegritytext" value=order.socialintegritytext)
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="socialintegritytext")
                                     .custom-control.custom-radio
                                         input#customRadioDisabled24.custom-control-input(type='radio' name='socialintegrity' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled24' answer='Nein') Nein
@@ -1092,7 +1108,6 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled25.custom-control-input(type='radio' name='charges' value="Ja" required='' checked)
                                         label.custom-control-label(for='customRadioDisabled25') Ja
-
                                     .custom-control.custom-radio
                                         input#customRadioDisabled26.custom-control-input(type='radio' name='charges' value="Nein" required='')
                                         label.custom-control-label(for='customRadioDisabled26') Nein
@@ -1148,9 +1163,7 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled27.custom-control-input(type='radio' name='experience' value="Ja" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
-                                    .collapse.inputHide
-                                        .card.card-body
-                                            input#form-safety.form-control(type='text' name="experiencetext" value=order.experiencetext placeholder="Bitte erläutern:")
+                                        input#form-safety.form-control(type='text' name="experiencetext" value=order.experiencetext placeholder="Bitte erläutern:")
 
                                     .custom-control.custom-radio
                                         input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='')
@@ -1162,8 +1175,9 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled27.custom-control-input(type='radio' name='experience' value="Ja" required='' )
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled27' answer='open') Ja
-                                    .card.card-body
-                                        input#form-safety.form-control(type='text' name="experiencetext" value=order.experiencetext)
+                                    .collapse.inputHide
+                                        .card.card-body
+                                            input#form-safety.form-control(type='text' name="experiencetext" value=order.experiencetext)
                                     .custom-control.custom-radio
                                         input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
@@ -1569,15 +1583,25 @@ br
                         br
                         label
                             | c. Unterschrift
-                        small
-                            | Bitte Bilddatei hochladen
+
                         if (typeof (softwareListDetails) !== 'undefined')
                             for order in softwareListDetails
-                                a(name="signature")= order.signature
-                                span &nbsp;
-                                i.fas.fa-file-download
-                                input.form-control(type='file' name='signature')
+
+                                if (order.signature !== "")
+                                    a(name="agreementfile" href="static/uploads/" + order.signature target="_blank")= order.signature
+                                    span &nbsp;
+                                    i.fas.fa-file-download
+                                    br
+                                    small
+                                        | Datei ändern
+                                    input.form-control(type='file' name='filesignature')
+                                    input.form-control.hidden(type='text' name='signature' value="" + order.signature)
+                                else
+                                    input.form-control(type='file' name='filesignature')
+                                    input.form-control.hidden(type='text' name='signature' value="" + order.signature)
                         else
+                            small
+                                | Bitte Bilddatei hochladen
                             input.form-control(type='file' required='' name='signature')
                             .invalid-feedback
                                 | Pflichtfeld
