@@ -126,7 +126,7 @@ module.exports = function (models) {
                                                 statuscurrent = 'Entwurf';
                                                 break;
                                             case 1:
-                                                statuscurrent = 'Antrag in Bearbeitung';
+                                                statuscurrent = 'Antrag eingegangen';
                                                 break;
                                             case 2:
                                                 statuscurrent = 'Antrag in Prüfung';
@@ -250,39 +250,39 @@ module.exports = function (models) {
                                     let messageSender = {
 
                                         // sender info
-                                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                                        from: 'Ethra <alesya.heymann@fhnw.ch>',
                                         to: email,
                                         // Subject of the message
                                         subject: 'Ethra: Ethikantrag #'+orderidformail+'',
 
                                         // plaintext body
-                                        text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
+                                        text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Prüfung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
                                             '\n' +
                                             'Vielen Dank und freundliche Grüsse \n' +
-                                            'Ihr ApplProjekte Supportteam \n' +
+                                            'Ihr ... Supportteam \n' +
                                             'n|w\n',
 
                                         // HTML body
                                         html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
-                                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung.' +
+                                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid='+orderidformail+' nach der Anmeldung.' +
                                             '</br></br>Vielen Dank und freundliche Grüsse' +
-                                            '</br>Ihr ApplProjekte Supportteam ' +
+                                            '</br>Ihr ... Supportteam ' +
                                             '</br>n|w</p>'
                                     };
                                     let messageSupport = {
                                         // sender info
-                                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                                        from: 'Ethra <alesya.heymann@fhnw.ch>',
                                         // Comma separated list of recipients
-                                        to: 'Applprojekte Team <alesya.heymann@fhnw.ch>',
+                                        to: 'Wassilis <alesya.heymann@fhnw.ch>',
                                         //to: '<alesya.heymann@fhnw.ch>',
                                         // Subject of the message
-                                        subject: 'Santra: Antrag Nummer #'+orderidformail+'',
+                                        subject: 'Ethra: Antrag Nummer #'+orderidformail+'',
 
                                         // plaintext body
-                                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
+                                        text: 'Lieber Wassilis</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
 
                                         // HTML body
-                                        html:'<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
+                                        html:'<p><span>Lieber Wassilis</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
                                     };
                                     console.log('Sending Mail');
                                     transport.sendMail(messageSender, function(error){
@@ -325,7 +325,7 @@ module.exports = function (models) {
                                         statuscurrent = 'Entwurf';
                                         break;
                                     case 1:
-                                        statuscurrent = 'Antrag in Bearbeitung';
+                                        statuscurrent = 'Antrag eingegangen';
                                         break;
                                     case 2:
                                         statuscurrent = 'Antrag in Prüfung';

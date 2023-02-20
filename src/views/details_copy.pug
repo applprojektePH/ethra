@@ -22,7 +22,7 @@
                 for order in softwareListDetails
                     if(order.status != 10)
                             ul.progressbar
-                                -let list = ['Antrag eingegangen', 'Antrag eingegangen', 'Antrag in Prüfung', 'Antrag bei Gremium', statuscurrent];
+                                -let list = ['Antrag eingegangen', 'Antrag in Prüfung', 'Antrag in Prüfung', 'Antrag bei Gremium', statuscurrent];
                                 if (admin == true)
                                         -for (var i = 1; i < list.length; i++)
                                                                                 if((i < order.status)) ||((i == order.status) && (i == list.length-1))
@@ -53,53 +53,78 @@
                             .modal-header
                                 h5.modal-title Antrag in Prüfung
                             .modal-body
+                                button.btn.btn-secondary.btn-sm.custom-control-button-open(type='button') Antrag genehmigen
                                 for order in softwareListDetails
-                                    button.btn.btn-secondary.btn-sm.custom-control-button-open(type='button') Ordentliches Verfahren (OV)
-                                    for order in softwareListDetails
-                                        span.inputHide
-                                            br
-                                            div.row
-                                                div.col-md-6
-                                                    .multiselect
-                                                        .selectBox
-                                                            select
-                                                                option E-Mail wählen
-                                                            .overSelect
-                                                        div#checkboxes
-                                                            label(for='one')
-                                                                input#one(type='checkbox')
-                                                                |  First checkbox
-                                                            label(for='two')
-                                                                input#two(type='checkbox')
-                                                                |  Second checkbox
-                                                            label(for='three')
-                                                                input#three(type='checkbox')
-                                                                |  Third checkbox
-                                            textarea.modalEmailTextarea#modalEmailTextarea1.widgEditor(placeholder='EmailVorlage' rows='10')
-                                                | Guten Tag </br>
-                                                | Hier kommt OV</br></br>Freundliche Grüsse</br> Ihr .. Team</br> n|w
-                                            a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3)
-                                                | Email senden
-                                            button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
-                                            p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
-                                            p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an IT-Support
-                                            hr
-                                        br
-                                        button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Vereinfachter Weg (VW)
-                                        for order in softwareListDetails
-                                            span.inputHide
-                                                textarea.modalEmailTextarea#modalEmailTextarea2.widgEditor(placeholder='EmailVorlage' rows='10')
-                                                    | Guten Tag </br></br>Hier kommt VW </br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
-                                                a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3)
-                                                    | Email senden
-                                                //button.btn-email2.btn-email-status2.btn.btn-primary.btn-sm.button-email-send(type='button') Email senden
-                                                button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
-                                                p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
-                                                p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an IT-Support
-                                                hr
-                                        br
+                                    span.inputHide
+                                        textarea.modalEmailTextarea#modalEmailTextarea1.widgEditor(placeholder='EmailVorlage' rows='10')
+                                            |Guten Tag #{anredeMail} </br></br>Wir haben Ihren Antrag für die Anschaffung der Software #{order.softwarename} geprüft und teilen Ihnen gerne mit, dass Sie diese über den
+                                            |<a href="https://subito.insideapps.fhnw.ch/itshop/custom" target="_blank">FHNW Subito - IT-Shop</a> bestellen können. </br>
+                                            |Preis für die Software:
+                                            |</br>Auf der Seite <a href="https://welcome.inside.fhnw.ch/organisation/hochschule/PH/mitarbeitende/Seiten/softwarebestellung.aspx" target="_blank">«Softwarebestellung»</a> finden Sie eine kurze Anleitung, wie Sie die Software im FHNW Subito IT-Shop bestellen können.</br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="/santra/details?tsid=" + order.orderid statuschange=4, mailtype=2, orderstatus=1)
+                                            | Email senden
+                                        button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                        p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                        p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an alesya.heymann@fhnw.ch
+                                        hr
+                                br
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag ablehnen
+                                for order in softwareListDetails
+                                    span.inputHide
+                                        textarea.modalEmailTextarea#modalEmailTextarea2.widgEditor(placeholder='EmailVorlage' rows='10')
+                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.softwarename} wurde geprüft. Leider müssen wir Ihnen mitteilen, dass eine Anschaffung abgelehnt werden muss.</br>Begründung:</br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="/santra/details?tsid=" + order.orderid statuschange=5, mailtype=2, orderstatus=2)
+                                            | Email senden
+                                        //button.btn-email2.btn-email-status2.btn.btn-primary.btn-sm.button-email-send(type='button') Email senden
+                                        button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                        p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                        p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
+                                        hr
+                                br
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag zum Gremium
+                                for order in softwareListDetails
+                                    span.inputHide
+                                        textarea.modalEmailTextarea#modalEmailTextarea3.widgEditor(placeholder='EmailVorlage' rows='10')
+                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.softwarename} muss durch das Gremium weiter geprüft werden. </br>Bitte beachten Sie, dass die Bearbeitung in aufwendigen Fällen (Bsp. grössere Lizenzpakete) bis zu 3 Monate dauern kann. Sie erhalten zu gegebener Zeit eine Rückmeldung zur Anschaffung oder Nicht-Anschaffung der gewünschten Software. </br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br>  n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="/santra/details?tsid=" + order.orderid statuschange=3, mailtype=2, orderstatus=3)
+                                            | Email senden
+                                        button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                        p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                        p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
+                                        hr
+                            .modal-body
+                                button.btn.btn-secondary.btn-sm.custom-control-button-open(href="/santra/details?tsid=" + order.applicationid statuschange=3, mailtype=0, orderstatus=0) Ordentliches Verfahren (OV)
+                                 for order in softwareListDetails
+                                     span.inputHide
+                                         textarea.modalEmailTextarea#modalEmailTextarea1.widgEditor(placeholder='EmailVorlage' rows='10')
+                                             |Guten Tag #{anredeMail} </br></br>Wir haben Ihren Antrag für die Anschaffung der Software #{order.softwarename} geprüft und teilen Ihnen gerne mit, dass Sie diese über den
+                                             |<a href="https://subito.insideapps.fhnw.ch/itshop/custom" target="_blank">FHNW Subito - IT-Shop</a> bestellen können. </br>
+                                             |Preis für die Software:
+                                             |</br>Auf der Seite <a href="https://welcome.inside.fhnw.ch/organisation/hochschule/PH/mitarbeitende/Seiten/softwarebestellung.aspx" target="_blank">«Softwarebestellung»</a> finden Sie eine kurze Anleitung, wie Sie die Software im FHNW Subito IT-Shop bestellen können.</br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
+                                         a.button-email-send.btn.btn-secondary.btn-sm(href="/santra/details?tsid=" + order.orderid statuschange=4, mailtype=2, orderstatus=1)
+                                             | Email senden
+                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                         p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                         p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an alesya.heymann@fhnw.ch
+                                         hr
+                                br
+                                a.btn.btn-primary.btn-sm.custom-control-button-open(href="/santra/details?tsid=" + order.applicationid statuschange=3, mailtype=0, orderstatus=0) Vereinfachter Weg (VW)
+                                 for order in softwareListDetails
+                                     span.inputHide
+                                         textarea.modalEmailTextarea#modalEmailTextarea2.widgEditor(placeholder='EmailVorlage' rows='10')
+                                             | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.softwarename} wurde geprüft. Leider müssen wir Ihnen mitteilen, dass eine Anschaffung abgelehnt werden muss.</br>Begründung:</br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
+                                         a.button-email-send.btn.btn-secondary.btn-sm(href="/santra/details?tsid=" + order.orderid statuschange=5, mailtype=2, orderstatus=2)
+                                             | Email senden
+                                         //button.btn-email2.btn-email-status2.btn.btn-primary.btn-sm.button-email-send(type='button') Email senden
+                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                         p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                         p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
+                                         hr
+                                br
                             .modal-footer
                                 for order in softwareListDetails
+                                    //a.btn.btn-secondary.btn-sm(href="/details?tsid="+ order.orderid + "&statuschange=2" class="link-id")
+                                        | Status bestätigen
                                     a.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
                                     hr
 
@@ -138,26 +163,26 @@
                             .modal-footer
                                 for order in softwareListDetails
                                     button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
-                //#Modal4.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
-                //    .modal-dialog.modal-dialog-centered(role='document')
-                //        .modal-content
-                //            .modal-header
-                //                h5.modal-title Antrag abschliessen
-                //            .modal-body
-                //                for order in softwareListDetails
-                //                    a.button-email-send.btn.btn-secondary.btn-sm(href="/details?tsid=" + order.orderid statuschange=5, mailtype=0, orderstatus=6, decision=0)
-                //                        | Antrag abschliessen
-                //                    button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
-                //#Modal5.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
-                //    .modal-dialog.modal-dialog-centered(role='document')
-                //        .modal-content
-                //            .modal-header
-                //                h5.modal-title Antrag abschliessen
-                //            .modal-body
-                //                for order in softwareListDetails
-                //                    a.button-email-send.btn.btn-secondary.btn-sm(href="/details?tsid=" + order.orderid statuschange=6, mailtype=0, orderstatus=7, decision=0)
-                //                        | Antrag abschliessen
-                //                    button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
+                #Modal4.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
+                    .modal-dialog.modal-dialog-centered(role='document')
+                        .modal-content
+                            .modal-header
+                                h5.modal-title Antrag abschliessen
+                            .modal-body
+                                for order in softwareListDetails
+                                    a.button-email-send.btn.btn-secondary.btn-sm(href="/details?tsid=" + order.orderid statuschange=5, mailtype=0, orderstatus=6, decision=0)
+                                        | Antrag abschliessen
+                                    button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
+                #Modal5.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
+                    .modal-dialog.modal-dialog-centered(role='document')
+                        .modal-content
+                            .modal-header
+                                h5.modal-title Antrag abschliessen
+                            .modal-body
+                                for order in softwareListDetails
+                                    a.button-email-send.btn.btn-secondary.btn-sm(href="/details?tsid=" + order.orderid statuschange=6, mailtype=0, orderstatus=7, decision=0)
+                                        | Antrag abschliessen
+                                    button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
                 br.hidden-md
                 .form-group-view-wrapper#AntragDetailsWrapper
                     .form-group
@@ -410,8 +435,7 @@
 
                                 iframe#pdfframe(srcpdf="document.pdf?tsid="+ order.applicationid frameborder='0' style='border:0;' height='0')
 
-script(type='text/javascript' src="./static/js/libs/jquery.js")
-script(type='text/javascript' src="./static/js/libs/widgEditor.js")
+script(type='text/javascript' src="./static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')
 script(type='text/javascript').
     $(document).ready(function () {
         $(".custom-control-button-open").click(function () {
@@ -468,16 +492,4 @@ script(type='text/javascript').
                 });
 
         });
-        var expanded = false;
-        $('.selectBox').on('click',function (e) {
-                    var checkboxes = $("#checkboxes");
-                    if (!expanded) {
-                        checkboxes.delay(300).slideDown("slow");
-                        expanded = true;
-                    } else {
-                        checkboxes.delay(300).slideUp("slow");
-                        expanded = false;
-                    }
-
-            });
-        });
+    });

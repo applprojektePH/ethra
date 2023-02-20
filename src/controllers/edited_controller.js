@@ -94,11 +94,11 @@ module.exports = function (models) {
             let softwareListDetails = [];
             let anredeMail;
             if (status == 1) {
-                if (anrede == "Neutrale Anrede"){
+                if (title == "Neutrale Anrede"){
                     anredeMail = req.body.firstname +' '+req.body.lastname;
                 }
                 else{
-                    anredeMail = anrede +' '+req.body.lastname;
+                    anredeMail = title +' '+req.body.lastname;
                 }
                 sql = 'UPDATE applications SET application="'+application+'", approvednr="'+approvednr+'", title="'+title+'", firstname="'+firstname+'", lastname="'+lastname+'", email="'+email+'", institute="'+institute+'", finance="'+finance+'", subdiscipline="'+subdiscipline+'", topic="'+topic+'", summ="'+summ+'", appraisal="'+appraisal+'", registration="'+registration+'", registrationtext="'+registrationtext+'", participants="'+participants+'", personaldata="'+personaldata+'", recruited="'+recruited+'", informedbefore="'+informedbefore+'", execution="'+execution+'", instructions="'+instructions+'", informedafter="'+informedafter+'", compensation="'+compensation+'", compensationtext="'+compensationtext+'", performanced="'+performanced+'", voluntary="'+voluntary+'", voluntaryfile="'+voluntaryfile+'", notparticipate="'+notparticipate+'", notparticipatetext="'+notparticipatetext+'", withdraw="'+withdraw+'", agreement="'+agreement+'", agreementfile="'+agreementfile+'", participationundersixteen="'+participationundersixteen+'", participationundersixteentext="'+participationundersixteentext+'", risk="'+risk+'", risktext="'+risktext+'", riskfile="'+riskfile+'", integrity="'+integrity+'", integritytext="'+integritytext+'", mentalintegrity="'+mentalintegrity+'", mentalintegritytext="'+mentalintegritytext+'", socialintegrity="'+socialintegrity+'", socialintegritytext="'+socialintegritytext+'", charges="'+charges+'", reason="'+reason+'", experience="'+experience+'", experiencetext="'+experiencetext+'", illusion="'+illusion+'", illusiontext="'+illusiontext+'", observation="'+observation+'", media="'+media+'", anonymized="'+anonymized+'", confidentiality="'+confidentiality+'", destroy="'+destroy+'", deleted="'+deleted+'", repo="'+repo+'", located="'+located+'", signature="'+signature+'", dateapp="'+dateapp+'", deadline="'+deadline+'", comments="'+comments+'", status="'+status+'" WHERE applicationid="'+tsID+'"'
                 sendorder = 1;
@@ -112,39 +112,39 @@ module.exports = function (models) {
                 });
                 let messageSender2 = {
                     // sender info
-                    from: 'Santra <alesya.heymann@fhnw.ch>',
+                    from: 'Ethra <alesya.heymann@fhnw.ch>',
 
                     // Comma separated list of recipients
                     to: email,
 
                     // Subject of the message
-                    subject: "Santra: Antrag Nummer #"+tsID+" in Bearbeitung",
+                    subject: "E-Mail an Antragsteller Ethra: Antrag Nummer #"+tsID+" in Prüfung",
 
                     // plaintext body
-                    text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde zur Bearbeitung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+tsID+' nach der Anmeldung. \n' +
+                    text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde zur Prüfung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid='+tsID+' nach der Anmeldung. \n' +
                         '\n' +
                         'Vielen Dank und freundliche Grüsse \n' +
-                        'Ihr ApplProjekte Supportteam \n' +
+                        'Ihr .... Supportteam \n' +
                         'n|w\n',
                     // HTML body
-                    html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
-                        '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+tsID+' nach der Anmeldung.' +
+                    html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Prüfung weitergeleitet.' +
+                        '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid='+tsID+' nach der Anmeldung.' +
                         '</br></br>Vielen Dank und freundliche Grüsse' +
-                        '</br>Ihr ApplProjekte Supportteam ' +
+                        '</br>Ihr .... Supportteam ' +
                         '</br>n|w</p>'
                 };
                 let messageSupport2 = {
                     // sender info
                     from: 'Santra <alesya.heymann@fhnw.ch>',
                     // Comma separated list of recipients
-                    to: 'Applprojekte Team <alesya.heymann@fhnw.ch>',
+                    to: 'Wassilis <alesya.heymann@fhnw.ch>',
                    // to: '<alesya.heymann@fhnw.ch>',
                     // Subject of the message
-                    subject: "Santra: Antrag Nummer #"+tsID+"",
+                    subject: "Ethra: Antrag Nummer #"+tsID+"",
                     // plaintext body
-                    text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+tsID+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+tsID+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
+                    text: 'Lieber Wassilis</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+tsID+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid='+tsID+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ... Supportteam </br>n|w',
                     // HTML body
-                    html:'<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+tsID+' </br> Name der Software '+softwarename+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+tsID+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
+                    html:'<p><span>Lieber Wassilis</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+tsID+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid='+tsID+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ... Supportteam </br>n|w</p>'
 
                 };
                 transport2.sendMail(messageSender2, function(error){

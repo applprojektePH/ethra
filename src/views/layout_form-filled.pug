@@ -47,6 +47,28 @@ html(lang="en")
 
                                                 else
                                                     input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' data-provide='datepicker' data-date-format="dd.mm.yyyy")
+                                    if (typeof (softwareListDetails) !== 'undefined')
+                                        for order in softwareListDetails
+                                            .col-md-6
+                                                br
+                                                label Ordentliches Verfahren (OV)
+                                                label Vereinfachter Weg (VW)
+                                                div
+                                                    h4 Prüfer 1
+                                                    .custom-control.custom-radio
+                                                        input#customRadioEth1.custom-control-input(type='radio' name='eth1' value="OK" required='')
+                                                        label.custom-control-label(for='customRadioEth1') Ethisch OK
+                                                    .custom-control.custom-radio
+                                                        input#customRadioEth2.custom-control-input(type='radio' name='eth1' value="NOK" required='')
+                                                        label.custom-control-label(for='customRadioEth2') Ethisch NOK
+                                                    br
+                                                    h4 Prüfer 2
+                                                    .custom-control.custom-radio
+                                                        input#customRadioEth3.custom-control-input(type='radio' name='eth2' value="OK" required='')
+                                                        label.custom-control-label(for='customRadioEth3') Ethisch OK
+                                                    .custom-control.custom-radio
+                                                        input#customRadioEth4.custom-control-input(type='radio' name='eth2' value="NOK" required='')
+                                                        label.custom-control-label(for='customRadioEth4') Ethisch NOK
                                     br
                                     hr
                                     br

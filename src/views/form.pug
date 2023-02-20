@@ -79,6 +79,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
                     label.custom-control-label(for='customRadioDisabled03') Gruppenantrag
                     .invalid-feedback
                         | Pflichtfeld
+
 br
 #accordionForm.accordion
     .accordion-item
@@ -1781,7 +1782,7 @@ script(type='text/javascript').
                 (function () {
                     'use strict'
                     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.querySelectorAll('.needs-validation')
+               //     var forms = document.querySelectorAll('.needs-validation')
                     // Loop over them and prevent submission
                     Array.prototype.slice.call(forms)
                         .forEach(function (form) {
@@ -1790,7 +1791,7 @@ script(type='text/javascript').
                                     event.preventDefault()
                                     event.stopPropagation()
                                 }
-                                form.classList.add('was-validated')
+                          //      form.classList.add('was-validated')
                             }, false)
                         })
                 })()
