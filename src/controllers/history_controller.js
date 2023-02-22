@@ -48,7 +48,7 @@ module.exports = function (models) {
                         let mailtypecurrent;
                         switch (rows[i].orderstatus) {
                             case 1:
-                                mailtypecurrent = 'Antrag genehmigt';
+                                mailtypecurrent = 'Antrag bewilligt';
                                 break;
                             case 2:
                                 mailtypecurrent = 'Antrag abgelehnt';
@@ -57,10 +57,10 @@ module.exports = function (models) {
                                 mailtypecurrent = 'Antrag zu Gremium';
                                 break;
                             case 4:
-                                mailtypecurrent = 'Antrag vom Gremium genehmigt';
+                                mailtypecurrent = 'Antrag bewilligt';
                                 break;
                             case 5:
-                                mailtypecurrent = 'Antrag vom Gremium abgelehnt';
+                                mailtypecurrent = 'Antrag abgelehnt';
                                 break;
                         }
                       let order = {
