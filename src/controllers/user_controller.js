@@ -99,6 +99,7 @@ module.exports = function (models) {
             let dateapp = req.body.dateapp;
             let status = req.body.status;
             let orderstatus = 0;
+            let proc = 0;
             let softwareList = [];
             let orderidformail;
             let ordercurrent;
@@ -110,7 +111,7 @@ module.exports = function (models) {
                 else{
                     sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
                 }
-                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, signature, dateapp, deadline, comments, status, orderstatus) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'")';
+                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, signature, dateapp, deadline, comments, status, orderstatus, proc) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'", "'+proc+'")';
                connection.query(""+sql2+"",
                     (err, rows) => {
                         //  connection.release() // return the connection to pool
@@ -123,10 +124,10 @@ module.exports = function (models) {
                                         orderidformail = rows[0].applicationid;
                                         switch (rows[i].status) {
                                             case 10:
-                                                statuscurrent = 'Entwurf';
+                                                statuscurrent = 'Antrag in Bearbeitung';
                                                 break;
                                             case 1:
-                                                statuscurrent = 'Antrag eingegangen';
+                                                statuscurrent = 'Antrag in Prüfung';
                                                 break;
                                             case 2:
                                                 statuscurrent = 'Antrag in Prüfung';
@@ -221,7 +222,8 @@ module.exports = function (models) {
                                             'dateapp': rows[i].dateapp,
                                             'deadline': "21.06.2023",
                                             'comments': rows[i].comments,
-                                            'status': statuscurrent
+                                            'status': statuscurrent,
+                                            'proc': proc
                                         }
                                         // Add object into array
                                         softwareList.push(order);
@@ -322,10 +324,10 @@ module.exports = function (models) {
                                 let statuscurrent;
                                 switch (rows[i].status) {
                                     case 10:
-                                        statuscurrent = 'Entwurf';
+                                        statuscurrent = 'Antrag in Bearbeitung';
                                         break;
                                     case 1:
-                                        statuscurrent = 'Antrag eingegangen';
+                                        statuscurrent = 'Antrag in Prüfung';
                                         break;
                                     case 2:
                                         statuscurrent = 'Antrag in Prüfung';
@@ -421,7 +423,8 @@ module.exports = function (models) {
                                     'dateapp': rows[i].dateapp,
                                     'deadline': rows[i].deadline,
                                     'comments': rows[i].comments,
-                                    'status': statuscurrent
+                                    'status': statuscurrent,
+                                    'proc': rows[i].proc
                                 }
                                 // Add object into array
                                 softwareList.push(order);

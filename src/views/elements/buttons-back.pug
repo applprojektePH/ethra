@@ -8,12 +8,12 @@ span.service-buttons-wrapper
             i.fas.fa-search
 br
 
-script(type='text/javascript' src="/santra/static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')
+script(type='text/javascript' src="static/js/libs/jquery.js")                                                                                                             button.btn.btn-secondary.btn-sm(type='button' data-dismiss='modal')
 script(type='text/javascript').
     $(document).ready(function () {
         $('.btn-back-edit').click(function (event) {
             const urlParams = new URLSearchParams(window.location.search);
             const currenturlParam = urlParams.get('tsid');
-            window.location.replace("/details?tsid="+currenturlParam);
+            window.location.replace("details?tsid="+currenturlParam);
         });
     });

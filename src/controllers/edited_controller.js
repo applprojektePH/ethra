@@ -135,7 +135,7 @@ module.exports = function (models) {
                 };
                 let messageSupport2 = {
                     // sender info
-                    from: 'Santra <alesya.heymann@fhnw.ch>',
+                    from: 'Ethra <alesya.heymann@fhnw.ch>',
                     // Comma separated list of recipients
                     to: 'Wassilis <alesya.heymann@fhnw.ch>',
                    // to: '<alesya.heymann@fhnw.ch>',
@@ -234,7 +234,8 @@ module.exports = function (models) {
                             'dateapp': rows[i].dateapp,
                             'deadline': rows[i].deadline,
                             'comments': rows[i].comments,
-                            'status': rows[i].status
+                            'status': rows[i].status,
+                            'proc': rows[i].proc
                         }
                         // Add object into array
                         softwareListDetails.push(order);

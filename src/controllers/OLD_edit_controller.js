@@ -101,7 +101,8 @@ module.exports = function (models) {
                             'dateapp': rows[i].dateapp,
                             'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': rows[i].comments,
-                            'status':rows[i].status
+                            'status':rows[i].status,
+                            'proc':rows[i].proc
                         }
                         // Add object into array
                         softwareListDetails.push(order);

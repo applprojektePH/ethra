@@ -123,7 +123,8 @@ module.exports = function (models) {
 							'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
 							'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
 							'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
-							'status': rows[i].status
+							'status': rows[i].status,
+							'proc': rows[i].proc
 						}
 						// Add object into array
 						title = rows[i].title;

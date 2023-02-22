@@ -13,7 +13,7 @@ div(id='wrapper-screen-pdf')
                         h2(id='tables') Antrag #!{order.applicationid} !{order.topic}
                         for order in softwareListDetails
                             if(order.status == 10)
-                                span.span-draft Entwurf
+                                span.span-draft In Bearbeitung/Entwurf
                     .form-group-view-wrapper#AntragDetailsWrapper
                     div(style="page-break-after: always; height:50vh;" )
                         .form-group

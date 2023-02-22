@@ -45,6 +45,7 @@ module.exports = function (models) {
         let orderstatus;
         let statuscurrent;
         let anredeMail;
+        let proc;
 
         if(reqBody !=='undefined'){
            statuschange = reqBody.statuschange;
@@ -52,6 +53,7 @@ module.exports = function (models) {
            datetime = reqBody.datetime;
            mailtype = reqBody.mailtype;
            orderstatus = reqBody.orderstatus;
+           proc = reqBody.proc;
         }
         page.title = "Ethra - Ethikantrag\n" +
             "Pädagogische Hochschule FHNW";
@@ -66,6 +68,13 @@ module.exports = function (models) {
             if ((!isNaN(statuschange))) {
                 sql4 = 'UPDATE applications SET status=' + statuschange + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
                 connection.query("" + sql4 + "",
+                    (err, rows) => {
+                    })
+            }
+            if ((!isNaN(proc))) {
+                sql7 = 'UPDATE applications SET proc=' + proc + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
+
+                connection.query("" + sql7 + "",
                     (err, rows) => {
                     })
             }
@@ -104,7 +113,7 @@ module.exports = function (models) {
                                 statuscurrent = 'Antrag Entscheid';
                                 break;
                             case 4:
-                                statuscurrent = 'Antrag genehmigt';
+                                statuscurrent = 'Antrag bewilligt';
                                 break;
                             case 5:
                                 statuscurrent = 'Antrag abgelehnt';
@@ -175,7 +184,8 @@ module.exports = function (models) {
                             'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
                             'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
-                            'status': rows[i].status
+                            'status': rows[i].status,
+                            'proc': rows[i].proc
                         }
                         // Add object into array
                         title = rows[i].title;
@@ -236,7 +246,7 @@ module.exports = function (models) {
                     });
                     let messageSender2 = {
                         // sender info
-                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                        from: 'Ethra <alesya.heymann@fhnw.ch>',
 
                         // Comma separated list of recipients
                         to: email, //NICHT ABÄNDERN EMAIL

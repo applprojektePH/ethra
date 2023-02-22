@@ -8,7 +8,7 @@
                     h2(id='tables') Ethikantrag #!{order.applicationid} !{order.topic}
                     for order in softwareListDetails
                         if(order.status == 10)
-                            span.span-draft Entwurf
+                            span.span-draft In Bearbeitung/Entwurf
                                 i &nbsp;(Um den Ethikantrag einreichen zu können, bitte "Antrag bearbeiten" auswählen)
                             if (admin == true)
                                 include elements/buttons-view-admin
@@ -21,22 +21,23 @@
                                 include elements/buttons-view-draft
                 for order in softwareListDetails
                     if(order.status != 10)
-                            ul.progressbar
-                                -let list = ['Antrag eingegangen', 'Antrag eingegangen', 'Antrag in Prüfung', 'Antrag bei Gremium', statuscurrent];
-                                if (admin == true)
-                                        -for (var i = 1; i < list.length; i++)
-                                                                                if((i < order.status)) ||((i == order.status) && (i == list.length-1))
-                                                                                    li(class=["li-status", "active item" + i, "li-status-admin"] id="orderstatus" + i, )
+                        ul.progressbar
+                            -let list = ['Antrag eingegangen', 'Antrag eingegangen', 'Antrag in Prüfung', 'Antrag bei Gremium', statuscurrent];
+                            if (admin == true)
+                                -for (var i = 1; i < list.length; i++)
+                                                                                if((i < order.status)) ||((i == order.status) && (i == list.length-1) || (i == 1))
+                                                                                    li(class=["li-status", "active item" + i, "li-status-admin"] id="orderstatus" + i data-bs-toggle='modal' data-bs-target='#Modal' + i)
                                                                                         span= list[i]
-                                                                                else if((i == order.status) && (i != list.length-1))
+
+                                                                                else if((i == order.status) && (i != list.length-1) || (i == 2))
                                                                                     li(class=["li-status", "preactive item" + i, "li-status-admin"] id="orderstatus" + i data-bs-toggle='modal' data-bs-target='#Modal' + i)
                                                                                         span= list[i]
                                                                                 else
                                                                                     li(class=["li-status", "item" + i, "li-status-admin"] id="orderstatus" + i data-bs-toggle='modal' data-bs-target='#Modal' + i)
                                                                                         span= list[i]
 
-                                else
-                                        -for (var i = 1; i < list.length; i++)
+                            else
+                                -for (var i = 1; i < list.length; i++)
                                                                                 if((i < order.status)) || ((i == order.status) && (i == list.length - 1))
                                                                                     li(class=["li-status", "active item" + i, "li-status-admin"] id="orderstatus" + i, )
                                                                                         span= list[i]
@@ -78,7 +79,7 @@
                                             textarea.modalEmailTextarea#modalEmailTextarea1.widgEditor(placeholder='EmailVorlage' rows='10')
                                                 | Guten Tag </br>
                                                 | Hier kommt OV</br></br>Freundliche Grüsse</br> Ihr .. Team</br> n|w
-                                            a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3)
+                                            a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3, proc=1)
                                                 | Email senden
                                             button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
                                             p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
@@ -90,7 +91,7 @@
                                             span.inputHide
                                                 textarea.modalEmailTextarea#modalEmailTextarea2.widgEditor(placeholder='EmailVorlage' rows='10')
                                                     | Guten Tag </br></br>Hier kommt VW </br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
-                                                a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3)
+                                                a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3, proc=2)
                                                     | Email senden
                                                 //button.btn-email2.btn-email-status2.btn.btn-primary.btn-sm.button-email-send(type='button') Email senden
                                                 button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
@@ -107,34 +108,56 @@
                     .modal-dialog.modal-dialog-centered(role='document')
                         .modal-content
                             .modal-header
-                                h5.modal-title Entscheid Gremium
+                                h5.modal-title Antrag Entscheid
                             .modal-body
                                 button.btn.btn-secondary.btn-sm.custom-control-button-open(type='button') Antrag genehmigen
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea#modalEmailTextarea12.widgEditor(placeholder='EmailVorlage' rows='10')
-                                            |Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.softwarename} wurde durch das Gremium geprüft und teilen Ihnen gerne mit, dass Sie diese über den
-                                            |<a href="https://subito.insideapps.fhnw.ch/itshop/custom" target="_blank">FHNW Subito - IT-Shop</a> bestellen können.</br>
-                                            |Preis für die Software:
-                                            |</br>Auf der Seite <a href="https://welcome.inside.fhnw.ch/organisation/hochschule/PH/mitarbeitende/Seiten/softwarebestellung.aspx" target="_blank">«Softwarebestellung»</a> finden Sie eine kurze Anleitung, wie Sie die Software im FHNW Subito IT-Shop bestellen können.</br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
-                                        a.button-email-send.btn.btn-secondary.btn-sm(href="/santra/details?tsid=" + order.orderid statuschange=4, mailtype=2, orderstatus=4)
+                                            |Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=4, mailtype=2, orderstatus=4)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
                                         p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
                                         p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
                                         hr
                                 br
-                                button.btn.btn-primary.btn-sm.custom-control-button-open#modalEmailTextarea22(type='button') Antrag ablehnen
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag ablehnen
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea.widgEditor#widgEditor(placeholder='EmailVorlage' rows='10')
-                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.softwarename} wurde durch das Gremium geprüft. Leider müssen wir Ihnen mitteilen, dass eine Anschaffung abgelehnt werden muss.</br>Begründung: </br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
-                                        a.button-email-send.btn.btn-secondary.btn-sm(href="/santra/details?tsid=" + order.orderid statuschange=5, mailtype=2, orderstatus=5)
+                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft. Leider müssen wir Ihnen mitteilen </br>Begründung: </br></br>Freundliche Grüsse</br> n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=5, mailtype=2, orderstatus=5)
+                                            | Email senden
+                                        button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                        p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                        p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
+                                br
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
+                                for order in softwareListDetails
+                                    span.inputHide
+                                        textarea.modalEmailTextarea#widgEditor(placeholder='EmailVorlage' rows='10')
+                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=1, mailtype=2, orderstatus=0, proc=0)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
                                         p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
                                         p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
                                         hr
+                                br
+
+                                //button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
+                                //    for order in softwareListDetails
+                                //        span.inputHide
+                                //            textarea.modalEmailTextarea.widgEditor(placeholder='EmailVorlage' rows='10')
+                                //                | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.softwarename} wurde geprüft. Leider müssen wir Ihnen mitteilen </br>Begründung: </br></br>Freundliche Grüsse</br> n|w
+                                //            a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.orderid statuschange=2, mailtype=2, orderstatus=0)
+                                //                | Email senden
+                                //            button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                //            p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                //            p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
+                                br
+                                hr
                             .modal-footer
                                 for order in softwareListDetails
                                     button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
@@ -161,254 +184,283 @@
                 br.hidden-md
                 .form-group-view-wrapper#AntragDetailsWrapper
                     .form-group
-                            br
-                            .col-md-12
-                            if (admin == true)
-                                for order in softwareListDetails
-                                    if (order.comments !== 'undefined') && ((order.comments).length)
-                                        label(for='form-function')
-                                            | Notizen zum Antrag (vertraulich)
-                                        p= order.comments
-                                    if (order.approvednr !== 'undefined') && ((order.approvednr).length)
-                                        label Genehmigungs-Nummer:
-                                        p= order.approvednr
-                                    if (order.deadline !== 'undefined') && ((order.deadline).length)
-                                    label Stichtag:
-                                    p= order.deadline
+                      .row
+                        .col-md-12
+                        if (admin == true)
                             for order in softwareListDetails
-                                label
-                                    | Antragstyp
-                                p= order.application
-                                h3.alert.alert-primary 1. Allgemeine Angaben
-                            for order in softwareListDetails
+                                if (order.status == 3)
+                                    if (typeof (order.proc) !== 'undefined')
+                                        .row
+                                            .col-md-6
+                                                if (order.proc == 1)
+                                                    i Ordentliches Verfahren (OV)
+                                                else if (order.proc == 2)
+                                                    i Vereinfachter Weg (VW)
+                                                br
+
+                                                div
+
+                                                    if (order.ex1 == "OK")
+                                                        h4 Prüfer 1
+                                                        label
+                                                            | Ethisch OK
+                                                    else if (order.ex1 == "NOK")
+                                                        h4 Prüfer 1
+                                                        label
+                                                            | Ethisch NOK
+                                                    br
+                                                    if (order.ex2 == "OK")
+                                                        h4 Prüfer 1
+                                                        label
+                                                            | Ethisch OK
+                                                    else if (order.ex2 == "NOK")
+                                                        h4 Prüfer 1
+                                                        label
+                                                            | Ethisch NOK
+                                if (order.comments !== 'undefined') && ((order.comments).length)
+                                    label(for='form-function')
+                                        | Notizen zum Antrag (vertraulich)
+                                    p= order.comments
+                                if (order.approvednr !== 'undefined') && ((order.approvednr).length)
+                                    label Genehmigungs-Nummer:
+                                    p= order.approvednr
+                                if (order.deadline !== 'undefined') && ((order.deadline).length)
+                                label Stichtag:
+                                p= order.deadline
+                        for order in softwareListDetails
+                            label
+                                | Antragstyp
+                            p= order.application
+                            h3.alert.alert-primary 1. Allgemeine Angaben
+                        for order in softwareListDetails
+                            p
+                                if (order.title !== 'Neutrale Anrede')
+                                    span= order.title
+                                span= order.firstname
+                                span= order.lastname
+                            label
+                                | E-Mail-Adresse
+                            p= order.email
+                        for order in softwareListDetails
+                            label
+                                | Institut
+                            p= order.institute
+                            label
+                                | b. Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?
+                            p= order.finance
+                            label
+                                | c. Teildisziplin
+                            p= order.subdiscipline
+                            label
+                                | d. Thema/Titel des Vorhabens
+                            p= order.topic
+                            label
+                                | e. Zusammenfassung des Vorhabens
+                            p= order.summ
+                            label
+                                | f. Projektlaufzeit gemäss finanziertem Vorhaben sowie Zeitraum, für den die Genehmigung beantragt wird
+                            p= order.projectduration
+                            label
+                                | g. Verlangt der Forschungsträger/Auftraggeber eine Begutachtung des Vorhabens durch eine Ethikkommission?
+                            p= order.appraisal
+                            label
+                                | h. Verlangt der Forschungsträger/Auftraggeber oder die Gesetzgebung eine Registrierung des Vorhabens?
+                            p= order.registration
+                            if order.registration === 'Ja'
+                                p= order.registrationtext
+                        for order in softwareListDetails
+                            h3.alert.alert-primary 2. Verfahren des Vorhabens
+                            label
+                                | a. Zielgruppe/Teilnehmende (Angestrebte Anzahl, Geschlecht, Alter, Ausbildung, Gruppenzugehörigkeit u.a. von Relevanz)
+                            p= order.participants
+                            label
+                                | b. Welche Personendaten werden erhoben?
+                            p= order.personaldata
+                            label
+                                | c. Wie werden die zu untersuchenden Proband*innen rekrutiert?
+                            p= order.recruited
+                            label
+                                | d. Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?
+                            if (order.informedbefore !== "")
                                 p
-                                    if (order.title !== 'Neutrale Anrede')
-                                        span= order.title
-                                    span= order.firstname
-                                    span= order.lastname
-                                label
-                                    | E-Mail-Adresse
-                                p= order.email
-                            for order in softwareListDetails
-                                label
-                                    | Institut
-                                p= order.institute
-                                label
-                                    | b. Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?
-                                p= order.finance
-                                label
-                                    | c. Teildisziplin
-                                p= order.subdiscipline
-                                label
-                                    | d. Thema/Titel des Vorhabens
-                                p= order.topic
-                                label
-                                    | e. Zusammenfassung des Vorhabens
-                                p= order.summ
-                                label
-                                    | f. Projektlaufzeit gemäss finanziertem Vorhaben sowie Zeitraum, für den die Genehmigung beantragt wird
-                                p= order.projectduration
-                                label
-                                    | g. Verlangt der Forschungsträger/Auftraggeber eine Begutachtung des Vorhabens durch eine Ethikkommission?
-                                p= order.appraisal
-                                label
-                                    | h. Verlangt der Forschungsträger/Auftraggeber oder die Gesetzgebung eine Registrierung des Vorhabens?
-                                p= order.registration
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href="static/uploads/"+order.informedbefore target="_blank") Datei herunterladen
+                            else
+                                p(class="red")
+                                    span
+                                        | fehlende Datei
+                            label
+                                | e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?
+                            if (order.execution !== "")
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href="static/uploads/" + order.execution target="_blank") Datei herunterladen
+                            else
+                                p(class="red")
+                                    span
+                                        | fehlende Datei
+                            label
+                                | f. Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?
+                            if (order.instructions !== "")
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href="static/uploads/" + order.instructions target="_blank") Datei herunterladen
+                            else
+                                p(class="red")
+                                    span
+                                        | fehlende Datei
+                            label
+                                | g. Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?
+                            if (order.informedafter !== "")
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href="static/uploads/" + order.informedafter target="_blank") Datei herunterladen
+                            else
+                                p(class="red")
+                                    span
+                                        | fehlende Datei
+                        for order in softwareListDetails
+                            h3.alert.alert-primary 3. Spezifische ethische Aspekte des Vorhabens
+                            label
+                                | a. Wird die Teilnahme an dem Vorhaben den untersuchten Personen (Proband*innen) vergütet oder bekommen sie eine Aufwandsentschädigung?
+                            p= order.compensation
                                 if order.registration === 'Ja'
-                                    p= order.registrationtext
-                            for order in softwareListDetails
-                                h3.alert.alert-primary 2. Verfahren des Vorhabens
-                                label
-                                    | a. Zielgruppe/Teilnehmende (Angestrebte Anzahl, Geschlecht, Alter, Ausbildung, Gruppenzugehörigkeit u.a. von Relevanz)
-                                p= order.participants
-                                label
-                                    | b. Welche Personendaten werden erhoben?
-                                p= order.personaldata
-                                label
-                                    | c. Wie werden die zu untersuchenden Proband*innen rekrutiert?
-                                p= order.recruited
-                                label
-                                    | d. Wie werden die untersuchten Personen (Proband*innen) vor der Untersuchung informiert?
-                                if (order.informedbefore !== "")
-                                    p
-                                        i.fas.fa-file-download
-                                        span &nbsp;
-                                        a(href="static/uploads/"+order.informedbefore target="_blank") Datei herunterladen
-                                else
-                                    p(class="red")
-                                        span
-                                            | fehlende Datei
-                                label
-                                    | e. Wie ist die Durchführung der Studie aus der Sicht der untersuchten Personen (Proband*innen) gestaltet?
-                                if (order.execution !== "")
-                                    p
-                                        i.fas.fa-file-download
-                                        span &nbsp;
-                                        a(href="static/uploads/" + order.execution target="_blank") Datei herunterladen
-                                else
-                                    p(class="red")
-                                        span
-                                            | fehlende Datei
-                                label
-                                    | f. Wie lauten die genauen Instruktionen während der Studiendurchführung? Welche Erhebungsinstrumente werden verwendet?
-                                if (order.instructions !== "")
-                                    p
-                                        i.fas.fa-file-download
-                                        span &nbsp;
-                                        a(href="static/uploads/" + order.instructions target="_blank") Datei herunterladen
-                                else
-                                    p(class="red")
-                                        span
-                                            | fehlende Datei
-                                label
-                                    | g. Wie werden die untersuchten Personen (Proband*innen) nach Beendigung des Vorhabens informiert? Was wird wie rückgemeldet?
-                                if (order.informedafter !== "")
-                                    p
-                                        i.fas.fa-file-download
-                                        span &nbsp;
-                                        a(href="static/uploads/" + order.informedafter target="_blank") Datei herunterladen
-                                else
-                                    p(class="red")
-                                        span
-                                            | fehlende Datei
-                            for order in softwareListDetails
-                                h3.alert.alert-primary 3. Spezifische ethische Aspekte des Vorhabens
-                                label
-                                    | a. Wird die Teilnahme an dem Vorhaben den untersuchten Personen (Proband*innen) vergütet oder bekommen sie eine Aufwandsentschädigung?
-                                p= order.compensation
-                                    if order.registration === 'Ja'
-                                        p= order.compensationtext
-                                label
-                                    | b. Wenn die Teilnahme als Studienleistung erbracht wird (z. B. obligatorische Versuchspersonen- stunden), kann die Leistung durch andere alternative Leistungen ersetzt werden?
-                                p= order.performanced
-                                label
-                                    | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?
-                                p= order.voluntary
-                                    if order.voluntary === 'Ja'
-                                        if (order.voluntaryfile !== "")
+                                    p= order.compensationtext
+                            label
+                                | b. Wenn die Teilnahme als Studienleistung erbracht wird (z. B. obligatorische Versuchspersonen- stunden), kann die Leistung durch andere alternative Leistungen ersetzt werden?
+                            p= order.performanced
+                            label
+                                | c. Ist die Freiwilligkeit der Teilnahme aufgrund einer informierten Einverständniserklärung gewährleistet?
+                            p= order.voluntary
+                                if order.voluntary === 'Ja'
+                                    if (order.voluntaryfile !== "")
+                                        p
+                                            i.fas.fa-file-download
+                                            span &nbsp;
+                                            a(href="static/uploads/" + order.voluntaryfile target="_blank") Datei herunterladen
+                                    else
+                                        p(class="red")
+                                            span
+                                                | fehlende Datei
+                            label
+                                | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?
+                            p= order.notparticipate
+                                if order.notparticipate === 'Ja'
+                                    p= order.notparticipatetext
+                            label
+                                | e. Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?
+                            p= order.withdraw
+                            label
+                                | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?
+                            p= order.agreement
+                                if order.agreement === 'Ja'
+                                    if (order.agreementfile !== "")
+                                        p
+                                            i.fas.fa-file-download
+                                            span &nbsp;
+                                            a(href="static/uploads/" + order.agreementfile target="_blank") Datei herunterladen
+                                    else
+                                        p(class="red")
+                                            span
+                                                | fehlende Datei
+                            label
+                                | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?
+                            p= order.participationundersixteen
+                                if order.participationundersixteen === 'Ja'
+                                    p= order.participationundersixteentext
+                            label
+                                | h. Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?
+                            p= order.risk
+                                if order.risk === 'Ja'
+                                    p= order.risktext
+                                        if (order.riskfile !== "")
                                             p
                                                 i.fas.fa-file-download
                                                 span &nbsp;
-                                                a(href="static/uploads/" + order.voluntaryfile target="_blank") Datei herunterladen
+                                                a(href="static/uploads/" + order.riskfile target="_blank") Datei herunterladen
                                         else
                                             p(class="red")
                                                 span
                                                     | fehlende Datei
-                                label
-                                    | d. Können möglichen Teilnehmenden durch Nicht-Teilnahme Nachteile entstehen?
-                                p= order.notparticipate
-                                    if order.notparticipate === 'Ja'
-                                        p= order.notparticipatetext
-                                label
-                                    | e. Können untersuchte Personen (Proband*innen) auch während des Vorhabens jederzeit ohne Angaben von Gründen und ohne Nachteile ihre Teilnahme zurückziehen?
-                                p= order.withdraw
-                                label
-                                    | f. Bei Teilnehmenden unter 16 Jahren: Wird das schriftliche Einverständnis des gesetzlichen Vertreters eingeholt?
-                                p= order.agreement
-                                    if order.agreement === 'Ja'
-                                        if (order.agreementfile !== "")
-                                            p
-                                                i.fas.fa-file-download
-                                                span &nbsp;
-                                                a(href="static/uploads/" + order.agreementfile target="_blank") Datei herunterladen
-                                        else
-                                            p(class="red")
-                                                span
-                                                    | fehlende Datei
-                                label
-                                    | g. Ist die Teilnahme von eingeschränkt urteilsfähigen, urteilsunfähigen oder Personen unter 16 Jahren möglich oder vorgesehen?
-                                p= order.participationundersixteen
-                                    if order.participationundersixteen === 'Ja'
-                                        p= order.participationundersixteentext
-                                label
-                                    | h. Setzen sich die untersuchten Personen (Proband*innen) einem Risiko aus, welches mit einer Versicherung abgedeckt werden muss?
-                                p= order.risk
-                                    if order.risk === 'Ja'
-                                        p= order.risktext
-                                            if (order.riskfile !== "")
-                                                p
-                                                    i.fas.fa-file-download
-                                                    span &nbsp;
-                                                    a(href="static/uploads/" + order.riskfile target="_blank") Datei herunterladen
-                                            else
-                                                p(class="red")
-                                                    span
-                                                        | fehlende Datei
-                            for order in softwareListDetails
-                                h3.alert.alert-primary 4. Belastungen während der Untersuchung
-                                label
-                                    | a. Wird die physische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. durch Einnahme von Arzneimitteln, Entnahme von Blut)? Können negative Folgen entstehen (z. B. Kopfschmerzen)?
-                                p= order.integrity
-                                    if order.integrity === 'Ja'
-                                        p= order.integritytext
-                                label
-                                    | b. Wird die psychische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. Konzentrationsfähigkeit, Induktion von negativen Emotionen)? Können negative psychische Folgen eintreten?
-                                p= order.mentalintegrity
-                                    if order.mentalintegrity === 'Ja'
-                                        p= order.mentalintegritytext
-                                label
-                                    | c. Wird durch die Teilnahme die soziale Integrität tangiert (z. B. die Teilnahme trägt zu einem schlechten Ruf bei). Können negative soziale Folgen entstehen?
-                                p= order.socialintegrity
-                                    if order.socialintegrity === 'Ja'
-                                        p= order.socialintegritytext
+                        for order in softwareListDetails
+                            h3.alert.alert-primary 4. Belastungen während der Untersuchung
+                            label
+                                | a. Wird die physische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. durch Einnahme von Arzneimitteln, Entnahme von Blut)? Können negative Folgen entstehen (z. B. Kopfschmerzen)?
+                            p= order.integrity
+                                if order.integrity === 'Ja'
+                                    p= order.integritytext
+                            label
+                                | b. Wird die psychische Integrität der untersuchten Personen (Proband*innen) tangiert (z. B. Konzentrationsfähigkeit, Induktion von negativen Emotionen)? Können negative psychische Folgen eintreten?
+                            p= order.mentalintegrity
+                                if order.mentalintegrity === 'Ja'
+                                    p= order.mentalintegritytext
+                            label
+                                | c. Wird durch die Teilnahme die soziale Integrität tangiert (z. B. die Teilnahme trägt zu einem schlechten Ruf bei). Können negative soziale Folgen entstehen?
+                            p= order.socialintegrity
+                                if order.socialintegrity === 'Ja'
+                                    p= order.socialintegritytext
 
-                                label
-                                    | d. Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?
-                                p= order.charges
-                                label
-                                    | e. Wenn Sie bei Frage 4d mit Ja geantwortet haben, geben Sie bitte eine Begründung für Ihr Vorgehen an und erläutern Sie die Schutzmassnahmen, die Sie für die untersuchten Personen (Proband*innen) treffen werden, um die Belastungen zu minimieren:
-                                p= order.reason
-                                label
-                                    | f. Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?
-                                p= order.experience
-                                    if order.experience === 'Ja'
-                                        p= order.experiencetext
-                                label
-                                    | g. Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?
-                                p= order.illusion
-                                    if order.illusion === 'Ja'
-                                        p= order.illusiontext
-                                label
-                                    | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?
-                                p= order.observation
-                            for order in softwareListDetails
-                                h3.alert.alert-primary 5. Angaben zum Datenschutz
-                                label
-                                    | a. Werden die erhobenen Daten anonymisiert?
-                                p= order.anonymized
-                                label
-                                    | b. Wird die Vertraulichkeit der Daten gewährleistet?
-                                p= order.confidentiality
-                                label
-                                    | c. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
-                                p= order.destroy
-                                label
-                                    | d. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
-                                p= order.deleted
-                                label
-                                    | e. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
-                                p= order.repo
-                            for order in softwareListDetails
-                                h3.alert.alert-primary 6. Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
-                                label
-                                    | a. Ort
-                                p= order.located
-                                label
-                                    | b. Datum
-                                p= order.dateapp
-                                label
-                                    | c. Unterschrift
-                                if (order.signature !== "")
-                                    p
-                                        i.fas.fa-file-download
-                                        span &nbsp;
-                                        a(href="static/uploads/" + order.signature target="_blank") Unterschriftdatei herunterladen
-                                else
-                                    p(class="red")
-                                        span
-                                            | fehlende Datei
+                            label
+                                | d. Wenn Sie bei einer der Fragen 4a-c mit Ja geantwortet haben, gehen die Belastungen oder Folgen über das alltägliche Mass hinaus («minimal risk»)?
+                            p= order.charges
+                            label
+                                | e. Wenn Sie bei Frage 4d mit Ja geantwortet haben, geben Sie bitte eine Begründung für Ihr Vorgehen an und erläutern Sie die Schutzmassnahmen, die Sie für die untersuchten Personen (Proband*innen) treffen werden, um die Belastungen zu minimieren:
+                            p= order.reason
+                            label
+                                | f. Werden die untersuchten Personen (Proband*innen) gebeten, persönliche Erfahrungen (z. B. belastende Erlebnisse), sensitive Informationen (z. B. sexuelles Verhalten, Drogenkonsum) oder Einstellungen (z. B. politische Präferenzen) preiszugeben?
+                            p= order.experience
+                                if order.experience === 'Ja'
+                                    p= order.experiencetext
+                            label
+                                | g. Werden die untersuchten Personen (Proband*innen) absichtlich unvollständig oder falsch (mit dem Ziel der Täuschung) über die Ziele und das Verfahren des Vorhabens informiert (z. B. durch manipulierte Rückmeldungen über Ihre Leistungen)?
+                            p= order.illusion
+                                if order.illusion === 'Ja'
+                                    p= order.illusiontext
+                            label
+                                | h. Wird es notwendig sein, dass Personen an der Studie teilnehmen, ohne dies zu wissen und ohne informierte Einwilligung gegeben zu haben (z. B. verdeckte Beobachtung von Personen)?
+                            p= order.observation
+                        for order in softwareListDetails
+                            h3.alert.alert-primary 5. Angaben zum Datenschutz
+                            label
+                                | a. Werden die erhobenen Daten anonymisiert?
+                            p= order.anonymized
+                            label
+                                | b. Wird die Vertraulichkeit der Daten gewährleistet?
+                            p= order.confidentiality
+                            label
+                                | c. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
+                            p= order.destroy
+                            label
+                                | d. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
+                            p= order.deleted
+                            label
+                                | e. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
+                            p= order.repo
+                        for order in softwareListDetails
+                            h3.alert.alert-primary 6. Ort, Datum und Unterschrift der Antragstellerin oder des Antragstellers
+                            label
+                                | a. Ort
+                            p= order.located
+                            label
+                                | b. Datum
+                            p= order.dateapp
+                            label
+                                | c. Unterschrift
+                            if (order.signature !== "")
+                                p
+                                    i.fas.fa-file-download
+                                    span &nbsp;
+                                    a(href="static/uploads/" + order.signature target="_blank") Unterschriftdatei herunterladen
+                            else
+                                p(class="red")
+                                    span
+                                        | fehlende Datei
 
-                                iframe#pdfframe(srcpdf="document.pdf?tsid="+ order.applicationid frameborder='0' style='border:0;' height='0')
+                            iframe#pdfframe(srcpdf="document.pdf?tsid="+ order.applicationid frameborder='0' style='border:0;' height='0')
 
 script(type='text/javascript' src="./static/js/libs/jquery.js")
 script(type='text/javascript' src="./static/js/libs/widgEditor.js")
@@ -426,6 +478,7 @@ script(type='text/javascript').
             let mailtype = $(this).attr('mailtype');
             let statuschange = $(this).attr('statuschange');
             let orderstatus  = $(this).attr('orderstatus');
+            let proc  = $(this).attr('proc');
             const urlParams = new URLSearchParams(window.location.search);
             const currenturlParam = urlParams.get('tsid');
             let mailtext;
@@ -442,42 +495,43 @@ script(type='text/javascript').
                 d.getFullYear() + ' ' +
                 (('' + hour).length < 2 ? '0' : '') + hour + ':' +
                 (('' + minute).length < 2 ? '0' : '') + minute;
-                $.ajax({
-                    type: 'POST',
-                    data: {
-                        statuschange: statuschange,
-                        mailtext: mailtext,
-                        datetime: datetime,
-                        mailtype: mailtype,
-                        orderstatus: orderstatus
-                    },
-                    url: 'details?tsid=' + currenturlParam,
-                    success: function (data) {
+            $.ajax({
+                type: 'POST',
+                data: {
+                    statuschange: statuschange,
+                    mailtext: mailtext,
+                    datetime: datetime,
+                    mailtype: mailtype,
+                    orderstatus: orderstatus,
+                    proc: proc
+                },
+                url: 'details?tsid=' + currenturlParam,
+                success: function (data) {
 
-                            $('.green').removeClass('hidden');
-                            window.setTimeout(function () {
-                                window.location.replace("details?tsid=" + currenturlParam);
-                            }, 500);
+                    $('.green').removeClass('hidden');
+                    window.setTimeout(function () {
+                        window.location.replace("details?tsid=" + currenturlParam);
+                    }, 500);
 
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        $('.red').removeClass('hidden');
-                        alert(xhr.status);
-                        alert(thrownError);
-                   }
-                });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $('.red').removeClass('hidden');
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
 
         });
         var expanded = false;
         $('.selectBox').on('click',function (e) {
-                    var checkboxes = $("#checkboxes");
-                    if (!expanded) {
-                        checkboxes.delay(300).slideDown("slow");
-                        expanded = true;
-                    } else {
-                        checkboxes.delay(300).slideUp("slow");
-                        expanded = false;
-                    }
+            var checkboxes = $("#checkboxes");
+            if (!expanded) {
+                checkboxes.delay(300).slideDown("slow");
+                expanded = true;
+            } else {
+                checkboxes.delay(300).slideUp("slow");
+                expanded = false;
+            }
 
-            });
         });
+    });

@@ -17,9 +17,75 @@ html(lang="en")
                                     include elements/buttons-edit-draft
                                 else
                                     include elements/buttons-edit
-                                br
-                                br
+                                if (order.status == 3)
+                                    if (typeof (order.proc) !== 'undefined')
+                                        .row
+                                            .col-md-6
+                                                br
+                                                if (order.proc == 1)
+                                                    i Ordentliches Verfahren (OV)
+                                                else if (order.proc == 2)
+                                                    i Vereinfachter Weg (VW)
+                                                br
+                                                br
+                                                div
+                                                    h4 Prüfer 1
+                                                    if (order.ex1 == "OK")
+                                                        div.custom-radio-wrapper(filled=order.appraisal)
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" checked)
+                                                                label.custom-control-label(for='customRadioEx1') Ethisch OK
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" )
+                                                                label.custom-control-label(for='customRadioEx2') Ethisch NOK
+
+                                                    else if (order.ex1 == "NOK")
+                                                        div.custom-radio-wrapper(filled=order.appraisal)
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" )
+                                                                label.custom-control-label(for='customRadioEx1') Ethisch OK
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" checked)
+                                                                label.custom-control-label(for='customRadioEx2') Ethisch NOK
+
+                                                    else
+                                                        .custom-control.custom-radio
+                                                            input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" required='')
+                                                            label.custom-control-label(for='customRadioEx1') Ethisch OK
+                                                        .custom-control.custom-radio
+                                                            input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" required='')
+                                                            label.custom-control-label(for='customRadioEx2') Ethisch NOK
+                                                    br
+                                                    h4 Prüfer 2
+                                                    if (order.ex2 == "OK")
+                                                        div.custom-radio-wrapper(filled=order.appraisal)
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK" checked)
+                                                                label.custom-control-label(for='customRadioEx3') Ethisch OK
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" )
+                                                                label.custom-control-label(for='customRadioEx4') Ethisch NOK
+
+                                                    else if (order.ex1 == "NOK")
+                                                        div.custom-radio-wrapper(filled=order.appraisal)
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK"  )
+                                                                label.custom-control-label(for='customRadioEx3') Ethisch OK
+                                                            .custom-control.custom-radio
+                                                                input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" checked)
+                                                                label.custom-control-label(for='customRadioEx4') Ethisch NOK
+
+                                                    else
+                                                        .custom-control.custom-radio
+                                                            input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK" )
+                                                            label.custom-control-label(for='customRadioEx3') Ethisch OK
+                                                        .custom-control.custom-radio
+                                                            input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" )
+                                                            label.custom-control-label(for='customRadioEx4') Ethisch NOK
+                                                br
+
                                 if (admin == true)
+                                    br
                                     label.form-label(for='validationTextarea') Notizen zum Antrag (vertraulich)
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
@@ -47,28 +113,7 @@ html(lang="en")
 
                                                 else
                                                     input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' data-provide='datepicker' data-date-format="dd.mm.yyyy")
-                                    if (typeof (softwareListDetails) !== 'undefined')
-                                        for order in softwareListDetails
-                                            .col-md-6
-                                                br
-                                                label Ordentliches Verfahren (OV)
-                                                label Vereinfachter Weg (VW)
-                                                div
-                                                    h4 Prüfer 1
-                                                    .custom-control.custom-radio
-                                                        input#customRadioEth1.custom-control-input(type='radio' name='eth1' value="OK" required='')
-                                                        label.custom-control-label(for='customRadioEth1') Ethisch OK
-                                                    .custom-control.custom-radio
-                                                        input#customRadioEth2.custom-control-input(type='radio' name='eth1' value="NOK" required='')
-                                                        label.custom-control-label(for='customRadioEth2') Ethisch NOK
-                                                    br
-                                                    h4 Prüfer 2
-                                                    .custom-control.custom-radio
-                                                        input#customRadioEth3.custom-control-input(type='radio' name='eth2' value="OK" required='')
-                                                        label.custom-control-label(for='customRadioEth3') Ethisch OK
-                                                    .custom-control.custom-radio
-                                                        input#customRadioEth4.custom-control-input(type='radio' name='eth2' value="NOK" required='')
-                                                        label.custom-control-label(for='customRadioEth4') Ethisch NOK
+
                                     br
                                     hr
                                     br
