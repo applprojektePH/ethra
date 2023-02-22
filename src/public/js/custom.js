@@ -95,6 +95,7 @@ $(document).ready(function () {
                 window.location.replace('user');
             }, 500);
     })
+
     $('.btn-reload').one("click", function () {
         window.location.reload();
     })
@@ -131,6 +132,17 @@ $(document).ready(function () {
     }, 1300);
         });
 
+    var expanded = false;
 
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
 });
 

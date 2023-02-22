@@ -45,6 +45,7 @@ module.exports = function (models) {
         let orderstatus;
         let statuscurrent;
         let anredeMail;
+        let proc;
 
         if(reqBody !=='undefined'){
            statuschange = reqBody.statuschange;
@@ -52,6 +53,7 @@ module.exports = function (models) {
            datetime = reqBody.datetime;
            mailtype = reqBody.mailtype;
            orderstatus = reqBody.orderstatus;
+           proc = reqBody.proc;
         }
         page.title = "Ethra - Ethikantrag\n" +
             "Pädagogische Hochschule FHNW";
@@ -66,6 +68,13 @@ module.exports = function (models) {
             if ((!isNaN(statuschange))) {
                 sql4 = 'UPDATE applications SET status=' + statuschange + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
                 connection.query("" + sql4 + "",
+                    (err, rows) => {
+                    })
+            }
+            if ((!isNaN(proc))) {
+                sql7 = 'UPDATE applications SET proc=' + proc + ' WHERE applicationid IN (SELECT ' + tsID + ' FROM applications)';
+
+                connection.query("" + sql7 + "",
                     (err, rows) => {
                     })
             }
@@ -104,7 +113,7 @@ module.exports = function (models) {
                                 statuscurrent = 'Antrag Entscheid';
                                 break;
                             case 4:
-                                statuscurrent = 'Antrag genehmigt';
+                                statuscurrent = 'Antrag bewilligt';
                                 break;
                             case 5:
                                 statuscurrent = 'Antrag abgelehnt';
@@ -170,11 +179,13 @@ module.exports = function (models) {
                             'deleted': (rows[i].deleted === "undefined" ? " " : rows[i].deleted),
                             'repo': (rows[i].repo === "undefined" ? " " : rows[i].repo),
                             'located': (rows[i].located === "undefined" ? " " : rows[i].located),
+                            'signature': (rows[i].signature === "undefined" ? " " : rows[i].signature),
                             'dateapp': (rows[i].dateapp === "undefined" ? " " : rows[i].dateapp),
                             'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
                             'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
-                            'status': rows[i].status
+                            'status': rows[i].status,
+                            'proc': rows[i].proc
                         }
                         // Add object into array
                         title = rows[i].title;
@@ -205,9 +216,9 @@ module.exports = function (models) {
                     });
                     let messageSender2 = {
                         // sender info
-                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                        from: 'Ethra Mailtype2 <alesya.heymann@fhnw.ch>',
                         // Comma separated list of recipients
-                        to: email, //NICHT ABÄNDERN EMAIL
+                        to: email, //NICHT ABÄNDERN EMAILm //Hier kommt Kommisions Liste
                         bcc: 'alesya.heymann@fhnw.ch',
                         // Subject of the message
                         subject: 'Ethra: Antrag Nummer #' + applicationid + '',
@@ -235,38 +246,38 @@ module.exports = function (models) {
                     });
                     let messageSender2 = {
                         // sender info
-                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                        from: 'Ethra <alesya.heymann@fhnw.ch>',
 
                         // Comma separated list of recipients
                         to: email, //NICHT ABÄNDERN EMAIL
                         // Subject of the message
-                        subject: "Ethra: Antrag Nummer #" + applicationid + " in Bearbeitung",
+                        subject: "Ethra: Antrag Nummer #" + applicationid + " in Prüfung",
 
                         // plaintext body
-                        text: 'Guten Tag ' + anredeMail + ', Ihr Antrag wurde zur Bearbeitung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid=' + applicationid + ' nach der Anmeldung. \n' +
+                        text: 'Guten Tag ' + anredeMail + ', Ihr Antrag wurde zur Prüfung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid=' + applicationid + ' nach der Anmeldung. \n' +
                             '\n' +
                             'Vielen Dank und freundliche Grüsse \n' +
-                            'Ihr ApplProjekte Supportteam \n' +
+                            'Ihr ... Supportteam \n' +
                             'n|w\n',
                         // HTML body
-                        html: '<p><span>Guten Tag ' + anredeMail + '</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
-                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/ethra/details?tsid=' + applicationid + ' nach der Anmeldung.' +
+                        html: '<p><span>Guten Tag ' + anredeMail + '</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Prüfung weitergeleitet.' +
+                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid=' + applicationid + ' nach der Anmeldung.' +
                             '</br></br>Vielen Dank und freundliche Grüsse' +
-                            '</br>Ihr ApplProjekte Supportteam ' +
+                            '</br>Ihr ... Supportteam ' +
                             '</br>n|w</p>'
                     };
                     let messageSupport2 = {
                         // sender info
-                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                        from: 'Ethra <alesya.heymann@fhnw.ch>',
                         // Comma separated list of recipients
-                         to: 'Applprojekte Team <alesya.heymann@fhnw.ch>',
+                         to: 'Wassilis <alesya.heymann@fhnw.ch>',
                        // to: '<alesya.heymann@fhnw.ch>',
                         // Subject of the message
-                        subject: "Santra: Antrag Nummer #" + applicationid + "",
+                        subject: "Ethra: Antrag Nummer #" + applicationid + "",
                         // plaintext body
-                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer ' + applicationid + ' </br> Name der Software ' + softwarename + ' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid=' + applicationid + ' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
+                        text: 'Lieber Wassilis</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer ' + applicationid + ' </br> Thema/Titel des Vorhabens ' + topic + ' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid=' + applicationid + ' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ... Supportteam </br>n|w',
                         // HTML body
-                        html: '<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer ' + orderid + ' </br> Name der Software ' + softwarename + ' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid=' + orderid + ' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
+                        html: '<p><span>Lieber Wassilis</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer ' + applicationid + ' </br> Thema/Titel des Vorhabens ' + topic + ' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid=' + applicationid + ' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ... Supportteam </br>n|w</p>'
 
                     };
                     transport2.sendMail(messageSender2, function (error) {
@@ -293,7 +304,8 @@ module.exports = function (models) {
                         "vornamelog": decodeURIComponent("Peter"),
                         "nachnamelog": decodeURIComponent("Muster"),
                         "anredeMail": anredeMail,
-                        "admin": adminlog
+                        "admin": adminlog,
+                        "applicationid": applicationid
                     });
                 }, 500);
 

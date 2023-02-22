@@ -95,9 +95,11 @@ module.exports = function (models) {
             let deleted = req.body.deleted;
             let repo = req.body.repo;
             let located = req.body.located;
+            let signature = req.body.signature;
             let dateapp = req.body.dateapp;
             let status = req.body.status;
             let orderstatus = 0;
+            let proc = 0;
             let softwareList = [];
             let orderidformail;
             let ordercurrent;
@@ -109,7 +111,7 @@ module.exports = function (models) {
                 else{
                     sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
                 }
-                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, dateapp, deadline, comments, status, orderstatus) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'")';
+                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, signature, dateapp, deadline, comments, status, orderstatus, proc) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'", "'+proc+'")';
                connection.query(""+sql2+"",
                     (err, rows) => {
                         //  connection.release() // return the connection to pool
@@ -122,10 +124,10 @@ module.exports = function (models) {
                                         orderidformail = rows[0].applicationid;
                                         switch (rows[i].status) {
                                             case 10:
-                                                statuscurrent = 'Entwurf';
+                                                statuscurrent = 'Antrag in Bearbeitung';
                                                 break;
                                             case 1:
-                                                statuscurrent = 'Antrag in Bearbeitung';
+                                                statuscurrent = 'Antrag in Prüfung';
                                                 break;
                                             case 2:
                                                 statuscurrent = 'Antrag in Prüfung';
@@ -216,10 +218,12 @@ module.exports = function (models) {
                                             'deleted': rows[i].deleted,
                                             'repo': rows[i].repo,
                                             'located': rows[i].located,
+                                            'signature': rows[i].signature,
                                             'dateapp': rows[i].dateapp,
                                             'deadline': "21.06.2023",
                                             'comments': rows[i].comments,
-                                            'status': statuscurrent
+                                            'status': statuscurrent,
+                                            'proc': proc
                                         }
                                         // Add object into array
                                         softwareList.push(order);
@@ -248,39 +252,39 @@ module.exports = function (models) {
                                     let messageSender = {
 
                                         // sender info
-                                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                                        from: 'Ethra <alesya.heymann@fhnw.ch>',
                                         to: email,
                                         // Subject of the message
                                         subject: 'Ethra: Ethikantrag #'+orderidformail+'',
 
                                         // plaintext body
-                                        text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
+                                        text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Prüfung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
                                             '\n' +
                                             'Vielen Dank und freundliche Grüsse \n' +
-                                            'Ihr ApplProjekte Supportteam \n' +
+                                            'Ihr ... Supportteam \n' +
                                             'n|w\n',
 
                                         // HTML body
                                         html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
-                                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.30/santra/details?tsid='+orderidformail+' nach der Anmeldung.' +
+                                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://10.51.7.122/ethra/details?tsid='+orderidformail+' nach der Anmeldung.' +
                                             '</br></br>Vielen Dank und freundliche Grüsse' +
-                                            '</br>Ihr ApplProjekte Supportteam ' +
+                                            '</br>Ihr ... Supportteam ' +
                                             '</br>n|w</p>'
                                     };
                                     let messageSupport = {
                                         // sender info
-                                        from: 'Santra <alesya.heymann@fhnw.ch>',
+                                        from: 'Ethra <alesya.heymann@fhnw.ch>',
                                         // Comma separated list of recipients
-                                        to: 'Applprojekte Team <alesya.heymann@fhnw.ch>',
+                                        to: 'Wassilis <alesya.heymann@fhnw.ch>',
                                         //to: '<alesya.heymann@fhnw.ch>',
                                         // Subject of the message
-                                        subject: 'Santra: Antrag Nummer #'+orderidformail+'',
+                                        subject: 'Ethra: Antrag Nummer #'+orderidformail+'',
 
                                         // plaintext body
-                                        text: 'Liebes Applprojekte Team</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
+                                        text: 'Lieber Wassilis</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w',
 
                                         // HTML body
-                                        html:'<p><span>Liebes Applprojekte Team</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Name der Software '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.30/santra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
+                                        html:'<p><span>Lieber Wassilis</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://10.51.7.122/ethra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>Ihr ApplProjekte Supportteam </br>n|w</p>'
                                     };
                                     console.log('Sending Mail');
                                     transport.sendMail(messageSender, function(error){
@@ -320,10 +324,10 @@ module.exports = function (models) {
                                 let statuscurrent;
                                 switch (rows[i].status) {
                                     case 10:
-                                        statuscurrent = 'Entwurf';
+                                        statuscurrent = 'Antrag in Bearbeitung';
                                         break;
                                     case 1:
-                                        statuscurrent = 'Antrag in Bearbeitung';
+                                        statuscurrent = 'Antrag in Prüfung';
                                         break;
                                     case 2:
                                         statuscurrent = 'Antrag in Prüfung';
@@ -415,10 +419,12 @@ module.exports = function (models) {
                                     'deleted': rows[i].deleted,
                                     'repo': rows[i].repo,
                                     'located': rows[i].located,
+                                    'signature': rows[i].signature,
                                     'dateapp': rows[i].dateapp,
                                     'deadline': rows[i].deadline,
                                     'comments': rows[i].comments,
-                                    'status': statuscurrent
+                                    'status': statuscurrent,
+                                    'proc': rows[i].proc
                                 }
                                 // Add object into array
                                 softwareList.push(order);

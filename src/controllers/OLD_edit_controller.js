@@ -97,10 +97,12 @@ module.exports = function (models) {
                             'deleted': rows[i].deleted,
                             'repo': rows[i].repo,
                             'located': rows[i].located,
+                            'signature': rows[i].signature,
                             'dateapp': rows[i].dateapp,
                             'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': rows[i].comments,
-                            'status':rows[i].status
+                            'status':rows[i].status,
+                            'proc':rows[i].proc
                         }
                         // Add object into array
                         softwareListDetails.push(order);
