@@ -151,10 +151,10 @@ module.exports = function (models) {
                                                 ordercurrent = 'Antrag zu Gremium';
                                                 break;
                                             case 4:
-                                                statuscurrent = 'Antrag vom Gremium genehmigt';
+                                                statuscurrent = 'Antrag bewilligt';
                                                 break;
                                             case 5:
-                                                statuscurrent = 'Antrag vom Gremium abgelehnt';
+                                                statuscurrent = 'Antrag abgelehnt';
                                                 break;
                                         }
 
