@@ -47,7 +47,7 @@
                                                                                 else
                                                                                     li(class=["li-status", "item" + i, "li-status-admin"] id="orderstatus" + i)
                                                                                         span= list[i]
-
+                        br
                 #Modal2.modalStatus.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
                     .modal-dialog.modal-dialog-centered(role='document')
                         .modal-content
@@ -108,42 +108,63 @@
                     .modal-dialog.modal-dialog-centered(role='document')
                         .modal-content
                             .modal-header
+                                h5.modal-title Antrag bei Gremium
+                            .modal-body
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
+                                for order in softwareListDetails
+                                    span.inputHide
+                                        textarea.modalEmailTextarea#widgEditor(placeholder='EmailVorlage' rows='10')
+                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=2, mailtype=2, orderstatus=0)
+                                            | Email senden
+                                        button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                        p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                        p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
+                            .modal-footer
+                                for order in softwareListDetails
+                                    button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
+                #Modal4.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
+                    .modal-dialog.modal-dialog-centered(role='document')
+                        .modal-content
+                            .modal-header
                                 h5.modal-title Antrag Entscheid
                             .modal-body
-                                button.btn.btn-secondary.btn-sm.custom-control-button-open(type='button') Antrag genehmigen
+                                button.btn.btn-secondary.btn-sm.custom-control-button-open(type='button') Antrag bewilligen
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea#modalEmailTextarea12.widgEditor(placeholder='EmailVorlage' rows='10')
-                                            |Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
+                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=4, mailtype=2, orderstatus=4)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
                                         p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
                                         p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
-                                        hr
+
                                 br
-                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag ablehnen
+                                br
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea.widgEditor#widgEditor(placeholder='EmailVorlage' rows='10')
                                             | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft. Leider müssen wir Ihnen mitteilen </br>Begründung: </br></br>Freundliche Grüsse</br> n|w
+                                        a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=10, mailtype=2, orderstatus=0, proc=0)
+                                            | Email senden
+                                        button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
+                                        p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
+                                        p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
+                                br
+                                br
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag ablehnen
+                                for order in softwareListDetails
+                                    span.inputHide
+                                        textarea.modalEmailTextarea#widgEditor(placeholder='EmailVorlage' rows='10')
+                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=5, mailtype=2, orderstatus=5)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
                                         p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
                                         p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
-                                br
-                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
-                                for order in softwareListDetails
-                                    span.inputHide
-                                        textarea.modalEmailTextarea#widgEditor(placeholder='EmailVorlage' rows='10')
-                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
-                                        a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=1, mailtype=2, orderstatus=0, proc=0)
-                                            | Email senden
-                                        button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
-                                        p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
-                                        p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
-                                        hr
+
                                 br
 
                                 //button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
@@ -157,66 +178,44 @@
                                 //            p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
                                 //            p.hidden.red Das E-Mail wurde an Benutzer nicht verschickt. Wenden Sie sich bitte an Entwickler
                                 br
-                                hr
+
                             .modal-footer
                                 for order in softwareListDetails
                                     button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
-                //#Modal4.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
-                //    .modal-dialog.modal-dialog-centered(role='document')
-                //        .modal-content
-                //            .modal-header
-                //                h5.modal-title Antrag abschliessen
-                //            .modal-body
-                //                for order in softwareListDetails
-                //                    a.button-email-send.btn.btn-secondary.btn-sm(href="/details?tsid=" + order.orderid statuschange=5, mailtype=0, orderstatus=6, decision=0)
-                //                        | Antrag abschliessen
-                //                    button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
-                //#Modal5.modal.fade(tabindex='-1' role='dialog' aria-labelledby='ModalCenterTitle' aria-hidden='true')
-                //    .modal-dialog.modal-dialog-centered(role='document')
-                //        .modal-content
-                //            .modal-header
-                //                h5.modal-title Antrag abschliessen
-                //            .modal-body
-                //                for order in softwareListDetails
-                //                    a.button-email-send.btn.btn-secondary.btn-sm(href="/details?tsid=" + order.orderid statuschange=6, mailtype=0, orderstatus=7, decision=0)
-                //                        | Antrag abschliessen
-                //                    button.btn.btn-secondary.btn-sm(type='button' data-bs-dismiss='modal') Abbrechen
-                br.hidden-md
                 .form-group-view-wrapper#AntragDetailsWrapper
                     .form-group
                       .row
                         .col-md-12
                         if (admin == true)
                             for order in softwareListDetails
-                                if (order.status == 3)
-                                    if (typeof (order.proc) !== 'undefined')
-                                        .row
-                                            .col-md-6
-                                                if (order.proc == 1)
-                                                    i Ordentliches Verfahren (OV)
-                                                else if (order.proc == 2)
-                                                    i Vereinfachter Weg (VW)
+                                if (order.proc !== 0)
+                                    .row
+                                        .col-md-6
+                                            if (order.proc == 1)
+                                                i Ordentliches Verfahren (OV)
+                                            else if (order.proc == 2)
+                                                i Vereinfachter Weg (VW)
+                                            br
+                                            div
                                                 br
-
-                                                div
-
-                                                    if (order.ex1 == "OK")
-                                                        h4 Prüfer 1
-                                                        label
-                                                            | Ethisch OK
-                                                    else if (order.ex1 == "NOK")
-                                                        h4 Prüfer 1
-                                                        label
-                                                            | Ethisch NOK
+                                                if (order.ex1 == "OK")
+                                                    h4 Prüfer 1:
+                                                    h4
+                                                        | Ethisch OK
+                                                else if (order.ex1 == "NOK")
+                                                    h4 Prüfer 1
+                                                    h4
+                                                        | Ethisch NOK
+                                                br
+                                                if (order.ex2 == "OK")
+                                                    h4 Prüfer 1
+                                                    h4
+                                                        | Ethisch OK
                                                     br
-                                                    if (order.ex2 == "OK")
-                                                        h4 Prüfer 1
-                                                        label
-                                                            | Ethisch OK
-                                                    else if (order.ex2 == "NOK")
-                                                        h4 Prüfer 1
-                                                        label
-                                                            | Ethisch NOK
+                                                else if (order.ex2 == "NOK")
+                                                    h4 Prüfer 1
+                                                    h4
+                                                        | Ethisch NOK
                                 if (order.comments !== 'undefined') && ((order.comments).length)
                                     label(for='form-function')
                                         | Notizen zum Antrag (vertraulich)

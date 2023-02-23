@@ -105,6 +105,7 @@ module.exports = function (models) {
             let ordercurrent;
             let anredeMail;
             let ex1;
+            let ex2;
             if (url=="/submit-form"){
                 if (adminlog==true){
                     sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") OR (email <> "'+obj_user.mail+'" AND status <> 10) ORDER BY applicationid DESC';
@@ -112,7 +113,7 @@ module.exports = function (models) {
                 else{
                     sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
                 }
-                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, signature, dateapp, deadline, comments, status, orderstatus, proc, ex1) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'", "'+proc+'", "")';
+                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, signature, dateapp, deadline, comments, status, orderstatus, proc, ex1, ex2) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'", "'+proc+'", "", "")';
                connection.query(""+sql2+"",
                     (err, rows) => {
                         //  connection.release() // return the connection to pool
@@ -225,7 +226,8 @@ module.exports = function (models) {
                                             'comments': rows[i].comments,
                                             'status': statuscurrent,
                                             'proc': proc,
-                                            'ex1': rows[i].ex1
+                                            'ex1': rows[i].ex1,
+                                            'ex2': rows[i].ex2
                                         }
                                         // Add object into array
                                         softwareList.push(order);
@@ -338,7 +340,7 @@ module.exports = function (models) {
                                         statuscurrent = 'Antrag bei Gremium';
                                         break;
                                     case 4:
-                                        statuscurrent = 'Antrag genehmigt';
+                                        statuscurrent = 'Antrag bewilligt';
                                         break;
                                     case 5:
                                         statuscurrent = 'Antrag abgelehnt';
@@ -346,7 +348,7 @@ module.exports = function (models) {
                                 }
                                 switch (rows[i].orderstatus) {
                                     case 1:
-                                        statuscurrent = 'Antrag genehmigt';
+                                        statuscurrent = 'Antrag bewilligt';
                                         break;
                                     case 2:
                                         statuscurrent = 'Antrag abgelehnt';
@@ -355,10 +357,10 @@ module.exports = function (models) {
                                         ordercurrent = 'Antrag zu Gremium';
                                         break;
                                     case 4:
-                                        statuscurrent = 'Antrag vom Gremium genehmigt';
+                                        statuscurrent = 'Antrag bewilligt';
                                         break;
                                     case 5:
-                                        statuscurrent = 'Antrag vom Gremium abgelehnt';
+                                        statuscurrent = 'Antrag abgelehnt';
                                         break;
                                 }
                                 let order = {

@@ -1745,7 +1745,8 @@ script(type='text/javascript').
         });
         $(".submitformbtnaction").on("click", function (event) {
             event.stopPropagation();
-         //   $("#headingThree").removeClass('required-header');
+
+            $("#headingThree").removeClass('required-header');
             $("#accordionForm").find(".accordion-item").each(function () {
                 $(this).find("input, textarea, select").filter('[required]').each(function () {
                     if (($(this).val() == " ") || ($(this).val() == null) || ($.trim($(this).val()).length == 0)) {
@@ -1753,28 +1754,37 @@ script(type='text/javascript').
                         current.addClass('required-header');
                         return false;
                     }
-                    if (($("input[name='softwareupdate']:checked").length !== 0)) {
-                        $('#headingThree').removeClass('required-header');
-                    }
-                    if (($("input[name='browser']:checked").length == 0)) {
-                        $("input[name='browser']").closest(".accordion-collapse").prev().addClass('required-header');
-                    } else if (($("input[name='softwareupdate']:checked").length == 0)) {
-                        $("input[name='softwareupdate']").closest(".accordion-collapse").prev().addClass('required-header');
-                        $('#headingThree').removeClass('required-header');
-                    } else if (($("input[name='softwareinstitut']:checked").length == 0)) {
-                        $("input[name='softwareinstitut']").closest(".accordion-collapse").prev().addClass('required-header');
-                        $('#headingThree').removeClass('required-header');
-                    } else if (($("input[name='softwarehochschinteresse']:checked").length == 0)) {
-                        $("input[name='softwarehochschinteresse']").closest(".accordion-collapse").prev().addClass('required-header');
-                        $('#headingThree').removeClass('required-header');
-                    } else if (($("input[name='cloud']:checked").length == 0)) {
-                        $("input[name='cloud']").closest(".accordion-collapse").prev().addClass('required-header');
-                        $('#headingThree').removeClass('required-header');
-                    } else {
-                        let current = $(this).closest(".accordion-collapse").prev().eq(0);
-                        current.removeClass('required-header');
-                        return true;
-                    }
+
+                        if( $('anonymized').is(':checked') ){
+                             $('#headingFive').removeClass('required-header');
+                         }
+                    else {
+                            let current = $(this).closest(".accordion-collapse").prev().eq(0);
+                            current.removeClass('required-header');
+                            return true;
+                        }
+                    // if (($("input[name='softwareupdate']:checked").length !== 0)) {
+                    //     $('#headingThree').removeClass('required-header');
+                    // }
+                    // if (($("input[name='browser']:checked").length == 0)) {
+                    //     $("input[name='browser']").closest(".accordion-collapse").prev().addClass('required-header');
+                    // } else if (($("input[name='softwareupdate']:checked").length == 0)) {
+                    //     $("input[name='softwareupdate']").closest(".accordion-collapse").prev().addClass('required-header');
+                    //     $('#headingThree').removeClass('required-header');
+                    // } else if (($("input[name='softwareinstitut']:checked").length == 0)) {
+                    //     $("input[name='softwareinstitut']").closest(".accordion-collapse").prev().addClass('required-header');
+                    //     $('#headingThree').removeClass('required-header');
+                    // } else if (($("input[name='softwarehochschinteresse']:checked").length == 0)) {
+                    //     $("input[name='softwarehochschinteresse']").closest(".accordion-collapse").prev().addClass('required-header');
+                    //     $('#headingThree').removeClass('required-header');
+                    // } else if (($("input[name='cloud']:checked").length == 0)) {
+                    //     $("input[name='cloud']").closest(".accordion-collapse").prev().addClass('required-header');
+                    //     $('#headingThree').removeClass('required-header');
+                    // } else {
+                    //     let current = $(this).closest(".accordion-collapse").prev().eq(0);
+                    //     current.removeClass('required-header');
+                    //     return true;
+                    // }
                 });
             });
             formsubmit = true;
@@ -1782,7 +1792,7 @@ script(type='text/javascript').
                 (function () {
                     'use strict'
                     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-               //     var forms = document.querySelectorAll('.needs-validation')
+                    var forms = document.querySelectorAll('.needs-validation')
                     // Loop over them and prevent submission
                     Array.prototype.slice.call(forms)
                         .forEach(function (form) {
@@ -1791,15 +1801,14 @@ script(type='text/javascript').
                                     event.preventDefault()
                                     event.stopPropagation()
                                 }
-                          //      form.classList.add('was-validated')
+                               form.classList.add('was-validated')
                             }, false)
                         })
                 })()
                 formsubmit = false;
             }
         })
-        $('.datepicker').datepicker(
-        );
+        $('.datepicker').datepicker();
         $('.accordion-collapse').on('shown.bs.collapse', function (e) {
             var $panel = $(this).closest('.accordion-item');
             let offset;

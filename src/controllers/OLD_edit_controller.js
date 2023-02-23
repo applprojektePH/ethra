@@ -103,7 +103,8 @@ module.exports = function (models) {
                             'comments': rows[i].comments,
                             'status':rows[i].status,
                             'proc':rows[i].proc,
-                            'ex1':rows[i].ex1
+                            'ex1':rows[i].ex1,
+                            'ex2':rows[i].ex2
                         }
                         // Add object into array
                         softwareListDetails.push(order);

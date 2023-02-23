@@ -125,7 +125,8 @@ module.exports = function (models) {
 							'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
 							'status': rows[i].status,
 							'proc': rows[i].proc,
-							'ex1': (rows[i].ex1 === "undefined" ? " " : rows[i].ex1)
+							'ex1': (rows[i].ex1 === "undefined" ? " " : rows[i].ex1),
+							'ex2': (rows[i].ex2 === "undefined" ? " " : rows[i].ex2)
 						}
 						// Add object into array
 						title = rows[i].title;
