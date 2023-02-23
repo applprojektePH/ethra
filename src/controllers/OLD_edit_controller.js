@@ -102,7 +102,8 @@ module.exports = function (models) {
                             'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': rows[i].comments,
                             'status':rows[i].status,
-                            'proc':rows[i].proc
+                            'proc':rows[i].proc,
+                            'ex1':rows[i].ex1
                         }
                         // Add object into array
                         softwareListDetails.push(order);

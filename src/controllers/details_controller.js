@@ -46,6 +46,7 @@ module.exports = function (models) {
         let statuscurrent;
         let anredeMail;
         let proc;
+        let ex1;
 
         if(reqBody !=='undefined'){
            statuschange = reqBody.statuschange;
@@ -185,7 +186,8 @@ module.exports = function (models) {
                             'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
                             'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
                             'status': rows[i].status,
-                            'proc': rows[i].proc
+                            'proc': rows[i].proc,
+                            'ex1': (rows[i].ex1 === "undefined" ? " " : rows[i].ex1),
                         }
                         // Add object into array
                         title = rows[i].title;
