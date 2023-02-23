@@ -110,10 +110,10 @@
                             .modal-header
                                 h5.modal-title Antrag bei Gremium
                             .modal-body
-                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
+                                button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Feedback abschicken
                                 for order in softwareListDetails
                                     span.inputHide
-                                        textarea.modalEmailTextarea#widgEditor(placeholder='EmailVorlage' rows='10')
+                                        textarea.modalEmailTextarea.widgEditor#modalEmailTextareaFeedback(placeholder='EmailVorlage' rows='10')
                                             | Guten Tag #{anredeMail} </br></br>Ihr Antrag #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=2, mailtype=2, orderstatus=0)
                                             | Email senden
@@ -145,7 +145,7 @@
                                 button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag überarbeiten
                                 for order in softwareListDetails
                                     span.inputHide
-                                        textarea.modalEmailTextarea.widgEditor#widgEditor(placeholder='EmailVorlage' rows='10')
+                                        textarea.modalEmailTextarea.widgEditor#modalEmailTextarea(placeholder='EmailVorlage' rows='10')
                                             | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft. Leider müssen wir Ihnen mitteilen </br>Begründung: </br></br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=10, mailtype=2, orderstatus=0, proc=0)
                                             | Email senden
@@ -157,7 +157,7 @@
                                 button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Antrag ablehnen
                                 for order in softwareListDetails
                                     span.inputHide
-                                        textarea.modalEmailTextarea#widgEditor(placeholder='EmailVorlage' rows='10')
+                                        textarea.modalEmailTextarea.widgEditor#modalEmailTextareaReject(placeholder='EmailVorlage' rows='10')
                                             | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=5, mailtype=2, orderstatus=5)
                                             | Email senden
@@ -196,29 +196,34 @@
                                             else if (order.proc == 2)
                                                 i Vereinfachter Weg (VW)
                                             br
-                                            div
-                                                br
-                                                if (order.ex1 == "OK")
-                                                    h4 Prüfer 1:
-                                                    h4
-                                                        | Ethisch OK
-                                                else if (order.ex1 == "NOK")
-                                                    h4 Prüfer 1
-                                                    h4
-                                                        | Ethisch NOK
-                                                br
-                                                if (order.ex2 == "OK")
-                                                    h4 Prüfer 1
-                                                    h4
-                                                        | Ethisch OK
+                                            if (order.ex1 !== null )
+                                                div
                                                     br
-                                                else if (order.ex2 == "NOK")
-                                                    h4 Prüfer 1
-                                                    h4
-                                                        | Ethisch NOK
+                                                    if (order.ex1 == "OK")
+                                                        h4 Prüfer 1:
+                                                        h4
+                                                            | Ethisch OK
+                                                    else if (order.ex1 == "NOK")
+                                                        h4 Prüfer 1
+                                                        h4
+                                                            | Ethisch NOK
+                                                    br
+                                                
+                                            if (order.ex2 !== null )
+                                                div
+                                                    if (order.ex2 == "OK")
+                                                        h4 Prüfer 1
+                                                        h4
+                                                            | Ethisch OK
+                                                        br
+                                                    else if (order.ex2 == "NOK")
+                                                        h4 Prüfer 1
+                                                        h4
+                                                            | Ethisch NOK
+                                                br
                                 if (order.comments !== 'undefined') && ((order.comments).length)
                                     label(for='form-function')
-                                        | Notizen zum Antrag (vertraulich)
+                                        | Notizen Verantwortlicher
                                     p= order.comments
                                 if (order.approvednr !== 'undefined') && ((order.approvednr).length)
                                     label Genehmigungs-Nummer:

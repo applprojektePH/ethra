@@ -127,7 +127,7 @@ $(document).ready(function () {
             const urlParams = new URLSearchParams(window.location.search);
             const currenturlParam = urlParams.get('tsid');
         setTimeout(function () {
-            document.title = "Antragsnr. "+currenturlParam;
+            document.title = "Antragsnr."+currenturlParam;
             window.frames["pdfframe"].contentWindow.print();
     }, 1300);
         });

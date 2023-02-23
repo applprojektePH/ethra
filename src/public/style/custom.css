@@ -890,9 +890,6 @@ table.dataTable tbody td:last-child, table.dataTable thead tr th:last-child {
         width: 25%;
     }
 }
-.progressbar li:last-child {
-    cursor: default;
-}
 .progressbar li:before {
     width: 30px;
     height: 30px;

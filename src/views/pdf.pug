@@ -23,7 +23,7 @@ div(id='wrapper-screen-pdf')
                                     for order in softwareListDetails
                                         if (order.comments !== 'undefined') && ((order.comments).length)
                                             label(style="font-weight: 700;")
-                                                | Notizen zum Antrag (vertraulich)
+                                                | Notizen Verantwortlicher
                                             p= order.comments
                                         if (order.approvednr !== 'undefined') && ((order.approvednr).length)
                                             label(style="font-weight: 700;")
@@ -222,9 +222,9 @@ div(id='wrapper-screen-pdf')
                                     label(style="font-weight: 700;")
                                         | b. Datum
                                     p= order.dateapp
-                                    p= order.signature
+                                    p
                                         i.fas.fa-file-download
                                         span &nbsp;
-                                        a(href=order.agreementfile) Unterschriftdatei herunterladen
+                                        a(href=order.signature) Unterschriftdatei herunterladen
                                 span(class='pdfSep')
 
