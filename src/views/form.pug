@@ -5,7 +5,7 @@ input#form-status-input.form-control.hidden(type='text' name='status')
         .col-md-6
             if (typeof (softwareListDetails) !== 'undefined')
                 for order in softwareListDetails
-                    if (order.application == "Singleantrag")
+                    if (order.application == "Einzelantrag")
                         div.custom-radio-wrapper(filled=order.application)
                             .custom-control.custom-radio
                                 input#customRadioDisabled01.custom-control-input(type='radio' name='application' value="Einzelantrag" required='' checked)
@@ -755,6 +755,8 @@ br
                                         span &nbsp;
                                         i.fas.fa-file-download
                                     input.form-control(type='file' name="fileagreementfile")
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='agreementfile' value="" + order.agreementfile)
                                 br
                                 .custom-control.custom-radio
@@ -1233,7 +1235,7 @@ br
                                     .card.card-body
                                         input#form-safety.form-control(type='text' name="experiencetext" placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein" required='')
+                                    input#customRadioDisabled28.custom-control-input(type='radio' name='experience' value="Nein")
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled28' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
@@ -1316,11 +1318,11 @@ br
                                 div.custom-radio-wrapper(filled=order.observation)
                                     .custom-control.custom-radio
                                         input#customRadioDisabled31.custom-control-input(type='radio' name='observation' value="Ja" required='' checked)
-                                        label.custom-control-label(for='customRadioDisabled25') Ja
+                                        label.custom-control-label(for='customRadioDisabled31') Ja
 
                                     .custom-control.custom-radio
                                         input#customRadioDisabled32.custom-control-input(type='radio' name='observation' value="Nein" required='')
-                                        label.custom-control-label(for='customRadioDisabled26') Nein
+                                        label.custom-control-label(for='customRadioDisabled32') Nein
                                         .invalid-feedback
                                             | Pflichtfeld
                             else if (order.observation == "Nein")
@@ -1369,21 +1371,21 @@ br
                                     div.custom-radio-wrapper(filled=order.anonymized)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled35' ) Ja
+                                            label.custom-control-label(for='customRadioDisabled35') Ja
 
                                         .custom-control.custom-radio
-                                            input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='')
-                                            label.custom-control-label(for='customRadioDisabled36' ) Nein
+                                            input#customRadioDisabled32.custom-control-input(type='radio' name='anonymized' value="Nein" required='')
+                                            label.custom-control-label(for='customRadioDisabled36') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
-                                else if (order.anonymized == "Nein")
+                                else if (order.observation == "Nein")
                                     div.custom-radio-wrapper(filled=order.anonymized)
                                         .custom-control.custom-radio
                                             input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='' )
-                                            label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
+                                            label.custom-control-label(for='customRadioDisabled35') Ja
                                         .custom-control.custom-radio
                                             input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='' checked)
-                                            label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
+                                            label.custom-control-label(for='customRadioDisabled36') Nein
                                             .invalid-feedback
                                                 | Pflichtfeld
 
@@ -1391,9 +1393,6 @@ br
                                     .custom-control.custom-radio
                                         input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='')
                                         label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
-                                        .collapse.inputHide
-                                            .card.card-body
-                                                input#form-safety.form-control(type='text' name="anonymized")
                                     .custom-control.custom-radio
                                         input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='')
                                         label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
@@ -1403,10 +1402,10 @@ br
                         else
                             .custom-control.custom-radio
                                 input#customRadioDisabled35.custom-control-input(type='radio' name='anonymized' value="Ja" required='')
-                                label.custom-control-label(for='customRadioDisabled35' answer='open') Ja
+                                label.custom-control-label(for='customRadioDisabled35') Ja
                             .custom-control.custom-radio
                                 input#customRadioDisabled36.custom-control-input(type='radio' name='anonymized' value="Nein" required='')
-                                label.custom-control-label(for='customRadioDisabled36' answer='Nein') Nein
+                                label.custom-control-label(for='customRadioDisabled36') Nein
                                 .invalid-feedback
                                     | Pflichtfeld
                         br
