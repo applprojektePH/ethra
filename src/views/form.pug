@@ -410,9 +410,13 @@ br
                                             span &nbsp;
                                             i.fas.fa-file-download
                                         input.form-control(type='file' name="fileinformedbefore")
+                                        .invalid-feedback-file.hidden
+                                            | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                         input.form-control.hidden(type='text' name='informedbefore' value="" + order.informedbefore)
                                 else
                                     input.form-control(type='file' required='' name='informedbefore' id="fileInput")
+                                .invalid-feedback-file.hidden
+                                    | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                 .invalid-feedback
                                     | Pflichtfeld
                                 br
@@ -430,9 +434,13 @@ br
                                             span &nbsp;
                                             i.fas.fa-file-download
                                         input.form-control(type='file' name="fileexecution")
+                                        .invalid-feedback-file.hidden
+                                            | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                         input.form-control.hidden(type='text' name='execution' value="" + order.execution)
                                 else
                                     input.form-control(type='file' required='' name='execution' id="fileInput")
+                                .invalid-feedback-file.hidden
+                                    | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                 .invalid-feedback
                                     | Pflichtfeld
                                 br
@@ -450,9 +458,13 @@ br
                                             span &nbsp;
                                             i.fas.fa-file-download
                                         input.form-control(type='file' name="fileinstructions")
+                                        .invalid-feedback-file.hidden
+                                            | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                         input.form-control.hidden(type='text' name='instructions' value="" + order.instructions)
                                 else
                                     input#form-softwareversion.form-control(type='file' required='' name='instructions')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                 .invalid-feedback
                                     | Pflichtfeld
                                 br
@@ -470,9 +482,13 @@ br
                                             span &nbsp;
                                             i.fas.fa-file-download
                                         input.form-control(type='file' name="fileinformedafter")
+                                        .invalid-feedback-file.hidden
+                                            | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                         input.form-control.hidden(type='text' name='informedafter' value="" + order.informedafter)
                                 else
                                     input#form-softwareversion.form-control(type='file' required='' name='informedafter')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                 .invalid-feedback
                                     | Pflichtfeld
                         br
@@ -568,6 +584,8 @@ br
                                                 span &nbsp;
                                                 i.fas.fa-file-download
                                             input.form-control(type='file' name="filevoluntaryfile")
+                                            .invalid-feedback-file.hidden
+                                                | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                             input.form-control.hidden(type='text' name='voluntaryfile' value="" + order.voluntaryfile)
                                         br
                                         .custom-control.custom-radio
@@ -580,6 +598,8 @@ br
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
                                         .card.card-body
                                             input#form-softwareversion.form-control(type='file' name='voluntaryfile')
+                                            .invalid-feedback-file.hidden
+                                                | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                         .custom-control.custom-radio
                                             input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
@@ -592,6 +612,8 @@ br
                                             small
                                                 | Bitte Einverständniserklärung einreichen.
                                             input.form-control(type='file' name="filevoluntaryfile")
+                                            .invalid-feedback-file.hidden
+                                                | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                             input.form-control.hidden(type='text' name='voluntaryfile' value="" + order.voluntaryfile)
                                     .custom-control.custom-radio
                                         input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
@@ -608,6 +630,8 @@ br
                                     small
                                         | Bitte Einverständniserklärung einreichen.
                                     input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                             .custom-control.custom-radio
                                 input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='')
                                 label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
@@ -745,6 +769,8 @@ br
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled15' answer='open') Ja
                                 .collapse.inputHide.card.card-body
                                     input.form-control(type='file' name="fileagreementfile")
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='agreementfile' value="" + order.agreementfile)
                                 .custom-control.custom-radio
                                     input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='' checked)
@@ -764,6 +790,8 @@ br
                                     .row
                                         .col-md-6.fields
                                             input.form-control(type='file' name="agreementfile")
+                                            .invalid-feedback-file.hidden
+                                                | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                             input.form-control.hidden(type='text' name='agreementfile')
                             .custom-control.custom-radio
                                 input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
@@ -782,6 +810,8 @@ br
                             .row
                                 .col-md-6.fields
                                     input#form-softwareversion.form-control(type='file' required='' name='agreementfile')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                     .custom-control.custom-radio
                         input#customRadioDisabled16.custom-control-input(type='radio' name='agreement' value="Nein" required='')
                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled16' answer='Nein') Nein
@@ -862,6 +892,8 @@ br
                                         small
                                             | Bitte allfällige Versicherungsunterlagen beifügen.
                                         input.form-control(type='file' name="fileriskfile")
+                                        .invalid-feedback-file.hidden
+                                            | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                         input.form-control.hidden(type='text' name='riskfile' value="" + order.riskfile)
                                 br
                                 .custom-control.custom-radio
@@ -880,6 +912,8 @@ br
                                     small
                                         | Bitte allfällige Versicherungsunterlagen beifügen.
                                     input.form-control(type='file' name='fileriskfile')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='riskfile' value="" + order.riskfile)
                                 .custom-control.custom-radio
                                     input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='' checked)
@@ -898,6 +932,8 @@ br
                                     small
                                         | Bitte allfällige Versicherungsunterlagen beifügen.
                                     input.form-control(type='file' required='' name='fileriskfile')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='riskfile' value="" + order.riskfile)
                             .custom-control.custom-radio
                                 input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
@@ -916,6 +952,8 @@ br
                             small
                                 | Bitte allfällige Versicherungsunterlagen beifügen.
                             input#form-softwareversion.form-control(type='file' required='' name='riskfile')
+                            .invalid-feedback-file.hidden
+                                | Nur .docx, .pdf, .odt, .png, .jpeg, .jpg, .bmp Formate sind erlaubt
 
                     .custom-control.custom-radio
                         input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='')
@@ -1599,12 +1637,12 @@ br
                                         | Datei ändern
                                     input.form-control(type='file' name='filesignature')
                                     .invalid-feedback-file.hidden
-                                        | Nur .png, .jpeg, .jpg, .bmp, .pdf Formate sind erlaubt
+                                        | Nur .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='signature' value="" + order.signature)
                                 else
                                     input.form-control(type='file' name='filesignature')
                                     .invalid-feedback-file.hidden
-                                        | Nur .png, .jpeg, .jpg, .bmp, .pdf Formate sind erlaubt
+                                        | Nur .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='signature' value="" + order.signature)
                                     .invalid-feedback
                                         | Pflichtfeld
@@ -1614,7 +1652,7 @@ br
                                 | Bitte Bilddatei hochladen
                             input.form-control(type='file' required='' name='signature')
                             .invalid-feedback-file.hidden
-                                | Nur .png, .jpeg, .jpg, .bmp, .pdf Formate sind erlaubt
+                                | Nur .png, .jpeg, .jpg, .bmp Formate sind erlaubt
                             .invalid-feedback
                                 | Pflichtfeld
 
@@ -1625,15 +1663,22 @@ script(type='text/javascript' src="./static/js/validator.js")
 script(type='text/javascript').
     $(document).ready(function () {
         $("input[type='file']").change(function (event) {
-            var fileExtension = ['jpeg', 'jpg', 'png', 'bmp'];
+            let fileExtension;
+            if ($(this).attr('name') === 'filesignature'){
+                 fileExtension = ['jpeg', 'jpg', 'png', 'bmp'];
+            }
+           else{
+                fileExtension = ['jpeg', 'jpg', 'png', 'bmp', 'docx', 'pdf'];
+            }
             if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
                 $(this).next('.invalid-feedback-file').removeClass('hidden');
                 $(this).attr('required', true);
                 let current = $(this).closest(".accordion-collapse").prev().eq(0);
                 current.addClass('required-header');
-
+                $('form :submit').attr("disabled", "disabled");
             }
             else{
+                $('.submitformbtnaction').prop('disabled', false);
                 event.preventDefault();
                 $(this).next('.invalid-feedback-file').addClass('hidden');
                 let current = $(this).closest(".accordion-collapse").prev().eq(0);
@@ -1783,13 +1828,13 @@ script(type='text/javascript').
                         current.addClass('required-header');
                         return false;
                     }
-        $(this).find("input").filter('[file]').each(function () {
-            if ($(this).val() !== "8.pdf") {
-                let current = $(this).closest(".accordion-collapse").prev().eq(0);
-                current.addClass('required-header');
-                return false;
-        }
-        })
+        // $(this).find("input").filter('[file]').each(function () {
+        //     if ($(this).val() !== "8.pdf") {
+        //         let current = $(this).closest(".accordion-collapse").prev().eq(0);
+        //         current.addClass('required-header');
+        //         return false;
+        // }
+        // })
 
                         if( $('anonymized').is(':checked') ){
                              $('#headingFive').removeClass('required-header');
