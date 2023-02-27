@@ -1629,9 +1629,12 @@ br
                             for order in softwareListDetails
 
                                 if (order.signature !== "")
-                                    a(name="agreementfile" href="static/uploads/" + order.signature target="_blank")= order.signature
-                                    span &nbsp;
+                                    img(src="static/uploads/" + order.signature style="width:300px; height:300px;")
+                                    br
                                     i.fas.fa-file-download
+                                        span &nbsp;
+                                    small
+                                        a(href="static/uploads/" + order.signature target="_blank") Unterschriftdatei herunterladen
                                     br
                                     small
                                         | Datei ändern

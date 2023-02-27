@@ -223,8 +223,11 @@ div(id='wrapper-screen-pdf')
                                         | b. Datum
                                     p= order.dateapp
                                     p
+                                        img(src="static/uploads/" + order.signature style="width:300px; height:300px;")
+                                        br
                                         i.fas.fa-file-download
-                                        span &nbsp;
-                                        a(href=order.signature) Unterschriftdatei herunterladen
+                                                span &nbsp;
+                                        small
+                                                a(href="static/uploads/" + order.signature target="_blank") Unterschriftdatei herunterladen
                                 span(class='pdfSep')
 
