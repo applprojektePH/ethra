@@ -122,6 +122,8 @@ module.exports = function (models) {
 							'dateapp': (rows[i].dateapp === "undefined" ? " " : rows[i].dateapp),
 							'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
 							'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
+							'commentex1': (rows[i].commentex1 === "undefined" ? " " : rows[i].commentex1),
+							'commentex2': (rows[i].commentex2 === "undefined" ? " " : rows[i].commentex2),
 							'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
 							'status': rows[i].status,
 							'proc': rows[i].proc,

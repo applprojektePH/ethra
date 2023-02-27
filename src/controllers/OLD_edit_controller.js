@@ -101,6 +101,8 @@ module.exports = function (models) {
                             'dateapp': rows[i].dateapp,
                             'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': rows[i].comments,
+                            'commentex1': rows[i].commentex1,
+                            'commentex2': rows[i].commentex2,
                             'status':rows[i].status,
                             'proc':rows[i].proc,
                             'ex1':rows[i].ex1,

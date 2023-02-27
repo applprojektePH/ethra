@@ -20,10 +20,15 @@ module.exports = function (models) {
         /* USER start */
         let obj_user = {};
         let adminlog;
+        let commissionarr = {};
         req.rawHeaders.forEach(function (val, i) {
             if (i % 2 === 1) return;
             obj_user[val] = req.rawHeaders[i + 1];
         });
+        LOGIN.commission.forEach(function (val, i) {
+            commissionarr[i] = LOGIN.commission[i];
+        });
+
         JSON.stringify(obj_user);
         adminlog = LOGIN.admins.includes("alesya.heymann@fhnw.ch")
 
@@ -48,7 +53,10 @@ module.exports = function (models) {
         let proc;
         let ex1;
         let ex2;
-
+        let multiplecheckarr = reqBody.multiplecheckarr;
+        if((multiplecheckarr !==undefined) ){
+            console.log('m' + multiplecheckarr);
+        }
         if(reqBody !=='undefined'){
            statuschange = reqBody.statuschange;
            mailtext = reqBody.mailtext;
@@ -185,6 +193,8 @@ module.exports = function (models) {
                             'dateapp': (rows[i].dateapp === "undefined" ? " " : rows[i].dateapp),
                             'deadline': (rows[i].deadline === "undefined" ? " " : rows[i].deadline),
                             'comments': (rows[i].comments === "undefined" ? " " : rows[i].comments),
+                            'commentex1': (rows[i].commentex1 === "undefined" ? " " : rows[i].commentex1),
+                            'commentex2': (rows[i].commentex2 === "undefined" ? " " : rows[i].commentex2),
                             'orderstatus': (rows[i].orderstatus === "undefined" ? " " : rows[i].orderstatus),
                             'status': rows[i].status,
                             'proc': rows[i].proc,
@@ -297,6 +307,70 @@ module.exports = function (models) {
                         transport2.close();
                     });
                 }
+                if ((mailtype == 2) && (typeof statuschange != 'undefined') && (typeof email != 'undefined')) {
+                    let transport2 = nodemailer.createTransport({
+                        host: "lmailer.fhnw.ch",
+                        secure: false, // use SSL
+                        port: 25,
+                        tls: {
+                            rejectUnauthorized: false
+                        }
+                    });
+                    let messageSender2 = {
+                        // sender info
+                        from: 'Ethra Mailtype2 <alesya.heymann@fhnw.ch>',
+                        // Comma separated list of recipients
+                        to: email, //NICHT ABÄNDERN EMAILm //Hier kommt Kommisions Liste
+                        bcc: 'alesya.heymann@fhnw.ch',
+                        // Subject of the message
+                        subject: 'Ethra: Antrag Nummer #' + applicationid + '',
+                        // plaintext body
+                        text: mailtext,
+                        // HTML body
+                        html: '' + mailtext
+                    };
+                    transport2.sendMail(messageSender2, function (error) {
+                        if (error) {
+                            console.log('Error occured');
+                            console.log(error.message);
+                            return;
+                        }
+                        transport2.close();
+                    });
+                }
+                if ((mailtype == 3) && (typeof statuschange != 'undefined') && (typeof email != 'undefined')) {
+
+                        let transport3 = nodemailer.createTransport({
+                            host: "lmailer.fhnw.ch",
+                            secure: false, // use SSL
+                            port: 25,
+                            tls: {
+                                rejectUnauthorized: false
+                            }
+                        });
+
+                        let messageSender3 = {
+                            // sender info
+                            from: 'Ethra Mailtype3 <alesya.heymann@fhnw.ch>',
+                            // Comma separated list of recipients
+                            to: multiplecheckarr, //Hier kommt Kommisions Liste
+                            // Subject of the message
+                            subject: 'Ethra: Antrag Nummer #' + applicationid + '',
+                            // plaintext body
+                            text: mailtext,
+                            // HTML body
+                            html: '' + mailtext
+                        };
+                        transport3.sendMail(messageSender3, function (error) {
+                            if (error) {
+                                console.log('Error occured');
+                                console.log(error.message);
+                                return;
+                            }
+                            transport3.close();
+                        });
+
+                }
             })
 
             setTimeout(
@@ -309,7 +383,9 @@ module.exports = function (models) {
                         "nachnamelog": decodeURIComponent("Muster"),
                         "anredeMail": anredeMail,
                         "admin": adminlog,
-                        "applicationid": applicationid
+                        "applicationid": applicationid,
+                        "commissionarr": commissionarr
+
                     });
                 }, 500);
 

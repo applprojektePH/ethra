@@ -50,12 +50,22 @@ html(lang="en")
                                                                 br
                                                         else
                                                             .custom-control.custom-radio
-                                                                input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" required='')
+                                                                input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK")
                                                                 label.custom-control-label(for='customRadioEx1') Ethisch OK
                                                             .custom-control.custom-radio
-                                                                input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" required='')
+                                                                input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK")
                                                                 label.custom-control-label(for='customRadioEx2') Ethisch NOK
                                                             br
+                                                          
+                                                        if (typeof (softwareListDetails) !== 'undefined')
+                                                            for order in softwareListDetails
+                                                                if (order.commentex1 !== 'undefined')
+                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 1
+                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
+                                                                        | #{order.commentex1}
+                                                                else
+                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 1
+                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
                                                 if (order.ex2 !== null )
                                                     div
                                                         br
@@ -87,6 +97,17 @@ html(lang="en")
                                                                 input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" )
                                                                 label.custom-control-label(for='customRadioEx4') Ethisch NOK
                                                             br
+
+                                                        if (typeof (softwareListDetails) !== 'undefined')
+                                                            for order in softwareListDetails
+                                                                if (order.commentex2 !== 'undefined')
+                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 2
+                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
+                                                                        | #{order.commentex2}
+                                                                else
+                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 2
+                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
+                                                        br
 
 
                                 if (admin == true)

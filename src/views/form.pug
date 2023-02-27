@@ -315,8 +315,9 @@ br
                                                     .custom-control.custom-radio
                                                         input#customRadioDisabled3.custom-control-input(type='radio' name='registration' value="Ja" required='' )
                                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled3' answer='open') Ja
-                                                    .card.card-body
-                                                        input#form-safety.form-control(type='text' name="registrationtext" value=order.registrationtext)
+                                                    .collapse.inputHide
+                                                        .card.card-body
+                                                            input#form-safety.form-control(type='text' name="registrationtext" value=order.registrationtext)
                                                     .custom-control.custom-radio
                                                         input#customRadioDisabled4.custom-control-input(type='radio' name='registration' value="Nein" required='' checked)
                                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled4' answer='Nein') Nein
@@ -507,6 +508,7 @@ br
                                     .collapse.inputHide
                                         .card.card-body
                                             input#form-safety.form-control(type='text' name="compensationtext")
+                                            |mwjhds
                                     .custom-control.custom-radio
                                         input#customRadioDisabled6.custom-control-input(type='radio' name='compensation' value="Nein" required='' checked)
                                         label.custom-control-label.custom-control-label-js(for='customRadioDisabled6' answer='Nein') Nein
@@ -577,7 +579,7 @@ br
                                             input#customRadioDisabled9.custom-control-input(type='radio' name='voluntary' value="Ja" required='' )
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled9' answer='open') Ja
                                         .card.card-body
-                                            input#form-softwareversion.form-control(type='file' required='' name='voluntaryfile')
+                                            input#form-softwareversion.form-control(type='file' name='voluntaryfile')
                                         .custom-control.custom-radio
                                             input#customRadioDisabled10.custom-control-input(type='radio' name='voluntary' value="Nein" required='' checked)
                                             label.custom-control-label.custom-control-label-js(for='customRadioDisabled10' answer='Nein') Nein
@@ -877,7 +879,7 @@ br
                                     br
                                     small
                                         | Bitte allfällige Versicherungsunterlagen beifügen.
-                                    input.form-control(type='file' required='' name='fileriskfile')
+                                    input.form-control(type='file' name='fileriskfile')
                                     input.form-control.hidden(type='text' name='riskfile' value="" + order.riskfile)
                                 .custom-control.custom-radio
                                     input#customRadioDisabled20.custom-control-input(type='radio' name='risk' value="Nein" required='' checked)
@@ -1024,7 +1026,7 @@ br
                                     .card.card-body
                                         input#form-safety.form-control(type='text' name="mentalintegritytext" placeholder="Bitte erläutern: ")
                                 .custom-control.custom-radio
-                                    input#customRadioDisabled22.custom-control-input(type='radio' name='affected' value="Nein" required='')
+                                    input#customRadioDisabled22.custom-control-input(type='radio' name='mentalintegrity' value="Nein" required='')
                                     label.custom-control-label.custom-control-label-js(for='customRadioDisabled22' answer='Nein') Nein
                                     .invalid-feedback
                                         | Pflichtfeld
@@ -1596,16 +1598,26 @@ br
                                     small
                                         | Datei ändern
                                     input.form-control(type='file' name='filesignature')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .png, .jpeg, .jpg, .bmp, .pdf Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='signature' value="" + order.signature)
                                 else
                                     input.form-control(type='file' name='filesignature')
+                                    .invalid-feedback-file.hidden
+                                        | Nur .png, .jpeg, .jpg, .bmp, .pdf Formate sind erlaubt
                                     input.form-control.hidden(type='text' name='signature' value="" + order.signature)
+                                    .invalid-feedback
+                                        | Pflichtfeld
+
                         else
                             small
                                 | Bitte Bilddatei hochladen
                             input.form-control(type='file' required='' name='signature')
+                            .invalid-feedback-file.hidden
+                                | Nur .png, .jpeg, .jpg, .bmp, .pdf Formate sind erlaubt
                             .invalid-feedback
                                 | Pflichtfeld
+
                         br
 
 script(type='text/javascript' src="./static/js/libs/jquery.js")
@@ -1613,24 +1625,38 @@ script(type='text/javascript' src="./static/js/validator.js")
 script(type='text/javascript').
     $(document).ready(function () {
         $("input[type='file']").change(function (event) {
-            event.preventDefault();
-            let form = $("#formOrder")[0];
-            let formData = new FormData(form);
-            if ($(this).next('input').length) {
-                let filename = $(this).prop('files')[0].name;
-                $(this).next().val(filename);
+            var fileExtension = ['jpeg', 'jpg', 'png', 'bmp'];
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                $(this).next('.invalid-feedback-file').removeClass('hidden');
+                $(this).attr('required', true);
+                let current = $(this).closest(".accordion-collapse").prev().eq(0);
+                current.addClass('required-header');
+
             }
-            $.ajax({
-                type: "POST",
-                url: "stats/",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (r) {
-                },
-                error: function (e) {
+            else{
+                event.preventDefault();
+                $(this).next('.invalid-feedback-file').addClass('hidden');
+                let current = $(this).closest(".accordion-collapse").prev().eq(0);
+                current.removeClass('required-header');
+                let form = $("#formOrder")[0];
+                let formData = new FormData(form);
+                if ($(this).next().next('input').length) {
+                    let filename = $(this).prop('files')[0].name;
+                    $(this).next().next().val(filename);
                 }
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "stats/",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (r) {
+                    },
+                    error: function (e) {
+                    }
+                });
+            }
+
         })
 
         if (window.location.href.indexOf("form") > -1) {
@@ -1697,9 +1723,12 @@ script(type='text/javascript').
 
             if ($(this).attr('answer') == "open") {
                 $(this).closest(".custom-control").next(".inputHide").delay(300).slideDown("slow");
+                $(this).closest(".custom-control").next(".inputHide").find("input").attr('required', true);
             } else {
                 $(this).closest(".custom-control").prev(".inputHide").delay(300).slideUp("slow");
+                $(this).closest(".custom-control").prev(".inputHide").find("input").removeAttr('required');
             }
+
         });
         // $(".custom-control-label-js2").click(function () {
         //     if ($(this).attr('answer') == "open") {
@@ -1745,8 +1774,8 @@ script(type='text/javascript').
         });
         $(".submitformbtnaction").on("click", function (event) {
             event.stopPropagation();
+           // $("#headingThree").removeClass('required-header');
 
-            $("#headingThree").removeClass('required-header');
             $("#accordionForm").find(".accordion-item").each(function () {
                 $(this).find("input, textarea, select").filter('[required]').each(function () {
                     if (($(this).val() == " ") || ($(this).val() == null) || ($.trim($(this).val()).length == 0)) {
@@ -1754,11 +1783,18 @@ script(type='text/javascript').
                         current.addClass('required-header');
                         return false;
                     }
+        $(this).find("input").filter('[file]').each(function () {
+            if ($(this).val() !== "8.pdf") {
+                let current = $(this).closest(".accordion-collapse").prev().eq(0);
+                current.addClass('required-header');
+                return false;
+        }
+        })
 
                         if( $('anonymized').is(':checked') ){
                              $('#headingFive').removeClass('required-header');
                          }
-                    else {
+                        else {
                             let current = $(this).closest(".accordion-collapse").prev().eq(0);
                             current.removeClass('required-header');
                             return true;

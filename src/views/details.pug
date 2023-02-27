@@ -60,26 +60,22 @@
                                         span.inputHide
                                             br
                                             div.row
-                                                div.col-md-6
+                                                div.col-md-12
                                                     .multiselect
                                                         .selectBox
                                                             select
-                                                                option E-Mail wählen
+                                                                option E-Mail-Adresse wählen
                                                             .overSelect
                                                         div#checkboxes
-                                                            label(for='one')
-                                                                input#one(type='checkbox')
-                                                                |  First checkbox
-                                                            label(for='two')
-                                                                input#two(type='checkbox')
-                                                                |  Second checkbox
-                                                            label(for='three')
-                                                                input#three(type='checkbox')
-                                                                |  Third checkbox
+                                                            for mail in commissionarr
+                                                                label(for='' + mail)
+                                                                    input.multiplecheck(id='' + mail type='checkbox')
+                                                                    |&nbsp;
+                                                                    =mail
                                             textarea.modalEmailTextarea#modalEmailTextarea1.widgEditor(placeholder='EmailVorlage' rows='10')
                                                 | Guten Tag </br>
                                                 | Hier kommt OV</br></br>Freundliche Grüsse</br> Ihr .. Team</br> n|w
-                                            a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3, proc=1)
+                                            a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=3, orderstatus=3, proc=1)
                                                 | Email senden
                                             button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
                                             p.hidden.green Ihr E-Mail wurde erfolgreich an Benutzer verschickt
@@ -91,7 +87,7 @@
                                             span.inputHide
                                                 textarea.modalEmailTextarea#modalEmailTextarea2.widgEditor(placeholder='EmailVorlage' rows='10')
                                                     | Guten Tag </br></br>Hier kommt VW </br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
-                                                a.button-email-send.btn.btn-secondary.btn-sm(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=2, orderstatus=3, proc=2)
+                                                a.button-email-send.btn.btn-secondary.btn-sm.button-email-send-multiselect(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=3, orderstatus=3, proc=2)
                                                     | Email senden
                                                 //button.btn-email2.btn-email-status2.btn.btn-primary.btn-sm.button-email-send(type='button') Email senden
                                                 button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
@@ -207,20 +203,31 @@
                                                         h4 Prüfer 1
                                                         h4
                                                             | Ethisch NOK
+                                        for order in softwareListDetails
+                                            if ((order.commentex1 !== null ) && ((order.commentex1).length))
+                                                div.row
+                                                    label(for='form-function')
+                                                        | Notizen
+                                                    p= order.commentex1
                                                     br
-                                                
+
                                             if (order.ex2 !== null )
                                                 div
                                                     if (order.ex2 == "OK")
                                                         h4 Prüfer 1
                                                         h4
                                                             | Ethisch OK
-                                                        br
+
                                                     else if (order.ex2 == "NOK")
-                                                        h4 Prüfer 1
+                                                        h4 Prüfer 2
                                                         h4
                                                             | Ethisch NOK
-                                                br
+                                            if ((order.commentex2 !== null) && ((order.commentex2).length))
+                                                div.row
+                                                    label(for='form-function')
+                                                        | Notizen
+                                                    p= order.commentex2
+                                                    br
                                 if (order.comments !== 'undefined') && ((order.comments).length)
                                     label(for='form-function')
                                         | Notizen Verantwortlicher
@@ -471,11 +478,13 @@ script(type='text/javascript' src="./static/js/libs/widgEditor.js")
 script(type='text/javascript').
     $(document).ready(function () {
         $(".custom-control-button-open").click(function () {
+            multiplecheckarr = [];
             $(this).next(".inputHide").delay(300).slideDown("slow");
         });
         $(".custom-control-button-close").click(function () {
             $(this).closest(".inputHide").delay(300).slideUp("slow");
         });
+        let multiplecheckarr = [];
         $('.button-email-send').one('click',function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -507,16 +516,15 @@ script(type='text/javascript').
                     datetime: datetime,
                     mailtype: mailtype,
                     orderstatus: orderstatus,
-                    proc: proc
+                    proc: proc,
+                    multiplecheckarr: JSON.stringify(multiplecheckarr)
                 },
                 url: 'details?tsid=' + currenturlParam,
                 success: function (data) {
-
                     $('.green').removeClass('hidden');
                     window.setTimeout(function () {
                         window.location.replace("details?tsid=" + currenturlParam);
                     }, 500);
-
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $('.red').removeClass('hidden');
@@ -526,7 +534,7 @@ script(type='text/javascript').
             });
 
         });
-        var expanded = false;
+        let expanded = false;
         $('.selectBox').on('click',function (e) {
             var checkboxes = $("#checkboxes");
             if (!expanded) {
@@ -535,7 +543,23 @@ script(type='text/javascript').
             } else {
                 checkboxes.delay(300).slideUp("slow");
                 expanded = false;
-            }
 
+            }
         });
+        $('.multiplecheck').on('change',function (e) {
+            let itemcheck = $(this).attr('id');
+                if ($(this).prop('checked')==true){
+
+                if(multiplecheckarr.indexOf(itemcheck) === -1) {
+                    multiplecheckarr.push(itemcheck);
+                }
+            }
+                else if ($(this).prop('checked')==false){
+                    multiplecheckarr = $.grep(multiplecheckarr, function (value) {
+                        return value != itemcheck;
+                    });
+                }
+                console.log(multiplecheckarr);
+        })
+
     });

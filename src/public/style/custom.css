@@ -1223,10 +1223,6 @@ span i{
     background-image: none!important;
     background: #0f0f0f!important;
 }
-.multiselect {
-    width: 200px;
-}
-
 .selectBox {
     position: relative;
 }
@@ -1252,7 +1248,16 @@ span i{
 #checkboxes label {
     display: block;
 }
-
+#checkboxes label{
+    padding: 2px;
+}
 #checkboxes label:hover {
-    background-color: #1e90ff;
+    padding: 2px;
+    background-color: #fde70e;
+}
+.invalid-feedback-file{
+    width:100%;
+    margin-top:.25rem;
+    font-size:75%;
+    color: #df305b;
 }
