@@ -3,7 +3,7 @@ module.exports = {
     DB : {
       HOST: "127.0.0.1",
       PORT: 3306,
-      USERNAME: "root",
+      USERNAME: "ethra",
       PASSWORD: "mysecretpassword"
     },
     DBNAME : {

@@ -90,9 +90,12 @@ module.exports = function (models) {
             let observation = req.body.observation;
             let media = req.body.media;
             let anonymized = req.body.anonymized;
+            let anonymizedtext = req.body.anonymizedtext;
             let confidentiality = req.body.confidentiality;
+            let confidentialitytext = req.body.confidentialitytext;
             let destroy = req.body.destroy;
             let deleted = req.body.deleted;
+            let deletedtext = req.body.deletedtext;
             let repo = req.body.repo;
             let located = req.body.located;
             let signature = req.body.signature;
@@ -113,7 +116,7 @@ module.exports = function (models) {
                 else{
                     sql1 = 'SELECT * FROM applications WHERE (email = "alesya.heymann@fhnw.ch") ORDER BY applicationid DESC';
                 }
-                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, confidentiality, destroy, deleted, repo, located, signature, dateapp, deadline, comments, status, orderstatus, proc, ex1, ex2) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+confidentiality+'", "'+destroy+'", "'+deleted+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'", "'+proc+'", "", "")';
+                sql2 = 'INSERT INTO applications (application, approvednr, title, firstname, lastname, email, institute, finance, subdiscipline, projectduration, topic, summ, appraisal, registration, registrationtext, participants, personaldata, recruited, informedbefore, execution, instructions, informedafter, compensation, compensationtext, performanced, voluntary, voluntaryfile, notparticipate, notparticipatetext, withdraw, agreement, agreementfile, participationundersixteen, participationundersixteentext, risk, risktext, riskfile, integrity, integritytext, mentalintegrity, mentalintegritytext, socialintegrity, socialintegritytext, charges, reason, experience, experiencetext, illusion, illusiontext, observation, media, anonymized, anonymizedtext, confidentiality, confidentialitytext, destroy, deleted, deletedtext, repo, located, signature, dateapp, deadline, comments, status, orderstatus, proc, ex1, ex2) VALUES ( "'+application+'", "'+approvednr+'", "'+title+'", "'+firstname+'", "'+lastname+'", "'+email+'", "'+institute+'", "'+finance+'", "'+subdiscipline+'", "'+projectduration+'", "'+topic+'", "'+summ+'", "'+appraisal+'", "'+registration+'", "'+registrationtext+'", "'+participants+'", "'+personaldata+'", "'+recruited+'", "'+informedbefore+'", "'+execution+'", "'+instructions+'", "'+informedafter+'", "'+compensation+'", "'+compensationtext+'", "'+performanced+'", "'+voluntary+'", "'+voluntaryfile+'", "'+notparticipate+'", "'+notparticipatetext+'", "'+withdraw+'", "'+agreement+'", "'+agreementfile+'", "'+participationundersixteen+'", "'+participationundersixteentext+'", "'+risk+'", "'+risktext+'", "'+riskfile+'", "'+integrity+'", "'+integritytext+'", "'+mentalintegrity+'", "'+mentalintegritytext+'", "'+socialintegrity+'", "'+socialintegritytext+'", "'+charges+'", "'+reason+'", "'+experience+'", "'+experiencetext+'", "'+illusion+'", "'+illusiontext+'", "'+observation+'", "'+media+'", "'+anonymized+'", "'+anonymizedtext+'", "'+confidentiality+'", "'+confidentialitytext+'", "'+destroy+'", "'+deleted+'", "'+deletedtext+'", "'+repo+'", "'+located+'", "'+signature+'", "'+dateapp+'", "", "", "'+status+'", "'+orderstatus+'", "'+proc+'", "", "")';
                 connection.query(""+sql2+"",
                     (err, rows) => {
                         //  connection.release() // return the connection to pool
@@ -215,9 +218,12 @@ module.exports = function (models) {
                                             'observation': rows[i].observation,
                                             'media': rows[i].media,
                                             'anonymized': rows[i].anonymized,
+                                            'anonymizedtext': rows[i].anonymizedtext,
                                             'confidentiality': rows[i].confidentiality,
+                                            'confidentialitytext': rows[i].confidentialitytext,
                                             'destroy': rows[i].destroy,
                                             'deleted': rows[i].deleted,
+                                            'deletedtext': rows[i].deletedtext,
                                             'repo': rows[i].repo,
                                             'located': rows[i].located,
                                             'signature': rows[i].signature,
@@ -418,9 +424,12 @@ module.exports = function (models) {
                                     'observation': rows[i].observation,
                                     'media': rows[i].media,
                                     'anonymized': rows[i].anonymized,
+                                    'anonymizedtext': rows[i].anonymizedtext,
                                     'confidentiality': rows[i].confidentiality,
+                                    'confidentialitytext': rows[i].confidentialitytext,
                                     'destroy': rows[i].destroy,
                                     'deleted': rows[i].deleted,
+                                    'deletedtext': rows[i].deletedtext,
                                     'repo': rows[i].repo,
                                     'located': rows[i].located,
                                     'signature': rows[i].signature,

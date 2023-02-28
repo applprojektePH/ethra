@@ -202,9 +202,13 @@ div(id='wrapper-screen-pdf')
                                     label(style="font-weight: 700;")
                                         | a. Werden die erhobenen Daten anonymisiert?
                                     p= order.anonymized
+                                        if order.anonymized === 'Ja'
+                                            p= order.anonymizedtext
                                     label(style="font-weight: 700;")
                                         | b. Wird die Vertraulichkeit der Daten gewährleistet?
                                     p= order.confidentiality
+                                        if order.confidentialitytext === 'Ja'
+                                            p= order.confidentialitytext
                                     label(style="font-weight: 700;")
                                         | c. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
                                     p= order.destroy

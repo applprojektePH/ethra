@@ -439,15 +439,21 @@
                             label
                                 | a. Werden die erhobenen Daten anonymisiert?
                             p= order.anonymized
+                                if order.anonymized === 'Ja'
+                                    p= order.anonymizedtext
                             label
                                 | b. Wird die Vertraulichkeit der Daten gewährleistet?
                             p= order.confidentiality
+                                if order.confidentiality === 'Ja'
+                                    p= order.confidentialitytext
                             label
                                 | c. Können die untersuchten Personen (Proband*innen) das Vernichten ihrer Daten jederzeit verlangen?
                             p= order.destroy
                             label
                                 | d. Werden erhobene Daten nach Ablauf einer bestimmten Zeit teilweise oder ganz gelöscht?
                             p= order.deleted
+                                if order.deleted === 'Ja'
+                                    p= order.deletedtext
                             label
                                 | e. Beabsichtigen Sie, die Rohdaten auf einem öffentlichen Daten-Repository (z.B. FORS) zu veröffentlichen?
                             p= order.repo
