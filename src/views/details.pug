@@ -85,6 +85,20 @@
                                         button.btn.btn-primary.btn-sm.custom-control-button-open(type='button') Vereinfachter Weg (VW)
                                         for order in softwareListDetails
                                             span.inputHide
+                                                br
+                                                div.row
+                                                    div.col-md-12
+                                                        .multiselect
+                                                            .selectBox
+                                                                select
+                                                                    option E-Mail-Adresse wählen
+                                                                .overSelect
+                                                            div#checkboxes
+                                                                for mail in commissionarr
+                                                                    label(for='' + mail)
+                                                                        input.multiplecheck(id='' + mail type='checkbox')
+                                                                        | &nbsp;
+                                                                        =mail
                                                 textarea.modalEmailTextarea#modalEmailTextarea2.widgEditor(placeholder='EmailVorlage' rows='10')
                                                     | Guten Tag </br></br>Hier kommt VW </br></br>Freundliche Grüsse</br> Ihr Applprojekte Team</br> n|w
                                                 a.button-email-send.btn.btn-secondary.btn-sm.button-email-send-multiselect(href="/ethra/details?tsid=" + order.applicationid statuschange=3, mailtype=3, orderstatus=3, proc=2)
