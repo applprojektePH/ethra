@@ -52,7 +52,7 @@ div(id='wrapper-screen-pdf')
                                         | Institut
                                     p= order.institute
                                     label(style="font-weight: 700;")
-                                        | b. Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?
+                                        | b. Wer finanziert das Vorhaben (Drittmittel-geber, externer Auftraggeber, PH FHNW usw)?
                                     p= order.finance
                                     label(style="font-weight: 700;")
                                         | c. Teildisziplin
@@ -200,7 +200,7 @@ div(id='wrapper-screen-pdf')
                                 for order in softwareListDetails
                                     h3.alert.alert-primary 5. Angaben zum Datenschutz
                                     label(style="font-weight: 700;")
-                                        | a. Werden die erhobenen Daten anonymisiert?
+                                        | a. Werden die erhobenen Daten anonymisiert oder pseudonymisiert
                                     p= order.anonymized
                                         if order.anonymized === 'Ja'
                                             p= order.anonymizedtext

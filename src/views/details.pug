@@ -257,7 +257,7 @@
                                 | Institut
                             p= order.institute
                             label
-                                | b. Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber)?
+                                | b. Wer finanziert das Vorhaben (Drittmittel-geber, externer Auftraggeber, PH FHNW usw)?
                             p= order.finance
                             label
                                 | c. Teildisziplin
@@ -437,7 +437,7 @@
                         for order in softwareListDetails
                             h3.alert.alert-primary 5. Angaben zum Datenschutz
                             label
-                                | a. Werden die erhobenen Daten anonymisiert?
+                                | a. Werden die erhobenen Daten anonymisiert oder pseudonymisiert
                             p= order.anonymized
                                 if order.anonymized === 'Ja'
                                     p= order.anonymizedtext
