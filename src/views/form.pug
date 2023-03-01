@@ -181,7 +181,7 @@ br
                             .row
                                 .col-md-12.fields
                                     label
-                                        | b. Wer finanziert das Vorhaben (Drittmittel-geber, externer Auftraggeber, PH FHNW usw)?*
+                                        | b. Wer finanziert das Vorhaben (Drittmittelgeber, externer Auftraggeber, PH FHNW usw)?*
                                     if (typeof (softwareListDetails) !== 'undefined')
                                         for order in softwareListDetails
                                             input#form-finance.form-control(type='text' required='' name='finance' value=order.finance)
@@ -1705,6 +1705,7 @@ script(type='text/javascript').
                 fileExtension = ['jpeg', 'jpg', 'png', 'bmp', 'docx', 'pdf'];
             }
             if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                formsubmit = false;
                 $(this).next('.invalid-feedback-file').removeClass('hidden');
                 $(this).attr('required', true);
                 let current = $(this).closest(".accordion-collapse").prev().eq(0);
@@ -1830,7 +1831,6 @@ script(type='text/javascript').
         });
         $(".submitformbtnaction").on("click", function (event) {
             event.stopPropagation();
-           // $("#headingThree").removeClass('required-header');
 
             $("#accordionForm").find(".accordion-item").each(function () {
                 $(this).find("input, textarea, select").filter('[required]').each(function () {
@@ -1839,13 +1839,6 @@ script(type='text/javascript').
                         current.addClass('required-header');
                         return false;
                     }
-        // $(this).find("input").filter('[file]').each(function () {
-        //     if ($(this).val() !== "8.pdf") {
-        //         let current = $(this).closest(".accordion-collapse").prev().eq(0);
-        //         current.addClass('required-header');
-        //         return false;
-        // }
-        // })
 
                         if( $('anonymized').is(':checked') ){
                              $('#headingFive').removeClass('required-header');
@@ -1897,11 +1890,6 @@ script(type='text/javascript').
             if (($("input[name='repo']:checked").length == 0)) {
                 $("input[name='repo']").closest(".accordion-collapse").prev().addClass('required-header');
             }
-            // else {
-            //     let current = $(this).closest(".accordion-collapse").prev().eq(0);
-            //     current.removeClass('required-header');
-            //     return true;
-            // }
 
             formsubmit = true;
             if (formsubmit == true) {

@@ -421,7 +421,9 @@ form label {
 input.form-control-file {
     width: 300px;
 }
-
+.label-ex{
+    margin-top: 15px;
+}
 /*
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px

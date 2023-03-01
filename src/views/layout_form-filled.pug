@@ -72,11 +72,11 @@ html(lang="en")
                                                                 if (typeof (softwareListDetails) !== 'undefined')
                                                                     for order in softwareListDetails
                                                                         if (order.commentex1 !== 'undefined')
-                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 1
+                                                                            label.form-label.label-ex(for='validationTextarea') Notizen Prüfer 1
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
                                                                                 | #{order.commentex1}
                                                                         else
-                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 1
+                                                                            label.form-label.label-ex(for='validationTextarea') Notizen Prüfer 1
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
                                                         if (order.ex2 !== null )
                                                             div.col-md-6
@@ -99,6 +99,7 @@ html(lang="en")
                                                                         .custom-control.custom-radio
                                                                             input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" checked)
                                                                             label.custom-control-label(for='customRadioEx4') Ethisch NOK
+
                                                                 else
                                                                     .custom-control.custom-radio
                                                                         input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK" )
@@ -110,11 +111,11 @@ html(lang="en")
                                                                 if (typeof (softwareListDetails) !== 'undefined')
                                                                     for order in softwareListDetails
                                                                         if (order.commentex2 !== 'undefined')
-                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 2
+                                                                            label.form-label.label-ex(for='validationTextarea') Notizen Prüfer 2
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
                                                                                 | #{order.commentex2}
                                                                         else
-                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 2
+                                                                            label.form-label.label-ex(for='validationTextarea') Notizen Prüfer 2
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
                                                                 br
 
