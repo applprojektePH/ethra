@@ -1696,18 +1696,19 @@ script(type='text/javascript' src="./static/js/libs/jquery.js")
 script(type='text/javascript' src="./static/js/validator.js")
 script(type='text/javascript').
     $(document).ready(function () {
+        let formsubmit = true;
         $("input[type='file']").change(function (event) {
             let fileExtension;
             if ($(this).attr('name') === 'filesignature'){
                  fileExtension = ['jpeg', 'jpg', 'png', 'bmp'];
             }
            else{
-                fileExtension = ['jpeg', 'jpg', 'png', 'bmp', 'docx', 'pdf'];
+                fileExtension = ['jpeg', 'jpg', 'png', 'bmp', 'docx', 'pdf', 'odt'];
             }
             if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-                formsubmit = false;
                 $(this).next('.invalid-feedback-file').removeClass('hidden');
                 $(this).attr('required', true);
+                $(this).val('');
                 let current = $(this).closest(".accordion-collapse").prev().eq(0);
                 current.addClass('required-header');
             }
@@ -1807,7 +1808,8 @@ script(type='text/javascript').
             (('' + minute).length < 2 ? '0' : '') + minute;
         $('.form-date').text(datetime);
         $('.form-date-input').attr('value', datetime);
-        let formsubmit = false;
+
+       // formsubmit = false;
         if ($("[name='browser']:checked").length !== 0) {
             $("[name='browser']").attr('required', false);
         }
@@ -1891,8 +1893,9 @@ script(type='text/javascript').
                 $("input[name='repo']").closest(".accordion-collapse").prev().addClass('required-header');
             }
 
-            formsubmit = true;
+           // formsubmit = true;
             if (formsubmit == true) {
+
                 (function () {
                     'use strict'
                     // Fetch all the forms we want to apply custom Bootstrap validation styles to
