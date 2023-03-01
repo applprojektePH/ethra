@@ -60,7 +60,7 @@ html(lang="en")
                                                                         .custom-control.custom-radio
                                                                             input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" checked)
                                                                             label.custom-control-label(for='customRadioEx2') Ethisch NOK
-                                                                        br
+
                                                                 else
                                                                     .custom-control.custom-radio
                                                                         input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK")
@@ -68,17 +68,14 @@ html(lang="en")
                                                                     .custom-control.custom-radio
                                                                         input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK")
                                                                         label.custom-control-label(for='customRadioEx2') Ethisch NOK
-                                                                    br
 
                                                                 if (typeof (softwareListDetails) !== 'undefined')
                                                                     for order in softwareListDetails
                                                                         if (order.commentex1 !== 'undefined')
-                                                                            br
                                                                             label.form-label(for='validationTextarea') Notizen Prüfer 1
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
                                                                                 | #{order.commentex1}
                                                                         else
-                                                                            br
                                                                             label.form-label(for='validationTextarea') Notizen Prüfer 1
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
                                                         if (order.ex2 !== null )
@@ -113,12 +110,10 @@ html(lang="en")
                                                                 if (typeof (softwareListDetails) !== 'undefined')
                                                                     for order in softwareListDetails
                                                                         if (order.commentex2 !== 'undefined')
-                                                                            br
                                                                             label.form-label(for='validationTextarea') Notizen Prüfer 2
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
                                                                                 | #{order.commentex2}
                                                                         else
-                                                                            br
                                                                             label.form-label(for='validationTextarea') Notizen Prüfer 2
                                                                             textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
                                                                 br
