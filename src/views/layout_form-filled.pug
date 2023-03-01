@@ -12,137 +12,141 @@ html(lang="en")
                         for order in softwareListDetails
                             h2(id='tables') Antrag #!{order.applicationid} !{order.topic} bearbeiten
                         form#formOrder.needs-validation(method='POST' novalidate='')
-                            for order in softwareListDetails
-                                if(order.status == 10)
-                                    include elements/buttons-edit-draft
-                                else
-                                    include elements/buttons-edit
-                                    if (order.proc !== 0)
-                                        .row
-                                            .col-md-6
-                                                br
-                                                if (order.proc == 1)
-                                                    i Ordentliches Verfahren (OV)
-                                                else if (order.proc == 2)
-                                                    i Vereinfachter Weg (VW)
-                                                br
-                                                br
-                                                if (order.ex1 !== null )
-                                                    div
-                                                        h4 Prüfer 1
-                                                        if (order.ex1 == "OK")
-                                                            div.custom-radio-wrapper(filled=order.appraisal)
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" checked)
-                                                                    label.custom-control-label(for='customRadioEx1') Ethisch OK
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" )
-                                                                    label.custom-control-label(for='customRadioEx2') Ethisch NOK
+                            if (admin == true)
+                                for order in softwareListDetails
+                                    if(order.status == 10)
+                                        include elements/buttons-edit-draft
+                                    else
+                                        include elements/buttons-edit
 
-                                                        else if (order.ex1 == "NOK")
-                                                            div.custom-radio-wrapper(filled=order.appraisal)
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" )
-                                                                    label.custom-control-label(for='customRadioEx1') Ethisch OK
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" checked)
-                                                                    label.custom-control-label(for='customRadioEx2') Ethisch NOK
-                                                                br
-                                                        else
-                                                            .custom-control.custom-radio
-                                                                input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK")
-                                                                label.custom-control-label(for='customRadioEx1') Ethisch OK
-                                                            .custom-control.custom-radio
-                                                                input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK")
-                                                                label.custom-control-label(for='customRadioEx2') Ethisch NOK
-                                                            br
-                                                          
-                                                        if (typeof (softwareListDetails) !== 'undefined')
+                                        if (order.proc !== 0)
+                                                    br
+                                                    if (order.proc == 1)
+                                                        div
+                                                        i Ordentliches Verfahren (OV)
+                                                    else if (order.proc == 2)
+                                                        div
+                                                        i Vereinfachter Weg (VW)
+                                                    br
+                                                    br
+                                        label.form-label(for='validationTextarea') Notizen Verantwortlicher
+                                for order in softwareListDetails
+                                                    if (typeof (softwareListDetails) !== 'undefined')
                                                             for order in softwareListDetails
-                                                                if (order.commentex1 !== 'undefined')
-                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 1
-                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
-                                                                        | #{order.commentex1}
+                                                                if (order.comments !== 'undefined')
+                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='comments')
+                                                                        | #{order.comments}
                                                                 else
-                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 1
-                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
-                                                if (order.ex2 !== null )
-                                                    div
-                                                        br
-                                                        h4 Prüfer 2
-                                                        if (order.ex2 == "OK")
-                                                            div.custom-radio-wrapper(filled=order.appraisal)
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK" checked)
-                                                                    label.custom-control-label(for='customRadioEx3') Ethisch OK
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" )
-                                                                    label.custom-control-label(for='customRadioEx4') Ethisch NOK
+                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='comments')
+                                                    div.row
+                                                        if (order.ex1 !== null )
+                                                            div.col-md-6
+                                                                br
+                                                                h4 Prüfer 1
+                                                                if (order.ex1 == "OK")
+                                                                    div.custom-radio-wrapper(filled=order.appraisal)
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" checked)
+                                                                            label.custom-control-label(for='customRadioEx1') Ethisch OK
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" )
+                                                                            label.custom-control-label(for='customRadioEx2') Ethisch NOK
+
+                                                                else if (order.ex1 == "NOK")
+                                                                    div.custom-radio-wrapper(filled=order.appraisal)
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK" )
+                                                                            label.custom-control-label(for='customRadioEx1') Ethisch OK
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK" checked)
+                                                                            label.custom-control-label(for='customRadioEx2') Ethisch NOK
+                                                                        br
+                                                                else
+                                                                    .custom-control.custom-radio
+                                                                        input#customRadioEx1.custom-control-input(type='radio' name='ex1' value="OK")
+                                                                        label.custom-control-label(for='customRadioEx1') Ethisch OK
+                                                                    .custom-control.custom-radio
+                                                                        input#customRadioEx2.custom-control-input(type='radio' name='ex1' value="NOK")
+                                                                        label.custom-control-label(for='customRadioEx2') Ethisch NOK
+                                                                    br
+
+                                                                if (typeof (softwareListDetails) !== 'undefined')
+                                                                    for order in softwareListDetails
+                                                                        if (order.commentex1 !== 'undefined')
+                                                                            br
+                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 1
+                                                                            textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
+                                                                                | #{order.commentex1}
+                                                                        else
+                                                                            br
+                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 1
+                                                                            textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex1')
+                                                        if (order.ex2 !== null )
+                                                            div.col-md-6
+                                                                br
+                                                                h4 Prüfer 2
+                                                                if (order.ex2 == "OK")
+                                                                    div.custom-radio-wrapper(filled=order.appraisal)
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK" checked)
+                                                                            label.custom-control-label(for='customRadioEx3') Ethisch OK
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" )
+                                                                            label.custom-control-label(for='customRadioEx4') Ethisch NOK
+
+                                                                else if (order.ex2 == "NOK")
+                                                                    div.custom-radio-wrapper(filled=order.appraisal)
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK"  )
+                                                                            label.custom-control-label(for='customRadioEx3') Ethisch OK
+                                                                        .custom-control.custom-radio
+                                                                            input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" checked)
+                                                                            label.custom-control-label(for='customRadioEx4') Ethisch NOK
+                                                                else
+                                                                    .custom-control.custom-radio
+                                                                        input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK" )
+                                                                        label.custom-control-label(for='customRadioEx3') Ethisch OK
+                                                                    .custom-control.custom-radio
+                                                                        input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" )
+                                                                        label.custom-control-label(for='customRadioEx4') Ethisch NOK
+
+                                                                if (typeof (softwareListDetails) !== 'undefined')
+                                                                    for order in softwareListDetails
+                                                                        if (order.commentex2 !== 'undefined')
+                                                                            br
+                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 2
+                                                                            textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
+                                                                                | #{order.commentex2}
+                                                                        else
+                                                                            br
+                                                                            label.form-label(for='validationTextarea') Notizen Prüfer 2
+                                                                            textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
                                                                 br
 
-                                                        else if (order.ex2 == "NOK")
-                                                            div.custom-radio-wrapper(filled=order.appraisal)
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK"  )
-                                                                    label.custom-control-label(for='customRadioEx3') Ethisch OK
-                                                                .custom-control.custom-radio
-                                                                    input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" checked)
-                                                                    label.custom-control-label(for='customRadioEx4') Ethisch NOK
-                                                                br
-                                                        else
-                                                            .custom-control.custom-radio
-                                                                input#customRadioEx3.custom-control-input(type='radio' name='ex2' value="OK" )
-                                                                label.custom-control-label(for='customRadioEx3') Ethisch OK
-                                                            .custom-control.custom-radio
-                                                                input#customRadioEx4.custom-control-input(type='radio' name='ex2' value="NOK" )
-                                                                label.custom-control-label(for='customRadioEx4') Ethisch NOK
-                                                            br
-
-                                                        if (typeof (softwareListDetails) !== 'undefined')
-                                                            for order in softwareListDetails
-                                                                if (order.commentex2 !== 'undefined')
-                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 2
-                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
-                                                                        | #{order.commentex2}
-                                                                else
-                                                                    label.form-label(for='validationTextarea') Notizen Prüfer 2
-                                                                    textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='commentex2')
                                                         br
 
 
-                                if (admin == true)
-                                    br
-                                    label.form-label(for='validationTextarea') Notizen Verantwortlicher
-                                    if (typeof (softwareListDetails) !== 'undefined')
-                                        for order in softwareListDetails
-                                            if (order.comments !== 'undefined')
-                                                textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='comments')
-                                                    | #{order.comments}
+                                .row
+                                    .col-md-6
+                                        label.form-check-label
+                                            |  (Genehmigungs-Nummer: )
+                                            if (typeof (softwareListDetails) !== 'undefined')
+                                                for order in softwareListDetails
+                                                    input.form-control(type='text' name='approvednr' value=order.approvednr)
                                             else
-                                                textarea#validationTextarea.form-control.textarea-js(maxlength='5000' rows='7' name='comments')
-                                    br
-                                    .row
-                                        .col-md-6
-                                            label.form-check-label
-                                                |  (Genehmigungs-Nummer: )
-                                                if (typeof (softwareListDetails) !== 'undefined')
-                                                    for order in softwareListDetails
-                                                        input.form-control(type='text' name='approvednr' value=order.approvednr)
-                                                else
-                                                    input.form-control(type='text' name='approvednr')
-                                        .col-md-6
-                                            label.form-check-label
-                                                |  Stichtag
-                                                if (typeof (softwareListDetails) !== 'undefined')
-                                                    for order in softwareListDetails
-                                                        input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' value=order.deadline data-provide='datepicker' data-date-format="dd.mm.yyyy")
+                                                input.form-control(type='text' name='approvednr')
+                                    .col-md-6
+                                        label.form-check-label
+                                            |  Stichtag
+                                            if (typeof (softwareListDetails) !== 'undefined')
+                                                for order in softwareListDetails
+                                                    input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' value=order.deadline data-provide='datepicker' data-date-format="dd.mm.yyyy")
 
-                                                else
-                                                    input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' data-provide='datepicker' data-date-format="dd.mm.yyyy")
+                                            else
+                                                input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' data-provide='datepicker' data-date-format="dd.mm.yyyy")
 
-                                    br
-                                    hr
-                                    br
+                                br
+                                hr
+                                br
                                 include form
-    include footer
-
+                                include footer

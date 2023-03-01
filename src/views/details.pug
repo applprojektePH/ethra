@@ -201,51 +201,55 @@
                                 if (order.proc !== 0)
                                     .row
                                         .col-md-6
-                                            if (order.proc == 1)
-                                                i Ordentliches Verfahren (OV)
-                                            else if (order.proc == 2)
-                                                i Vereinfachter Weg (VW)
-                                            br
-                                            if (order.ex1 !== null )
-                                                div
-                                                    br
-                                                    if (order.ex1 == "OK")
-                                                        h4 Prüfer 1:
-                                                        h4
-                                                            | Ethisch OK
-                                                    else if (order.ex1 == "NOK")
-                                                        h4 Prüfer 1
-                                                        h4
-                                                            | Ethisch NOK
-                                        for order in softwareListDetails
-                                            if ((order.commentex1 !== null ) && ((order.commentex1).length))
-                                                div.row
-                                                    label(for='form-function')
-                                                        | Notizen
-                                                    p= order.commentex1
-                                                    br
-
-                                            if (order.ex2 !== null )
-                                                div
-                                                    if (order.ex2 == "OK")
-                                                        h4 Prüfer 1
-                                                        h4
-                                                            | Ethisch OK
-
-                                                    else if (order.ex2 == "NOK")
-                                                        h4 Prüfer 2
-                                                        h4
-                                                            | Ethisch NOK
-                                            if ((order.commentex2 !== null) && ((order.commentex2).length))
-                                                div.row
-                                                    label(for='form-function')
-                                                        | Notizen
-                                                    p= order.commentex2
-                                                    br
+                                if (order.proc == 1)
+                                    i Ordentliches Verfahren (OV)
+                                else if (order.proc == 2)
+                                    i Vereinfachter Weg (VW)
+                                br
+                                br
                                 if (order.comments !== 'undefined') && ((order.comments).length)
                                     label(for='form-function')
                                         | Notizen Verantwortlicher
                                     p= order.comments
+                                    br
+                                if (order.ex1 !== null)
+                                    if (order.ex1 == "OK")
+                                        h4 Prüfer 1:
+                                        h4
+                                            | Ethisch OK
+                                        br
+                                        label(for='form-function')
+                                            | Notizen Prüfer 1
+                                        p= order.commentex1
+                                        br
+                                    else if (order.ex1 == "NOK")
+                                        h4 Prüfer 1
+                                        h4
+                                            | Ethisch NOK
+                                        br
+                                        label(for='form-function')
+                                            | Notizen Prüfer 1
+                                        p= order.commentex1
+                                        br
+                                if (order.ex2 !== null)
+                                    if (order.ex2 == "OK")
+                                        h4 Prüfer 1
+                                        h4
+                                            | Ethisch OK
+                                        br
+                                        label(for='form-function')
+                                            | Notizen Prüfer 2
+                                        p= order.commentex2
+                                        br
+                                    else if (order.ex2 == "NOK")
+                                        h4 Prüfer 2
+                                        h4
+                                            | Ethisch NOK
+                                        br
+                                        label(for='form-function')
+                                            | Notizen Prüfer 2
+                                        p= order.commentex2
+                                        br
                                 if (order.approvednr !== 'undefined') && ((order.approvednr).length)
                                     label Genehmigungs-Nummer:
                                     p= order.approvednr
