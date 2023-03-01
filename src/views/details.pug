@@ -68,8 +68,8 @@
                                                             .overSelect
                                                         div#checkboxes
                                                             for mail in commissionarr
-                                                                label(for='' + mail)
-                                                                    input.multiplecheck(id='' + mail type='checkbox')
+                                                                label(for='' + mail + "OV")
+                                                                    input.multiplecheck(id='' + mail + "OV" type='checkbox')
                                                                     |&nbsp;
                                                                     =mail
                                             textarea.modalEmailTextarea#modalEmailTextarea1.widgEditor(placeholder='EmailVorlage' rows='10')
@@ -95,8 +95,8 @@
                                                                 .overSelect
                                                             div#checkboxes
                                                                 for mail in commissionarr
-                                                                    label(for='' + mail)
-                                                                        input.multiplecheck(id='' + mail type='checkbox')
+                                                                    label(for='' + mail + "VW")
+                                                                        input.multiplecheck(id='' + mail + "VW" type='checkbox')
                                                                         | &nbsp;
                                                                         =mail
                                                 textarea.modalEmailTextarea#modalEmailTextarea2.widgEditor(placeholder='EmailVorlage' rows='10')
@@ -501,8 +501,12 @@ script(type='text/javascript' src="./static/js/libs/jquery.js")
 script(type='text/javascript' src="./static/js/libs/widgEditor.js")
 script(type='text/javascript').
     $(document).ready(function () {
+        let expanded;
         $(".custom-control-button-open").click(function () {
+            expanded = false;
             multiplecheckarr = [];
+            $(".inputHide").delay(300).slideUp("slow");
+            $("#checkboxes").delay(300).slideUp("slow");
             $(this).next(".inputHide").delay(300).slideDown("slow");
         });
         $(".custom-control-button-close").click(function () {
@@ -558,20 +562,19 @@ script(type='text/javascript').
             });
 
         });
-        let expanded = false;
         $('.selectBox').on('click',function (e) {
-            var checkboxes = $("#checkboxes");
+            let checkboxes = $(this).next("#checkboxes");
+            expanded = false;
             if (!expanded) {
                 checkboxes.delay(300).slideDown("slow");
                 expanded = true;
             } else {
                 checkboxes.delay(300).slideUp("slow");
                 expanded = false;
-
             }
         });
         $('.multiplecheck').on('change',function (e) {
-            let itemcheck = $(this).attr('id');
+            let itemcheck = $(this).attr('id').slice(0,-2);
                 if ($(this).prop('checked')==true){
 
                 if(multiplecheckarr.indexOf(itemcheck) === -1) {

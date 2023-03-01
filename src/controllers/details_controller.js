@@ -354,7 +354,7 @@ module.exports = function (models) {
 
                         let messageSender3 = {
                             // sender info
-                            from: 'Ethra Mailtype3 <alesya.heymann@fhnw.ch>',
+                            from: 'Ethra <alesya.heymann@fhnw.ch>',
                             // Comma separated list of recipients
                             to: multiplecheckarr, //Hier kommt Kommisions Liste
                             // Subject of the message
