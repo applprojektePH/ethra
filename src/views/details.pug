@@ -196,17 +196,20 @@
                     .form-group
                       .row
                         .col-md-12
-                        if (admin == true)
+                        for order in softwareListDetails
+                          if ((admin == true) && (order.status !== 10))
                             for order in softwareListDetails
                                 if (order.proc !== 0)
                                     .row
                                         .col-md-6
                                 if (order.proc == 1)
                                     i Ordentliches Verfahren (OV)
+                                    br
+                                    br
                                 else if (order.proc == 2)
                                     i Vereinfachter Weg (VW)
-                                br
-                                br
+                                    br
+                                    br
                                 if (order.comments !== 'undefined') && ((order.comments).length)
                                     label(for='form-function')
                                         | Notizen Verantwortlicher
