@@ -136,10 +136,10 @@ html(lang="en")
                                                     |  Stichtag
                                                     if (typeof (softwareListDetails) !== 'undefined')
                                                         for order in softwareListDetails
-                                                            input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' value=order.deadline data-provide='datepicker' data-date-format="dd.mm.yyyy")
+                                                            input.form-control.date.datepicker-custom(type='text' name='deadline' placeholder='Datum auswählen' value=order.deadline)
 
                                                     else
-                                                        input.form-control.date.date-picker(type='text' name='deadline' placeholder='Datum auswählen' data-provide='datepicker' data-date-format="dd.mm.yyyy")
+                                                        input.form-control.date.datepicker-custom(type='text' name='deadline' placeholder='Datum auswählen')
 
                                         br
                                         hr

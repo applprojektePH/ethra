@@ -144,5 +144,18 @@ $(document).ready(function () {
             expanded = false;
         }
     }
+    $('.datepicker-custom').datepicker({
+        format: "dd.mm.yyyy",
+    }).change(evt => {
+        // var selectedDate = $('.datepicker-custom').datepicker('getDate');
+        // var now = new Date();
+        // now.setHours(0,0,0,0);
+        // if (selectedDate < now) {
+        //     alert('yes')
+        // } else {
+        //     alert('no');
+        // }
+    });
+
 });
 

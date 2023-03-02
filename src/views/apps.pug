@@ -37,56 +37,11 @@
                             else
                                 td=" "
                             if((order.deadline) && (order.deadline !== 'undefined'))
-                                td= order.deadline
+                                td.deadline= order.deadline
                             else
                                 td=" "
                             td= order.status
-            //thead
-            //    tr(role='row')
-            //        th(role='columnheader') Antragsnr.
-            //        th.minwidth(role='columnheader') Name des Projektes
-            //        th(role='columnheader') Beantragt am
-            //        th(role='columnheader') Ersteller*innen
-            //        th(role='columnheader') Institut
-            //        th(role='columnheader') Deadline
-            //        th(role='columnheader') Status
-            //tbody
-            //        tr
-            //            td
-            //                a#link(href="#" class="link-id") 1
-            //            td Projekt
-            //            td 31.01.2023
-            //            td
-            //                span Peter
-            //                span &nbsp;
-            //                span Muster
-            //            td Primarstufe
-            //            td 1.06.2023
-            //            td in Bearbeitung
-            //        tr
-            //            td
-            //                a#link(href="#" class="link-id") 2
-            //            td Projekt
-            //            td 01.01.2023
-            //            td
-            //                span Muster
-            //                span &nbsp;
-            //                span Muster
-            //            td Forschung und Entwicklung
-            //            td 31.01.2023
-            //            td Abgeschlossen
-            //        tr
-            //            td
-            //                a#link(href="#" class="link-id") 3
-            //            td Projekt
-            //            td 01.12.2022
-            //            td
-            //                span Muster
-            //                span &nbsp;
-            //                span Muster
-            //            td Sekundarstufe I und II
-            //            td(class="red") 30.01.2023
-            //            td in Bearbeitung
+
 script(type='text/javascript' src="./static/js/libs/jquery.js")
 //script(type='text/javascript' src="./static/js/libs/bootstrap.bundle.min.js" crossorigin="anonymous")
 
@@ -109,4 +64,21 @@ script(type='text/javascript').
         saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'EthraAntraege.xlsx');
     })
 
+    $(document).ready(function () {
+        $(".table-works tr").each(function () {
+            let deadline = $(this).find(".deadline").html();
+            if(deadline!==undefined){
+                let deadline2 = new Date(deadline);
+                console.log(deadline2);
+                let now = new Date();
+                now.setHours(0, 0, 0, 0);
+                if (deadline2 > now) {
+                    $(this).find(".deadline").removeClass('red');
+                } else {
+                    $(this).find(".deadline").addClass('red');
+                }
+            }
+
+        })
+    })
 
