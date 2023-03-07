@@ -236,7 +236,6 @@ module.exports = function (models) {
                         from: 'Ethra Mailtype2 <alesya.heymann@fhnw.ch>',
                         // Comma separated list of recipients
                         to: email, //NICHT ABÄNDERN EMAILm //Hier kommt Kommisions Liste
-                        bcc: 'alesya.heymann@fhnw.ch',
                         // Subject of the message
                         subject: 'Ethra: Antrag Nummer #' + applicationid + '',
                         // plaintext body
@@ -310,37 +309,36 @@ module.exports = function (models) {
                         transport2.close();
                     });
                 }
-                if ((mailtype == 2) && (typeof statuschange != 'undefined') && (typeof email != 'undefined')) {
-                    let transport2 = nodemailer.createTransport({
-                        host: "lmailer.fhnw.ch",
-                        secure: false, // use SSL
-                        port: 25,
-                        tls: {
-                            rejectUnauthorized: false
-                        }
-                    });
-                    let messageSender2 = {
-                        // sender info
-                        from: 'Ethra Mailtype2 <alesya.heymann@fhnw.ch>',
-                        // Comma separated list of recipients
-                        to: email, //NICHT ABÄNDERN EMAILm //Hier kommt Kommisions Liste
-                        bcc: 'alesya.heymann@fhnw.ch',
-                        // Subject of the message
-                        subject: 'Ethra: Antrag Nummer #' + applicationid + '',
-                        // plaintext body
-                        text: mailtext,
-                        // HTML body
-                        html: '' + mailtext
-                    };
-                    transport2.sendMail(messageSender2, function (error) {
-                        if (error) {
-                            console.log('Error occured');
-                            console.log(error.message);
-                            return;
-                        }
-                        transport2.close();
-                    });
-                }
+                // if ((mailtype == 2) && (typeof statuschange != 'undefined') && (typeof email != 'undefined')) {
+                //     let transport2 = nodemailer.createTransport({
+                //         host: "lmailer.fhnw.ch",
+                //         secure: false, // use SSL
+                //         port: 25,
+                //         tls: {
+                //             rejectUnauthorized: false
+                //         }
+                //     });
+                //     let messageSender2 = {
+                //         // sender info
+                //         from: 'Ethra Entscheid <alesya.heymann@fhnw.ch>',
+                //         // Comma separated list of recipients
+                //         to: email, //NICHT ABÄNDERN EMAILm //Hier kommt Kommisions Liste
+                //         // Subject of the message
+                //         subject: 'Ethra: Antrag Nummer #' + applicationid + '',
+                //         // plaintext body
+                //         text: mailtext,
+                //         // HTML body
+                //         html: '' + mailtext
+                //     };
+                //     transport2.sendMail(messageSender2, function (error) {
+                //         if (error) {
+                //             console.log('Error occured');
+                //             console.log(error.message);
+                //             return;
+                //         }
+                //         transport2.close();
+                //     });
+                // }
                 if ((mailtype == 3) && (typeof statuschange != 'undefined') && (typeof email != 'undefined')) {
 
                         let transport3 = nodemailer.createTransport({

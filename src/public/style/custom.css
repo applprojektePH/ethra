@@ -1263,3 +1263,7 @@ span i{
     font-size:75%;
     color: #df305b;
 }
+.filter{
+    width: 30%;
+    margin-bottom: 15px;
+}

@@ -124,7 +124,7 @@
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea.widgEditor#modalEmailTextareaFeedback(placeholder='EmailVorlage' rows='10')
-                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
+                                            | Guten Tag Herr Kassis </br></br>Hier kommt Feedback. Antrag #{order.topic} Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</br></br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=2, mailtype=2, orderstatus=0)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
@@ -143,7 +143,7 @@
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea#modalEmailTextarea12.widgEditor(placeholder='EmailVorlage' rows='10')
-                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
+                                            | Guten Tag #{anredeMail} </br></br>Bewilligt Ihr Antrag #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=4, mailtype=2, orderstatus=4)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
@@ -156,7 +156,7 @@
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea.widgEditor#modalEmailTextarea(placeholder='EmailVorlage' rows='10')
-                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft. Leider müssen wir Ihnen mitteilen </br>Begründung: </br></br>Freundliche Grüsse</br> n|w
+                                            | Guten Tag #{anredeMail} </br></br>Überarbeitet Ihr Antrag #{order.topic} wurde geprüft. Leider müssen wir Ihnen mitteilen </br>Begründung: </br></br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=10, mailtype=2, orderstatus=0, proc=0)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
@@ -168,7 +168,7 @@
                                 for order in softwareListDetails
                                     span.inputHide
                                         textarea.modalEmailTextarea.widgEditor#modalEmailTextareaReject(placeholder='EmailVorlage' rows='10')
-                                            | Guten Tag #{anredeMail} </br></br>Ihr Antrag zur Anschaffung der Software #{order.topic} wurde geprüft und teilen Ihnen gerne mit</br>Freundliche Grüsse</br> n|w
+                                            |  Guten Tag #{anredeMail} </br></br>Abgelehnt Ihr Antrag #{order.topic} wurde geprüft. Leider müssen wir Ihnen mitteilen</br>Freundliche Grüsse</br> n|w
                                         a.button-email-send.btn.btn-secondary.btn-sm(href="details?tsid=" + order.applicationid statuschange=5, mailtype=2, orderstatus=5)
                                             | Email senden
                                         button.btn.btn-primary.btn-sm.custom-control-button-close(type='button') Abbrechen
@@ -197,7 +197,7 @@
                       .row
                         .col-md-12
                         for order in softwareListDetails
-                          if ((admin == true) && (order.status !== 10))
+                          if (admin == true)
                             for order in softwareListDetails
                                 if (order.proc !== 0)
                                     .row

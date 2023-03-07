@@ -3,3 +3,4 @@ module.exports = {
     commission: ['alesya.heymann@fhnw.ch', 'aup.testeraddy@gmail.com']
 }
 
+
