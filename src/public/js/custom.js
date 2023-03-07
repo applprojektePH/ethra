@@ -157,5 +157,30 @@ $(document).ready(function () {
         // }
     });
 
+        $(".table-works tr").each(function () {
+            let deadline = $(this).find(".deadline").html();
+            if(deadline!==undefined){
+                var initial = deadline.split(/\./);
+                initial = [initial[1], initial[0], initial[2]].join('.');
+                let deadline2 = new Date(initial);
+                if (!isNaN(deadline2)) {
+                    let now = new Date();
+                    now.setHours(0, 0, 0, 0);
+                    if (deadline2 > now) {
+                        $(this).find(".deadline").removeClass('red');
+                    } else {
+                        $(this).find(".deadline").addClass('red');
+                    }
+                }
+            }
+        })
+    $('.filter').change(function () {
+        let filter = $(this).val();
+        $('.search-input').val(filter);
+        $('.search-input').focus();
+        setTimeout(function () {
+            $('.search-input').blur();
+        }, 200);
+    })
 });
 

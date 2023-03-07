@@ -1,8 +1,21 @@
 .row
     .col-md-12
-        button.excelexport.btn.btn-primary.btn-sm
-            | Excel Export
-            i.fas.fa-file-excel
+        .row
+            .col-md-6
+                button.excelexport.btn.btn-primary.btn-sm
+                    | Excel Export
+                    i.fas.fa-file-excel
+            .col-md-6
+                select.form-select.form-control.custom-control-select.filter.floatright(name='filter')
+                    option(selected='' disabled='' value='') Anträge filtern
+                    option(value='') Alle
+                    option(value="Antrag in Bearbeitung") in Bearbeitung
+                    option(value="OV") OV
+                    option(value="VW") VW
+                    option(value="Antrag bei Gremium") bei Gremium
+                    option(value="Antrag genehmigt") genehmigt
+                    option(value="abgelehnt") abgelehnt
+                br
         table.table.table-striped.table-works#Softwaretable(data-toggle="table" data-pagination="true"
             data-search="true" data-sort="true")
             thead
@@ -62,23 +75,5 @@ script(type='text/javascript').
     }
     $(".excelexport").click(function () {
         saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'EthraAntraege.xlsx');
-    })
-
-    $(document).ready(function () {
-        $(".table-works tr").each(function () {
-            let deadline = $(this).find(".deadline").html();
-            if(deadline!==undefined){
-                let deadline2 = new Date(deadline);
-                console.log(deadline2);
-                let now = new Date();
-                now.setHours(0, 0, 0, 0);
-                if (deadline2 > now) {
-                    $(this).find(".deadline").removeClass('red');
-                } else {
-                    $(this).find(".deadline").addClass('red');
-                }
-            }
-
-        })
     })
 

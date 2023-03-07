@@ -268,15 +268,15 @@ module.exports = function (models) {
                                         subject: 'Ethra: Ethikantrag #'+orderidformail+'',
 
                                         // plaintext body
-                                        text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Prüfung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://ethra.ph.fhnw.ch/ethra/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
+                                        text: 'Guten Tag '+anredeMail+', Ihr Antrag wurde von unserem System entgegengenommen und zur Prüfung weitergeleitet. Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://ethra.ph.fhnw.ch/details?tsid='+orderidformail+' nach der Anmeldung. \n' +
                                             '\n' +
                                             'Vielen Dank und freundliche Grüsse \n' +
                                             'Ihr ...  \n' +
                                             'n|w\n',
 
                                         // HTML body
-                                        html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung an das entsprechende Team weitergeleitet.' +
-                                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://ethra.ph.fhnw.ch/ethra/details?tsid='+orderidformail+' nach der Anmeldung.' +
+                                        html:'<p><span>Guten Tag '+anredeMail+'</span><p>Ihr Antrag wurde von unserem System entgegengenommen und zur Bearbeitung weitergeleitet.' +
+                                            '</br>Eine Gesamtübersicht Ihrer Tickets erhalten Sie unter http://ethra.ph.fhnw.ch/details?tsid='+orderidformail+' nach der Anmeldung.' +
                                             '</br></br>Vielen Dank und freundliche Grüsse' +
                                             '</br>Ihr ... ' +
                                             '</br>n|w</p>'
@@ -291,10 +291,10 @@ module.exports = function (models) {
                                         subject: 'Ethra: Antrag Nummer #'+orderidformail+'',
 
                                         // plaintext body
-                                        text: 'Lieber Herr Kassis</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://ethra.ph.fhnw.ch/ethra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>n|w',
+                                        text: 'Lieber Herr Kassis</br></br>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://ethra.ph.fhnw.ch/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>n|w',
 
                                         // HTML body
-                                        html:'<p><span>Lieber Herr Kassis</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://ethra.ph.fhnw.ch/ethra/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>n|w</p>'
+                                        html:'<p><span>Lieber Herr Kassis</span></br></br><p>Ein neuer Antrag ist eingegangen: </br>Antrag Nummer '+orderidformail+' </br> Thema/Titel des Vorhabens '+topic+' </br>Direktlinkt auf Antrag: http://ethra.ph.fhnw.ch/details?tsid='+orderidformail+' </br></br>Vielen Dank und freundliche Grüsse </br>n|w</p>'
                                     };
                                     console.log('Sending Mail');
                                     transport.sendMail(messageSender, function(error){
